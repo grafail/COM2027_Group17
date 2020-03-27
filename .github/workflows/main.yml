@@ -30,24 +30,20 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # Runs a set of commands using the runners shell
-      
-    #Use caching to speedup action
-  cache:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-    
-  
+
   build:
     
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v2
+      
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-    
       - name: Set up Ruby 2.5
         uses: actions/setup-ruby@v1
         with:
