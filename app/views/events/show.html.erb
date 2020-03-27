@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sellerid:</strong>
+  <%= @event.SellerID %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.Name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @event.Address %>
+</p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @event.Twitter %>
+</p>
+
+<p>
+  <strong>Isbusiness:</strong>
+  <%= @event.IsBusiness %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
