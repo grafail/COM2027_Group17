@@ -10,34 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_180508) do
+ActiveRecord::Schema.define(version: 2020_03_29_153559) do
 
   create_table "events", force: :cascade do |t|
-    t.string "SellerID"
-    t.string "Name"
-    t.string "Address"
-    t.string "Twitter"
-    t.boolean "IsBusiness"
+    t.integer "user_id"
+    t.string "name"
+    t.string "description"
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "TicketID"
-    t.string "Comments"
+    t.integer "user_id"
+    t.integer "ticket_id"
+    t.string "comments"
     t.float "PriceTotal"
-    t.integer "PurchaserID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_purchases_on_ticket_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "EventID"
-    t.float "Price"
-    t.string "Name"
-    t.string "Description"
+    t.integer "event_id"
+    t.float "price"
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 
 end

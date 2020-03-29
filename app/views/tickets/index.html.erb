@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Eventid</th>
+      <th>Event</th>
       <th>Price</th>
       <th>Name</th>
       <th>Description</th>
@@ -16,10 +16,10 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
-        <td><%= ticket.EventID %></td>
-        <td><%= ticket.Price %></td>
-        <td><%= ticket.Name %></td>
-        <td><%= ticket.Description %></td>
+        <td><%= ticket.event %></td>
+        <td><%= ticket.price %></td>
+        <td><%= ticket.name %></td>
+        <td><%= ticket.description %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>

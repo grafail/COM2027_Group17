@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  EventID: 1
-  Price: 1.5
-  Name: MyString
-  Description: MyString
+  event: one
+  price: 1.5
+  name: MyString
+  description: MyString
 
 two:
-  EventID: 1
-  Price: 1.5
-  Name: MyString
-  Description: MyString
+  event: two
+  price: 1.5
+  name: MyString
+  description: MyString

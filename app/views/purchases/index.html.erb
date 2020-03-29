@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Ticketid</th>
+      <th>User</th>
+      <th>Ticket</th>
       <th>Comments</th>
       <th>Pricetotal</th>
-      <th>Purchaserid</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.TicketID %></td>
-        <td><%= purchase.Comments %></td>
+        <td><%= purchase.user %></td>
+        <td><%= purchase.ticket %></td>
+        <td><%= purchase.comments %></td>
         <td><%= purchase.PriceTotal %></td>
-        <td><%= purchase.PurchaserID %></td>
         <td><%= link_to 'Show', purchase %></td>
         <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
         <td><%= link_to 'Destroy', purchase, method: :delete, data: { confirm: 'Are you sure?' } %></td>

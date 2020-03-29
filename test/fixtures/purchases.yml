@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  TicketID: 1
-  Comments: MyString
+  user: one
+  ticket: one
+  comments: MyString
   PriceTotal: 1.5
-  PurchaserID: 1
 
 two:
-  TicketID: 1
-  Comments: MyString
+  user: two
+  ticket: two
+  comments: MyString
   PriceTotal: 1.5
-  PurchaserID: 1

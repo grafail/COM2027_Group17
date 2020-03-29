@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Ticketid:</strong>
-  <%= @purchase.TicketID %>
+  <strong>User:</strong>
+  <%= @purchase.user %>
+</p>
+
+<p>
+  <strong>Ticket:</strong>
+  <%= @purchase.ticket %>
 </p>
 
 <p>
   <strong>Comments:</strong>
-  <%= @purchase.Comments %>
+  <%= @purchase.comments %>
 </p>
 
 <p>
   <strong>Pricetotal:</strong>
   <%= @purchase.PriceTotal %>
-</p>
-
-<p>
-  <strong>Purchaserid:</strong>
-  <%= @purchase.PurchaserID %>
 </p>
 
 <%= link_to 'Edit', edit_purchase_path(@purchase) %> |

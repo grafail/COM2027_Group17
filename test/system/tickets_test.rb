@@ -14,10 +14,10 @@ class TicketsTest < ApplicationSystemTestCase
     visit tickets_url
     click_on "New Ticket"
 
-    fill_in "Description", with: @ticket.Description
-    fill_in "Eventid", with: @ticket.EventID
-    fill_in "Name", with: @ticket.Name
-    fill_in "Price", with: @ticket.Price
+    fill_in "Description", with: @ticket.description
+    fill_in "Event", with: @ticket.event_id
+    fill_in "Name", with: @ticket.name
+    fill_in "Price", with: @ticket.price
     click_on "Create Ticket"
 
     assert_text "Ticket was successfully created"
@@ -28,10 +28,10 @@ class TicketsTest < ApplicationSystemTestCase
     visit tickets_url
     click_on "Edit", match: :first
 
-    fill_in "Description", with: @ticket.Description
-    fill_in "Eventid", with: @ticket.EventID
-    fill_in "Name", with: @ticket.Name
-    fill_in "Price", with: @ticket.Price
+    fill_in "Description", with: @ticket.description
+    fill_in "Event", with: @ticket.event_id
+    fill_in "Name", with: @ticket.name
+    fill_in "Price", with: @ticket.price
     click_on "Update Ticket"
 
     assert_text "Ticket was successfully updated"
