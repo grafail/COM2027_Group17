@@ -3,8 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  def to_s
-    return id
-  end
+  has_many :purchase, dependent: :destroy
+  has_many :event, dependent: :destroy
 end
