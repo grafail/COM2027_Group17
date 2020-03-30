@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :TicketID %>
-    <%= form.number_field :TicketID %>
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :Comments %>
-    <%= form.text_field :Comments %>
+    <%= form.label :ticket_id %>
+    <%= form.text_field :ticket_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_field :comments %>
   </div>
 
   <div class="field">
     <%= form.label :PriceTotal %>
     <%= form.text_field :PriceTotal %>
-  </div>
-
-  <div class="field">
-    <%= form.label :PurchaserID %>
-    <%= form.number_field :PurchaserID %>
   </div>
 
   <div class="actions">

@@ -10,34 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_180508) do
+ActiveRecord::Schema.define(version: 2020_03_29_153824) do
 
   create_table "events", force: :cascade do |t|
-    t.string "SellerID"
-    t.string "Name"
-    t.string "Address"
-    t.string "Twitter"
-    t.boolean "IsBusiness"
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.text "location", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "TicketID"
-    t.string "Comments"
-    t.float "PriceTotal"
-    t.integer "PurchaserID"
+    t.integer "user_id", null: false
+    t.integer "ticket_id", null: false
+    t.text "comments"
+    t.float "PriceTotal", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_purchases_on_ticket_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "EventID"
-    t.float "Price"
-    t.string "Name"
-    t.string "Description"
+    t.integer "event_id", null: false
+    t.float "price", null: false
+    t.string "name", null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_tickets_on_event_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

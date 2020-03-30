@@ -1,28 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Sellerid:</strong>
-  <%= @event.SellerID %>
+  <strong>User:</strong>
+  <%= @event.user.id %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @event.Name %>
+  <%= @event.name %>
 </p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @event.Address %>
+  <strong>Description:</strong>
+  <%= @event.description %>
 </p>
 
 <p>
-  <strong>Twitter:</strong>
-  <%= @event.Twitter %>
-</p>
-
-<p>
-  <strong>Isbusiness:</strong>
-  <%= @event.IsBusiness %>
+  <strong>Location:</strong>
+  <%= @event.location %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
