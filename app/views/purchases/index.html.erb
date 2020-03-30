@@ -16,8 +16,8 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.user %></td>
-        <td><%= purchase.ticket %></td>
+        <td><%= purchase.user.id %></td>
+        <td><%= purchase.ticket.id %></td>
         <td><%= purchase.comments %></td>
         <td><%= purchase.PriceTotal %></td>
         <td><%= link_to 'Show', purchase %></td>
