@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class PurchasesControllerTest < ActionDispatch::IntegrationTest
+
   setup do
+    @user = users(:one)
     @purchase = purchases(:one)
   end
 
