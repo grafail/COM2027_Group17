@@ -27,6 +27,13 @@ ul {
 
 li {
   float: left;
+  color: #47525E;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 62px;
+  width: 100px;
+  text-align: center;
 }
 
 li a {
@@ -38,10 +45,14 @@ li a {
 }
 
 li a:hover:not(.active) {
-  background-color: #ddd;
+  background-color: #FFF6A4;
 }
 
 li a.active {
   color: white;
   background-color: #4CAF50;
+}
+
+#login {
+    float: right;
 }
