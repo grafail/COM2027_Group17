@@ -23,7 +23,6 @@ ul.header {
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
-
   height: 60px;
 }
 
@@ -31,17 +30,18 @@ ul.footer {
   list-style-type: none;
   column-count: 2;
   column-gap: 0px;
+  line-height: 250%;
   display: block;
   overflow: hidden;
   background-color: #FFF6A4;
-  height: 100%;
-  width: 100%;
+  width: 30%;
   text-align: center;
   margin: auto;
 }
 
 div.footerView {
   background-color: #FFF6A4;
+  padding: 50px;
 }
 
 li.footer {
