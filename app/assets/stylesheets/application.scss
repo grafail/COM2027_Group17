@@ -19,7 +19,7 @@
 ul.header {
   list-style-type: none;
   margin: auto;
-  padding: 0;
+  padding-left: 15px;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
@@ -77,6 +77,26 @@ li a {
 
 li a:hover:not(.active) {
   background-color: #FFF6A4;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+}
+
+.footer{
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+//  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #fff171;
 }
 
 li a.active {
