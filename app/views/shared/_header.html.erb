@@ -1,29 +1,13 @@
 <ul>
 
-  <%= image_tag("nike.jpg", :align=> "left", :size => "90x90") %>
+<%= image_tag("nike.jpg", :align=> "left", :size => "90x90") %>
 
   <li><a href="/home">Home</a></li>
   <li><a href="/about">About</a></li>
   <li><a href="/events">Events</a></li>
   <li><a href="/recent">Recent</a></li>
-  <div id="Signin">
-    <li><%= link_to t('Sign In'), new_user_session_path %></li>
-    <li>
-      <%= link_to t('Register'), new_user_registration_path %>
-    </li>
-  </div>
-
-  <!--
-    <li><a href="/tickets">Tickets</a></li>
-    <li><a href="/purchases">Purchases</a></li> -->
+  <div id="login"><li><a href="/signin">Sign In</a></li></div>
+<!--
+  <li><a href="/tickets">Tickets</a></li>
+  <li><a href="/purchases">Purchases</a></li> -->
 </ul>
-
-<nav>
-  <% if user_signed_in? %>
-    <%= "Welcome,#{current_user.email}"%><br>
-    <%= link_to t('My Account'), edit_user_registration_path %>
-    <%= '|' %>
-    <%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %>
-  <% else %>
-  <% end %>
-</nav>

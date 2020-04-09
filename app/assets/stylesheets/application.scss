@@ -16,15 +16,46 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-ul {
+ul.header {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: auto;
+  padding-left: 15px;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
+  height: 60px;
 }
 
+ul.footer {
+  list-style-type: none;
+  column-count: 2;
+  column-gap: 0px;
+  line-height: 250%;
+  display: block;
+  overflow: hidden;
+  background-color: #FFF6A4;
+  width: 30%;
+  text-align: center;
+  margin: auto;
+}
+
+div.footerView {
+  background-color: #FFF6A4;
+  padding: 50px;
+}
+
+li.footer {
+  //float: left;
+  color: #47525E;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  //font-weight: 400;
+  line-height: 20px;
+  //width: 50px;
+  //text-align: center;
+}
+
+.header{
 li {
   float: left;
   color: #47525E;
@@ -40,7 +71,7 @@ li a {
   display: block;
   color: #666;
   text-align: center;
-  padding: 14px 16px;
+//  padding: 14px 16px;
   text-decoration: none;
 }
 
@@ -52,10 +83,27 @@ li a.active {
   color: white;
   background-color: #4CAF50;
 }
-
-#Signin {
-  float: right;
 }
-nav{
-  text-align: right;
+
+.footer{
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+//  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #fff171;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+}
+#login {
+    float: right;
 }
