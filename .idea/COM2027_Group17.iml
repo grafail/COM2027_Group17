@@ -5,7 +5,7 @@
       <configuration>
         <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_SUPPORT_REMOVED" VALUE="false" />
         <RAILS_FACET_CONFIG_ID NAME="RAILS_TESTS_SOURCES_PATCHED" VALUE="true" />
-        <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_APPLICATION_ROOT" VALUE="$MODULE_DIR$" />
+        <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_APPLICATION_ROOT" VALUE="$MODULE_DIR$/../COM2027_Group17 14.59.07" />
       </configuration>
     </facet>
   </component>
@@ -14,8 +14,8 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../COM2027_Group17 14.59.07/features" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../COM2027_Group17 14.59.07/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/tmp/cache" />
     </content>
@@ -115,6 +115,6 @@
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
-    <I18N_FOLDERS number="1" string0="$MODULE_DIR$/config/locales" />
+    <I18N_FOLDERS number="1" string0="$MODULE_DIR$/../COM2027_Group17 14.59.07/config/locales" />
   </component>
 </module>

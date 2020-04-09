@@ -21,7 +21,16 @@
 <nav>
   <% if user_signed_in? %>
     <%= "Welcome,#{current_user.email}"%><br>
-    <%= link_to t('My Account'), edit_user_registration_path %>
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= link_to t('My Account'), edit_user_registration_path %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+       <li><button class="dropdown-item" type="button"><%= link_to t('Profile'), edit_user_registration_path %></button> </li>
+        <li><button class="dropdown-item" type="button"><%= link_to t('My Tickets'), edit_user_registration_path %></button></li>
+        <li><button class="dropdown-item" type="button"><%= link_to t('Settings'), edit_user_registration_path %></button></li>
+      </div>
+    </div>
     <%= '|' %>
     <%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %>
   <% else %>
