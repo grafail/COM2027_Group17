@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :venues
   get 'home/home'
   resources :purchases
   resources :tickets
