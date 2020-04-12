@@ -6,7 +6,7 @@ class EventsController < ApplicationController
       marker.lat venue.latitude
       marker.lng venue.longitude
 
-      marker.infowindow @event.name
+      marker.infowindow venue.name
     end
   end
 

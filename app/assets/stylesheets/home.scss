@@ -2,9 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.main-text {
+  font-weight: bold;
+  font-size: larger;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: .2em;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .site-blocks-cover.inner-page.bg {
   background: url(image_path('map.jpg')) no-repeat center center;
   background-size: cover;
   width: 100%;
 }
 
+.form-control {
+  text-align: center;
+}
+
+.yellow-border input[type=text]:focus:not([readonly]) {
+  border: 3px solid #FFF6A4;
+  box-shadow: 0 0 0 1px #FFF066;
+}
+
+.btn.btn-sm.height-auto.px-4.py-3.btn-primary {
+  background-color: white;
+  color: black;
+  border-width: 3px;
+  border-color: #FFF6A4;
+  display: inline-block;
+  transition-duration: 0.4s;
+  font-size: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 7px;
+}
+
+.btn.btn-sm.height-auto.px-4.py-3.btn-primary:hover {
+  background-color: #FFF6A4;
+}
