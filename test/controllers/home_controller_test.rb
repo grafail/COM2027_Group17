@@ -12,8 +12,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_template layout: 'application'
 
-    assert_select 'h1', 'Contact Us'
-    assert_select 'p', 'Complete the following form to get in touch with us.'
+    assert_select 'h1', 'Contact Us.'
+    assert_select 'p', 'If you have any question. Please feel free to contact us directly by completing the form below.'
   end
 
 end
