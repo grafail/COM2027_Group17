@@ -11,6 +11,28 @@
 
 </head>
 
+<nav>
+
+  <div class="btn-group">
+    <div class="col-sm-4 col-md-3">
+      <button type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 12px">
+        <i class="glyphicon glyphicon-user"></i><%= link_to t(' My Account'), edit_user_registration_path %>
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+        <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
+        <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
+        <li style="font-size: 12px"></i><%= link_to t('Settings'), edit_user_registration_path %></li>
+        <div class="dropdown-divider"></div>
+        <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
 
 
 <div class="container bootstrap snippet">
