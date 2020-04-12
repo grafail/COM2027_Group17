@@ -5,6 +5,7 @@ ruby '~>2.5'
 
 gem 'bootstrap-sass'
 gem 'modernizr-rails'
+gem 'rails-controller-testing'
 gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -70,4 +71,4 @@ group :development do
   gem 'binding_of_caller'
 end
 
-gem 'rails-controller-testing'
+
