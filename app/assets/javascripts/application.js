@@ -10,8 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap-sprockets
 //= require rails-ujs
+//= require jquery
+//= require jquery3
+//= require jquery_ujs
+//= require jquery-ui
+//= require popper
+//= require jquery.slick
+//= require magnific-popup
+//= require aos
+//= require owl.carousel
+//= require gmaps/google
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+//= require bootstrap-sprockets
+//= require main
+
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init();
+});

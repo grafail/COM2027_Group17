@@ -10,38 +10,111 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "magnific-popup";
+@import "jquery-ui";
+@import "aos";
+@import "owl.carousel";
+@import "owl.theme.default";
+@import 'slick';
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "style";
 
-ul {
+@import 'home';
+@import 'events';
+@import 'purchases';
+@import 'tickets';
+
+ul.header {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: auto;
+  padding-left: 15px;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
+  height: 60px;
 }
 
+ul.footer {
+  list-style-type: none;
+  column-count: 2;
+  column-gap: 0px;
+  line-height: 250%;
+  display: block;
+  overflow: hidden;
+  background-color: #FFF6A4;
+  width: 30%;
+  text-align: center;
+  margin: auto;
+}
+
+div.footerView {
+  background-color: #FFF6A4;
+  padding: 50px;
+}
+
+li.footer {
+  //float: left;
+  color: #47525E;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  //font-weight: 400;
+  line-height: 20px;
+  //width: 50px;
+  //text-align: center;
+}
+
+.header{
 li {
   float: left;
+  color: #47525E;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 62px;
+  width: 100px;
+  text-align: center;
 }
 
 li a {
   display: block;
   color: #666;
   text-align: center;
-  padding: 14px 16px;
+//  padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover:not(.active) {
-  background-color: #ddd;
+  background-color: #FFF6A4;
 }
 
 li a.active {
   color: white;
   background-color: #4CAF50;
+}
+}
+
+.footer{
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+//  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #fff171;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+}
+#login {
+    float: right;
 }
