@@ -22,11 +22,10 @@
 @import "bootstrap";
 @import "style";
 
-.site-blocks-cover.inner-page.bg {
-  background: url(image_path('map.jpg')) no-repeat center center;
-  background-size: cover;
-  width: 100%;
-}
+@import 'home';
+@import 'events';
+@import 'purchases';
+@import 'tickets';
 
 ul.header {
   list-style-type: none;
