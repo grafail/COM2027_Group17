@@ -30,8 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
 
   registrations:
     edit:
-      name: Edit Account information
+      name: Account Information
+
+  sessions:
+    new:
+      name: Sign In
