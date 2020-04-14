@@ -55,19 +55,13 @@ div.footerView {
   padding: 50px;
 }
 
-li.footer {
-  //float: left;
+ul.footer {
   color: #47525E;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 10px;
-  //font-weight: 400;
-  line-height: 20px;
-  position: relative;
-  //width: 50px;
-  //text-align: center;
+  font-size: 13px;
 }
 
-.header{
+.header {
 li {
   float: left;
   color: #47525E;
@@ -143,8 +137,3 @@ div{
   background-color: #f2f2f2;
   padding: 20px;
 }
-
-
-
-
-
