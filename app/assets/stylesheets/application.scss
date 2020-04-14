@@ -32,6 +32,7 @@ ul.header {
   margin: auto;
   padding-left: 15px;
   overflow: hidden;
+
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
   height: 60px;
@@ -71,13 +72,13 @@ li {
   line-height: 62px;
   width: 100px;
   text-align: center;
+  margin: 0px 20px 0px 20px;
 }
 
 li a {
   display: block;
   color: #666;
   text-align: center;
-//  padding: 14px 16px;
   text-decoration: none;
 }
 
@@ -94,17 +95,16 @@ li a.active {
 #Signin {
   float: right;
 }
+
 nav{
   text-align: right;
 }
 
 .footer{
-
 li a {
   display: block;
   color: #666;
   text-align: center;
-//  padding: 14px 16px;
   text-decoration: none;
   bottom: 0;
 
