@@ -5,6 +5,7 @@ ruby '~>2.5'
 
 gem 'bootstrap-sass'
 gem 'modernizr-rails'
+gem 'rails-controller-testing'
 gem 'devise'
 gem 'animation-rails', git: "https://github.com/avlos/animation-rails.git"
 gem 'jquery-rails'
@@ -79,3 +80,5 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+
