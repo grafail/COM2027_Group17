@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   get 'home/home'
+  get '/home', to: redirect('/')
   resources :purchases
   resources :tickets
   resources :events
