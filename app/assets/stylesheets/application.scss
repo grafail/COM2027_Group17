@@ -10,11 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "magnific-popup";
+@import "jquery-ui";
+@import "aos";
+@import "owl.carousel";
+@import "owl.theme.default";
+@import 'slick';
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "style";
+
+@import 'home';
+@import 'events';
+@import 'purchases';
+@import 'tickets';
 
 ul.header {
   list-style-type: none;
