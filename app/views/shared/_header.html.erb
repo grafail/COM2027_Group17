@@ -2,17 +2,22 @@
 
 <%= image_tag("eventus.png", :align=> "left", :size => "60x60") %>
 
-  <li><a href="/home">Home</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="/events">Events</a></li>
-  <li><a href="/recent">Recent</a></li>
-  <div id="Signin">
-    <li><%= link_to t('Sign In'), new_user_session_path %></li>
-    <li>
-      <%= link_to t('Sign Up'), new_user_registration_path %>
-    </li>
-  </div>
+  <li> <%= link_to "Home", '/home' %> </li>
+  <li> <%= link_to "Events", '/events' %> </li>
+  <li> <%= link_to "Recent", '/recent' %> </li>
+  <li> <%= link_to "About", '/about' %> </li>
 
+  <div id="corner">
+  <% if user_signed_in? %>
+    <li><%= link_to "My Profile", '/users/edit' %></li>
+    <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+    </div>
+  <% else %>
+
+      <li> <%= link_to t('Sign In'), new_user_session_path %></li>
+      <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
+  <% end %>
+  </div>
 
 <!--
 
