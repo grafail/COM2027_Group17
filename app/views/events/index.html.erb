@@ -14,14 +14,16 @@
         handler.fitMapToBounds();
     });
 </script>
-
-<table>
+<br>
+<body>
+<table id="events">
   <thead>
     <tr>
       <th>User</th>
       <th>Name</th>
       <th>Description</th>
       <th>Location</th>
+      <th>    </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,11 +38,15 @@
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Tickets' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+</body>
+</html>
 <br>
 
 <%= link_to 'New Event', new_event_path %>
+<br>
