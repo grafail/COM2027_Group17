@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #events {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: verdana, arial, helvetica, sans-serif;;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 
 #events td,
@@ -22,6 +22,6 @@
   padding-bottom: 12px;
 
   text-align: left;
-  background-color: #000000;
-  color: white;
+  background-color: #FFF6A4;
+  color: black;
 }

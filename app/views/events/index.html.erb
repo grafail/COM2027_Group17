@@ -19,8 +19,8 @@
 <table id="events">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
+
+      <th>Event</th>
       <th>Description</th>
       <th>Location</th>
       <th>    </th>
@@ -31,7 +31,6 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.user.id %></td>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= event.location %></td>
