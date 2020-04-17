@@ -20,5 +20,6 @@
   <%= @ticket.description %>
 </p>
 
+<%= button_to 'Add ticket to cart', line_items_path(ticket_id: @ticket), {:class => "addToCart" } %> |
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>

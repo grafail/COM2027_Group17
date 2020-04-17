@@ -1,10 +1,90 @@
-<p id="notice"><%= notice %></p>
+<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
-<ul>
-  <%@cart.line_items.each do |item| %>
-    <li><%=item.ticket.name %></li>
-  <% end %>
-</ul>
+<%# link_to 'Edit', edit_cart_path(@cart) %> |
+<%# link_to 'Back', carts_path %>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="row">
+              <div class="col-xs-6">
+                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+              </div>
+              <!--Button for continue shopping, links to events page-->
+              <div class="col-xs-6">
+                <%= button_to events_path, :method=>:get, :class => 'btn btn-primary btn-sm btn-block' do %>
+                  <span class="glyphicon glyphicon-share-alt"></span>   Continue Shopping
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <%@total = 0 %>
+        <div class="panel-body">
+
+          <%@cart.line_items.each do |item| %>
+            <%@ticket = Ticket.find_by(:id => item.ticket_id) %>
+            <%@event = Event.find_by(:id => @ticket.event_id) %>
+            <%@total += @ticket.price%>
+            <div class="row">
+              <!--Commented div below is for a placeholder image-->
+              <!--<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+              </div> -->
+              <div class="col-xs-4">
+                <h4 class="product-name"><strong><%=@event.name %></strong></h4><h4><small><%=@ticket.name %></small></h4>
+              </div>
+              <div class="col-xs-6">
+                <div class="col-xs-6 text-right">
+                  <h6><strong>£<%=@ticket.price %></strong></h6>
+                </div>
+                <div class="col-xs-4">
+                  <input type="text" class="form-control input-sm" value="1">
+                </div>
+                <div class="col-xs-2">
+
+                  <%= button_to item, method: :delete, :class => 'btn btn-link btn-xs' do %>
+                    <span class="glyphicon glyphicon-trash"> </span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+          <% end %>
+
+          <div class="row">
+            <div class="text-center">
+              <div class="col-xs-9">
+                <h6 class="text-right"></h6>
+              </div>
+              <div class="col-xs-3">
+                <button type="button" class="btn btn-default btn-xs">
+                  Empty cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+          <div class="row text-center">
+            <div class="col-xs-9">
+              <h4 class="text-right">Total <strong>£<%=@total %></strong></h4>
+            </div>
+            <div class="col-xs-3">
+              <%= button_to 'Checkout', new_purchase_path, :method=>:get, :class => "btn btn-success btn-block" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
