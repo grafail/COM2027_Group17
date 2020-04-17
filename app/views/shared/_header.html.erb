@@ -10,15 +10,15 @@
 
   <div id="corner">
 
-    <% if user_signed_in? %>
-      <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
-      <%@cartSize=Cart.all[0].line_items.length %>
-      <% if @cartSize ==0 %>
-        <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/carts/1', {:id => "cartTotal" } %></li>
-      <%else %>
-        <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60") + @cartSize.to_s, '/carts/1', {:id => "cartTotal", :style=>'color: white; background-color:red'} %></li>
-      <%end %>
+    <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
+    <%@cartSize=Cart.all[0].line_items.length %>
+    <% if @cartSize ==0 %>
+      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/carts/1', {:id => "cartTotal" } %></li>
+    <%else %>
+      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60") + @cartSize.to_s, '/carts/1', {:id => "cartTotal", :style=>'color: white; background-color:red'} %></li>
+    <%end %>
 
+    <% if user_signed_in? %>
       <li><%= link_to "My Profile", '/users/edit' %></li>
       <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       </div>
