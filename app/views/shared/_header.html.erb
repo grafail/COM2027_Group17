@@ -1,22 +1,24 @@
 <ul class='header'>
 
-<%= image_tag("eventus.png", :align=> "left", :size => "60x60") %>
+<%= link_to image_tag("eventus.png", :align=> "left", :size => "60x60"), '/' %>
 
   <li> <%= link_to "Home", '/home' %> </li>
   <li> <%= link_to "Events", '/events' %> </li>
   <li> <%= link_to "Recent", '/recent' %> </li>
   <li> <%= link_to "About", '/about' %> </li>
+  <li> <%= link_to "Tickets", '/tickets' %> </li>
 
   <div id="corner">
-  <% if user_signed_in? %>
-    <li><%= link_to "My Profile", '/users/edit' %></li>
-    <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-    </div>
-  <% else %>
+    <% if user_signed_in? %>
+      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/carts/1' %></li>
+      <li><%= link_to "My Profile", '/users/edit' %></li>
+      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+      </div>
+    <% else %>
 
-      <li> <%= link_to t('Sign In'), new_user_session_path %></li>
-      <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
-  <% end %>
+        <li> <%= link_to t('Sign In'), new_user_session_path %></li>
+        <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
+    <% end %>
   </div>
 
 <!--

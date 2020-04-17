@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :line_items
+  resources :carts
   get 'home/home'
   get '/home', to: redirect('/')
   resources :purchases

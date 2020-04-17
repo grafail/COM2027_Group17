@@ -22,5 +22,6 @@
 
 <p>Coordinates: <%= @event.latitude %>, <%= @event.longitude %></p>
 
+<%= link_to 'Create Ticket', new_ticket_path(event_id: @event) %> |
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
