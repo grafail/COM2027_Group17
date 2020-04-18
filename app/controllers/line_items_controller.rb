@@ -63,6 +63,16 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def emptyCart
+    LineItem.all.each do |item|
+      item.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to Cart.all[0], notice: 'Cart emptied successfully.'}
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
@@ -72,6 +82,10 @@ class LineItemsController < ApplicationController
   def set_cart
     @cart = Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound
+    #If no existing session, before creating a new cart, you delete any existing ones
+    Cart.all.each do |cart|
+      cart.destroy
+    end
     @cart = Cart.create
     session[:cart_id] = @cart.id
   end

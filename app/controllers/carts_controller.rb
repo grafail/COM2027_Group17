@@ -64,7 +64,15 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      #If no carts exist one is created and you are directed to it
+      # No matter what id you eneter, you are always directed to the only existing cart
+      @cart = nil
+      if(Cart.all.size == 0)
+        @cart = Cart.create
+        session[:cart_id] = @cart.id
+      else
+        @cart = Cart.all[0]
+      end
     end
 
     # Only allow a list of trusted parameters through.

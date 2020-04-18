@@ -11,11 +11,15 @@
   <div id="corner">
 
     <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
-    <%@cartSize=Cart.all[0].line_items.length %>
-    <% if @cartSize ==0 %>
-      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/carts/1', {:id => "cartTotal" } %></li>
-    <%else %>
-      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60") + @cartSize.to_s, '/carts/1', {:id => "cartTotal", :style=>'color: white; background-color:red'} %></li>
+    <%if Cart.all.size>0 %>
+      <%@cartSize=Cart.all[0].line_items.length %>
+      <% if @cartSize ==0 %>
+        <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/carts/1', {:id => "cartTotal" } %></li>
+      <%else %>
+        <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60") + @cartSize.to_s, '/carts/1', {:id => "cartTotal", :style=>'color: white; background-color:red'} %></li>
+      <%end %>
+    <%else%>
+      <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), Cart.all[0], {:id => "cartTotal" } %></li>
     <%end %>
 
     <% if user_signed_in? %>
