@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :purchases
+  resources :orders
   get 'home/home'
   get '/home', to: redirect('/')
-  resources :purchases
   resources :tickets
   resources :events
   devise_for :users

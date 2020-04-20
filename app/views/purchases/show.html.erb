@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @purchase.user.id %>
-</p>
-
-<p>
   <strong>Ticket:</strong>
-  <%= @purchase.ticket.id %>
+  <%= @purchase.ticket %>
 </p>
 
 <p>
-  <strong>Comments:</strong>
-  <%= @purchase.comments %>
+  <strong>Order:</strong>
+  <%= @purchase.order %>
 </p>
 
 <p>
-  <strong>Pricetotal:</strong>
-  <%= @purchase.PriceTotal %>
+  <strong>Qty:</strong>
+  <%= @purchase.qty %>
 </p>
 
 <%= link_to 'Edit', edit_purchase_path(@purchase) %> |
