@@ -19,7 +19,7 @@ class CartController < ApplicationController
     end
 
     if tmp == 0
-      redirect_to cart_delete_path(id: id)
+      redirect_to cart_remove_path(id: id)
       return
     end
 
