@@ -1,20 +1,20 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  def load_events
-    @events_default = Gmaps4rails.build_markers(Event.all) do |venue, marker|
+  def self.load_events
+    return Gmaps4rails.build_markers(Event.all) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
 
       marker.infowindow venue.name
     end
   end
+  helper_method :load_events
 
   # GET /events
   # GET /events.json
   def index
-    load_events
-
+    @events_default=EventsController.load_events
     @events = Event.all
   end
 
