@@ -6,7 +6,7 @@ class CartController < ApplicationController
     end
   end
 
-  def add
+  def change_qty
     check_cart
     id = params[:id]
     qty = params[:qty]

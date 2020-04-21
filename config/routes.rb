@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#home'
   get 'cart/empty', to: 'cart#clear'
-  get 'cart/add/:id/:qty', to: 'cart#add', as: :cart_add
+  get 'cart/change/:id/:qty', to: 'cart#change_qty', as: :cart_change_qty
   get 'cart/remove/:id', to: 'cart#remove', as: :cart_remove
 
   get 'contact', to: 'home#contact'

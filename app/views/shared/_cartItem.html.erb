@@ -17,7 +17,7 @@
     <div class="col-xs-4">
       <div class="input-group">
                         <span class="input-group-btn">
-                          <%= button_to cart_add_path(id: id, qty: -1),:method=>:get, :class => 'quantity-left-minus btn btn-danger btn-number' do %>
+                          <%= button_to cart_change_qty_path(id: id, qty: -1),:method=>:get, :class => 'quantity-left-minus btn btn-danger btn-number' do %>
                             <span class="glyphicon glyphicon-minus"></span>
                           <% end %>
                         </span>
@@ -25,7 +25,7 @@
         <span class="form-control"><%= qty %></span>
 
         <span class="input-group-btn">
-                    <%= button_to cart_add_path(id: id, qty: 1),:method=>:get, :class => 'quantity-right-plus btn btn-success btn-number' do %>
+                    <%= button_to cart_change_qty_path(id: id, qty: 1),:method=>:get, :class => 'quantity-right-plus btn btn-success btn-number' do %>
                         <span class="glyphicon glyphicon-plus"></span>
                     <% end %>
         </span>
