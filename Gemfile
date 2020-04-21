@@ -7,7 +7,6 @@ gem 'bootstrap-sass'
 gem 'modernizr-rails'
 gem 'rails-controller-testing'
 gem 'devise'
-gem 'animation-rails', git: "https://github.com/avlos/animation-rails.git"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'magnific-popup-rails'

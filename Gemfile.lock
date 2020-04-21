@@ -4,13 +4,6 @@ GIT
   specs:
     owlcarousel-rails (2.2.3.5)
 
-GIT
-  remote: https://github.com/avlos/animation-rails.git
-  revision: ca652717da2a7fa07fefae4778ebceb17f408523
-  specs:
-    animation-rails (0.1.0)
-      rails
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -250,7 +243,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  animation-rails!
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)

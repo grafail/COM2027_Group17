@@ -18,7 +18,6 @@
 //= require popper
 //= require jquery.slick
 //= require magnific-popup
-//= require aos
 //= require owl.carousel
 //= require gmaps/google
 //= require activestorage
