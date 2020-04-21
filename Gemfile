@@ -14,6 +14,7 @@ gem 'magnific-popup-rails'
 gem 'owlcarousel-rails', git: "https://github.com/acrogenesis/owlcarousel-rails.git"
 gem 'popper_js'
 gem 'jquery-slick-rails'
+gem 'toastr-rails'
 
 gem 'gmaps4rails'
 gem 'geocoder'
