@@ -15,7 +15,7 @@
     <% if cartSize == 0 %>
       <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%></li>
     <% else %>
-      <li style="color: white; background-color:red;line-height: 62px;font-size: 13px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
+      <li style="width: auto;color: white;line-height: 62px;font-size: 13px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50")+CartController.total_price_cart(session).to_s+'£', '/cart/'%></li>
     <% end %>
     <% if user_signed_in? %>
       <li><%= link_to "My Profile", '/users/edit' %></li>
