@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'cart', to: 'cart#cart'
   resources :purchases
   resources :orders
   get 'home/home'
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
   resources :events
   devise_for :users
   root 'home#home'
+  get 'cart/empty', to: 'cart#clear'
+  get 'cart/add/:id/:qty', to: 'cart#add', as: :cart_add
+  get 'cart/remove/:id', to: 'cart#remove', as: :cart_delete
 
   get 'contact', to: 'home#contact'
   post 'request_contact', to: 'home#request_contact'

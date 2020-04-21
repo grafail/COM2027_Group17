@@ -6,14 +6,15 @@
   <li> <%= link_to "Events", '/events' %> </li>
   <li> <%= link_to "Recent", '/recent' %> </li>
   <li> <%= link_to "About", '/about' %> </li>
+  <li> <%= link_to "BuyTickets", '/tickets' %> </li>
 
   <div id="corner">
+  <li><%= link_to image_tag('cart.png', :align=> "center", :id=> "cart", :size => "50x60"), '/cart/' %></li>
   <% if user_signed_in? %>
     <li><%= link_to "My Profile", '/users/edit' %></li>
     <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
     </div>
   <% else %>
-
       <li> <%= link_to t('Sign In'), new_user_session_path %></li>
       <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
   <% end %>
