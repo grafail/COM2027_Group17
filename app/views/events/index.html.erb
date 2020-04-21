@@ -6,8 +6,9 @@
   <% @events.each do |event| %>
     <%= render partial: '/shared/eventItem', locals: { item: event } %>
   <% end %>
+  <%= button_to 'New Event', new_event_path, :class => "btn btn-primary" %>
 </div>
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+
