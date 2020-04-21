@@ -11,9 +11,17 @@
     </div>
   <% end %>
 
+  <%
+    if ticket.event_id.nil? == false
+      @availableEvents = Event.where("id"=>@ticket.event_id)
+    else
+      @availableEvents = Event.all
+    end
+  %>
+
   <div class="field">
     <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
+    <%= form.collection_select :event_id, @availableEvents, :id, :name, {:include_blank => false}%>
   </div>
 
   <div class="field">
