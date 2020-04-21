@@ -1,7 +1,7 @@
 <% id = item[0] %>
 <% qty = item[1] %>
 <% @ticket = Ticket.find_by(:id => id) %>
-<% @event = Event.find_by(:id => @ticket.id) %>
+<% @event = Event.find_by(:id => @ticket.event_id) %>
 <% @total += @ticket.price %>
 <div class="row">
   <!--Commented div below is for a placeholder image-->
