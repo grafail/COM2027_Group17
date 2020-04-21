@@ -14,10 +14,9 @@ class PurchasesTest < ApplicationSystemTestCase
     visit purchases_url
     click_on "New Purchase"
 
-    fill_in "Pricetotal", with: @purchase.PriceTotal
-    fill_in "Comments", with: @purchase.comments
+    fill_in "Order", with: @purchase.order_id
+    fill_in "Qty", with: @purchase.qty
     fill_in "Ticket", with: @purchase.ticket_id
-    fill_in "User", with: @purchase.user_id
     click_on "Create Purchase"
 
     assert_text "Purchase was successfully created"
@@ -28,10 +27,9 @@ class PurchasesTest < ApplicationSystemTestCase
     visit purchases_url
     click_on "Edit", match: :first
 
-    fill_in "Pricetotal", with: @purchase.PriceTotal
-    fill_in "Comments", with: @purchase.comments
+    fill_in "Order", with: @purchase.order_id
+    fill_in "Qty", with: @purchase.qty
     fill_in "Ticket", with: @purchase.ticket_id
-    fill_in "User", with: @purchase.user_id
     click_on "Update Purchase"
 
     assert_text "Purchase was successfully updated"
