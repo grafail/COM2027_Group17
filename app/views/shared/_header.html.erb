@@ -8,14 +8,14 @@
   <li> <%= link_to "About", '/about' %> </li>
   <li> <%= link_to "BuyTickets", '/tickets' %> </li>
 
-  <div id="corner">
+  <div id="corner" >
     <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
     <% if !session[:cart] then session[:cart] = {} end %>
     <% cartSize = session[:cart].length %>
     <% if cartSize == 0 %>
       <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%></li>
     <% else %>
-      <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + cartSize.to_s, '/cart/', :style => 'color: white; background-color:red' %></li>
+      <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
     <% end %>
     <% if user_signed_in? %>
       <li><%= link_to "My Profile", '/users/edit' %></li>

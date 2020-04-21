@@ -68,9 +68,24 @@ class CartController < ApplicationController
   end
   helper_method :all_cart_items
 
-  def length
+  def self.length_of_cart
     check_cart
     return session[:cart].length
   end
+  helper_method :length_of_cart
 
+  def self.total_price_cart(session)
+    if !session[:cart]
+      return 0
+    end
+    total = 0
+    session[:cart].each do |item|
+      id = item[0]
+      qty = item[1].to_i
+      ticket = Ticket.find_by(:id => id)
+      total += ticket.price*qty
+    end
+    return total
+  end
+  helper_method :total_price_cart
 end
