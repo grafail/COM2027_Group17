@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :purchases
   resources :tickets
   resources :events
-  devise_for :users
+  devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      } 
   root 'home#home'
 
   get 'contact', to: 'home#contact'

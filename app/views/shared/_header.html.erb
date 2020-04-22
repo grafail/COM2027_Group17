@@ -14,20 +14,10 @@
     </div>
   <% else %>
 
-      <li> <%= link_to t('Sign In'), new_user_session_path %></li>
+    <li>  <%= link_to ('Sign In'), "", data: {toggle: "modal", target: ".bd-example-modal-lg"} %></li>
       <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
   <% end %>
-  </div>
-
-<!--
-
-  <li><a href="/tickets">Tickets</a></li>
-  <li><a href="/purchases">Purchases</a></li> -->
 
 
 </ul>
-
-
-
-
-
+<%= render 'shared/login_form' %>

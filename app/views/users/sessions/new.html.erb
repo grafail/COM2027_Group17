@@ -1,38 +1,20 @@
-<div class="container">
-  <h2><%= I18n.t('sessions.new.name') %></h2>
+<d<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <div class="row">
-      <div class="col-md-4 offset-4">
-    <%= f.label :email, "Email Address" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-  </div>
-  </div>
-
-  <div class="field">
-    <div class="row">
-      <div class="col-md-4 offset-4">
-        <%= f.label :password, "Password" %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
-    </div>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+    <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Sign In" %>
+  <div class="form-actions">
+    <%= f.button :submit, "Log in" %>
   </div>
 <% end %>
 
-  <%= render "users/shared/links" %>
-</div>
-
-
+<%= render "users/shared/links" %>
