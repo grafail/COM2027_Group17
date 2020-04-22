@@ -8,6 +8,7 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
 
   <script src="//maps.google.com/maps/api/js?key=AIzaSyBCimMQ3NNgvRBuEQQcgykflfiS-3praNg"></script>
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -17,16 +18,19 @@
 </head>
 
 <body>
+
+<% unless flash.empty? %>
+  <script type="text/javascript">
+      <% flash.each do |f| %>
+      toastr.info('<%= f[1] %>');
+      <% end %>
+  </script>
+<% end %>
 <div class="site-wrap">
   <%= render 'shared/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-
   <%= yield %>
-    <%= render 'shared/footer' %>
-
-
-  </body>
+  <%= render 'shared/footer' %>
+</div>
+</body>
 </html>
 

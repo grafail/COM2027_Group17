@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_180847) do
+ActiveRecord::Schema.define(version: 2020_04_20_132255) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -24,15 +24,23 @@ ActiveRecord::Schema.define(version: 2020_04_12_180847) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "purchases", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "ticket_id", null: false
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
     t.text "comments"
-    t.float "PriceTotal", null: false
+    t.float "PriceTotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "ticket_id"
+    t.integer "order_id"
+    t.integer "qty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_purchases_on_order_id"
     t.index ["ticket_id"], name: "index_purchases_on_ticket_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|

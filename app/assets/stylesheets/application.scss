@@ -14,18 +14,19 @@
 
 @import "magnific-popup";
 @import "jquery-ui";
-@import "aos";
 @import "owl.carousel";
 @import "owl.theme.default";
 @import 'slick';
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "style";
+@import "toastr";
 
 @import 'home';
 @import 'events';
 @import 'purchases';
 @import 'tickets';
+@import 'orders';
 
 ul.header {
   list-style-type: none;
@@ -92,7 +93,7 @@ li a.active {
 }
 }
 
-#Signin {
+#corner {
   float: right;
 }
 
@@ -120,10 +121,6 @@ li a.active {
 }
 }
 
-img{
-  border-radius: 50%;
-}
-
 p{
   font-size: 16px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -136,4 +133,9 @@ div{
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+
+#cart{
+  padding-bottom: 8px;
+
 }
