@@ -18,6 +18,8 @@ gem 'jquery-slick-rails'
 gem 'gmaps4rails'
 gem 'geocoder'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 # Use sqlite3 as the database for Active Record
@@ -80,5 +82,3 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
-
-
