@@ -71,4 +71,14 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit(:event_id, :price, :name, :description)
     end
+
+  def self.get_user_tickets(id)
+    ticket_list=[]
+    Order.where(user:id).each do |orderItem|
+      ticket_list+=Purchase.where(order:orderItem.id)
+    end
+    return ticket_list
+  end
+  helper_method :get_user_tickets
+
 end
