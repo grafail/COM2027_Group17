@@ -1,32 +1,91 @@
-<h1>Tickets</h1>
+<head>
+  <title>Account page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<table>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Price</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+</head>
+<p><% if user_signed_in? %>
+    <%= "Welcome, #{current_user.email}"%><br>
+  <% else %>
+  <% end %><hr>
+  </p>
+  <nav>
+    <div class="btn-group">
+      <div class="col-sm-4 col-md-3">
+        <button type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 12px">
+          <i class="glyphicon glyphicon-user"></i><%= link_to t(' My Account'), edit_user_registration_path %>
+          <span class="caret"></span>
+        </button>
 
-  <tbody>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= ticket.event.id %></td>
-        <td><%= ticket.price %></td>
-        <td><%= ticket.name %></td>
-        <td><%= ticket.description %></td>
-        <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-<br>
+          <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
+          <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
+          <li style="font-size: 12px"></i><%= link_to t('Settings'), edit_user_registration_path %></li>
+          <div class="dropdown-divider"></div>
+          <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<%= link_to 'New Ticket', new_ticket_path %>
+  <div class="container bootstrap snippet">
+    <div class="row">
+      <div class="col-md-3 ">
+        <h1><%= I18n.t('registrations.edit.name') %></h1>
+        <div class="list-group ">
+          <div style="font-size: 12px;">
+            <%= link_to 'Profile', 'users/edit', :method=>:get, :class => "list-group-item list-group-item-action" %>
+            <%= link_to 'My Tickets', tickets_path, :method=>:get, :class => "list-group-item list-group-item-action active" %>
+            <%= link_to 'Settings', new_purchase_path, :method=>:get, :class => "list-group-item list-group-item-action" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="card">
+          <h1 id = "ticketType" class="col-xs-9">Your Tickets</h1>
+
+          <div class="card-body">
+
+
+            <% @myTickets.each do |purchase| %>
+              <% @ticket = Ticket.find_by(id:purchase.ticket_id) %>
+              <% @event = Event.find_by(id:@ticket) %>
+              <div class="item">
+
+                  <img src="/assets/eventus.png" width="100" height="100" itemprop="image" alt=""/>
+                  <div class="info">
+                    <div class="title" itemprop="name">Event: <%= link_to @event.name, @event %></div>
+                    <div class="subtitle"> Ticket: <%= link_to @ticket.name, @ticket %> (x<%= purchase.qty %>)</div>
+                    <div class="description" itemprop="description">
+                      Total Price: £<%= @ticket.price * purchase.qty %>
+                    </div>
+                  </div>
+
+              </div>
+
+              <hr>
+
+            <% end %>
+
+
+          </div>
+
+          <div class="col-xs-9">
+           <%= button_to 'Buy More Tickets', events_path, :method=>:get, :class => "tn btn-success" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+

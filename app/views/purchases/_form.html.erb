@@ -13,12 +13,13 @@
 
   <div class="field">
     <%= form.label :ticket_id %>
-    <%= form.text_field :ticket_id %>
+    <%= form.collection_select :ticket_id, Ticket.all, :id, :name, {:include_blank => false}%>
   </div>
+
 
   <div class="field">
     <%= form.label :order_id %>
-    <%= form.text_field :order_id %>
+    <%= form.collection_select :order_id, Order.all, :id, :user, {:include_blank => false}%>
   </div>
 
   <div class="field">

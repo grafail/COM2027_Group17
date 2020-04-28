@@ -1,5 +1,6 @@
 <h1>New Ticket</h1>
 
+<% @ticket.event_id = params[:event_id] %>
 <%= render 'form', ticket: @ticket %>
 
-<%= link_to 'Back', tickets_path %>
+<%= link_to 'Back', events_path %>

@@ -5,6 +5,12 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
+
+    ticket_list=[]
+    Order.where(user:User.find(current_user.id)).each do |orderItem|
+      ticket_list+=Purchase.where(order:orderItem.id)
+    end
+    @myTickets = ticket_list
   end
 
   # GET /tickets/1
@@ -28,7 +34,8 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        @event = Event.find(ticket_params[:event_id])
+        format.html { redirect_to @event, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
