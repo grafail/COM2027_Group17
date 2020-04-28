@@ -2,52 +2,11 @@
 
 <h1>Events</h1>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div class="container">
+  <% @events.each do |event| %>
+    <%= render partial: '/shared/eventItem', locals: { item: event } %>
+  <% end %>
+  <%= button_to 'New Event', new_event_path, :method => :get, :class => "btn btn-primary" %>
 </div>
 
-<script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(<%=raw @events_default.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-    });
-</script>
-<br>
-<body>
-<section class="container">
-<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
-<table class="order-table table">
-  <thead>
-    <tr>
-
-      <th>Event</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>    </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Tickets' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</section>
-</body>
-</html>
-<br>
-
-<%= link_to 'New Event', new_event_path %>
 <br>

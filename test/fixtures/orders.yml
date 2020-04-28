@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ticket: one
-  order: one
-  qty: 1
+  user: one
+  comments: MyText
+  PriceTotal: 1.5
 
 two:
-  ticket: two
-  order: two
-  qty: 1
+  user: two
+  comments: MyText
+  PriceTotal: 1.5

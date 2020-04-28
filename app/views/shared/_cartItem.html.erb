@@ -1,0 +1,42 @@
+<% id = item[0] %>
+<% qty = item[1].to_i %>
+<% @ticket = Ticket.find_by(:id => id) %>
+<% @event = Event.find_by(:id => @ticket.event_id) %>
+<% @total += @ticket.price*qty %>
+<div class="row">
+  <!--Commented div below is for a placeholder image-->
+  <!--<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+  </div> -->
+  <div class="col-xs-4">
+    <h4 class="product-name"><strong><%= @event.name %></strong></h4><h4><small><%= @ticket.name %></small></h4>
+  </div>
+  <div class="col-xs-6">
+    <div class="col-xs-6 text-right">
+      <h6><strong>£<%= @ticket.price %></strong></h6>
+    </div>
+    <div class="col-xs-4">
+      <div class="input-group">
+                        <span class="input-group-btn">
+                          <%= button_to cart_change_qty_path(id: id, qty: -1),:method=>:get, :class => 'quantity-left-minus btn btn-danger btn-number' do %>
+                            <span class="glyphicon glyphicon-minus"></span>
+                          <% end %>
+                        </span>
+
+        <span class="form-control"><%= qty %></span>
+
+        <span class="input-group-btn">
+                    <%= button_to cart_change_qty_path(id: id, qty: 1),:method=>:get, :class => 'quantity-right-plus btn btn-success btn-number' do %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                    <% end %>
+        </span>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <%= button_to cart_remove_path(id: id),:method=>:get, :class => 'btn btn-link btn-xs' do %>
+        <span class="glyphicon glyphicon-trash"> </span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>
