@@ -13,11 +13,12 @@
     <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
     </div>
   <% else %>
+    <li>  <%= link_to ('Sign In'), "", data: {toggle: "modal", target: ".bd-example-modal-lg_1"} %></li>
+    <%= render 'shared/login_form' %>
 
-    <li>  <%= link_to ('Sign In'), "", data: {toggle: "modal", target: ".bd-example-modal-lg"} %></li>
-      <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
+  <li> <%= link_to t('Sign Up'), "", data: {toggle: "modal", target: ".bd-example-modal-lg"} %></li>
+  <%= render 'shared/register_form' %>
   <% end %>
 
 
 </ul>
-<%= render 'shared/login_form' %>
