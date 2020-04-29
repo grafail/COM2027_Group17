@@ -5,7 +5,12 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
-    @myTickets = TicketsController.get_user_tickets(current_user.id)
+    ##Temporary fix (Tests and route should be adjusted)
+    if user_signed_in?
+      @myTickets = TicketsController.get_user_tickets(current_user.id)
+    else
+      @myTickets = []
+    end
   end
 
   # GET /tickets/1
