@@ -5,12 +5,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
-
-    ticket_list=[]
-    Order.where(user:User.find(current_user.id)).each do |orderItem|
-      ticket_list+=Purchase.where(order:orderItem.id)
-    end
-    @myTickets = ticket_list
+    @myTickets = TicketsController.get_user_tickets(current_user.id)
   end
 
   # GET /tickets/1
