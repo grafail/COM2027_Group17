@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_211541) do
     t.float "PriceTotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "isComplete"
+    t.boolean "isComplete", default: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
