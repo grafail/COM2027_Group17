@@ -56,23 +56,20 @@
 
 
             <% @myTickets.each do |purchase| %>
-              <% @ticket = Ticket.find_by(id:purchase.ticket_id) %>
-              <% @event = Event.find_by(id:@ticket) %>
+              <% @currentTicket = Ticket.find_by(id:purchase.ticket_id) %>
+              <% @event = Event.find_by("id"=>@currentTicket.event) %>
               <div class="item">
 
                   <img src="/assets/eventus.png" width="100" height="100" itemprop="image" alt=""/>
                   <div class="info">
                     <div class="title" itemprop="name">Event: <%= link_to @event.name, @event %></div>
-                    <div class="subtitle"> Ticket: <%= link_to @ticket.name, @ticket %> (x<%= purchase.qty %>)</div>
+                    <div class="subtitle"> Ticket: <%= link_to @currentTicket.name, @currentTicket %> (x<%= purchase.qty %>)</div>
                     <div class="description" itemprop="description">
-                      Total Price: £<%= @ticket.price * purchase.qty %>
+                      Total Price: £<%= @currentTicket.price * purchase.qty %>
                     </div>
                   </div>
-
               </div>
-
               <hr>
-
             <% end %>
 
 

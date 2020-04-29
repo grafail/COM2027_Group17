@@ -2,7 +2,7 @@
 
 <p>
   <strong>Event:</strong>
-  <%= @ticket.event.id %>
+  <%= Event.find_by("id"=>@ticket.event.id).name %>
 </p>
 
 <p>
