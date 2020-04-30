@@ -27,7 +27,7 @@
 
         <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
         <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
-        <li style="font-size: 12px"></i><%= link_to t('Settings'), edit_user_registration_path %></li>
+        <li style="font-size: 12px"><%= link_to t('Settings'), edit_user_registration_path %></li>
         <div class="dropdown-divider"></div>
         <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
       </ul>
@@ -53,10 +53,10 @@
         <div class="card-body">
           <h1 class="text-center">Your Profile</h1>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-sm-8">
               <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle ">
-                <div class="caption text-md-center"><h6>Add a profile picture...</h6></div>
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle">
+                <h6>Add a profile picture...</h6>
                 <input type="file" class="text-center center-block file-upload">
               </div></hr><br>
             </div>
