@@ -16,7 +16,7 @@ class CheckoutController < ApplicationController
     end
     @cartItems = CartController.all_cart_items(session)
     @total = CartController.total_price_cart(session)
-    puts 'These are the paramaters ' + params.inspect
+    
     require 'active_merchant'
 
     # Use the TrustCommerce test servers
@@ -36,10 +36,6 @@ class CheckoutController < ApplicationController
         :verification_value => params[:'cvc'],
         :brand => 'bogus')
 
-    puts credit_card.inspect
-    puts credit_card.validate.empty?
-    puts 'Validation done!', credit_card.validate
-
     # Validating the card automatically detects the card type
     if credit_card.validate.empty?
       # Capture $10 from the credit card
@@ -56,7 +52,7 @@ class CheckoutController < ApplicationController
     else
       m = 'There was an error verifying your card!'
     end
-    puts response.inspect
+
     redirect_to tickets_path, notice: m
   end
 
