@@ -15,12 +15,15 @@
               <a href="/ticket/<%= id %>"><%= @ticket.name %> </a>
               <div class="product-info">
                 <div><%= @ticket.description %></div>
+                <div>
+                  <%= link_to image_tag("trash.png"),cart_remove_path(id: id), :method => :get, :class => 'btn btn-default btn-xs'%>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-md-4 quantity">
             <label for="quantity">Quantity:</label>
-            <input id="quantity" readonly type="number" value ="<%=qty%>" class="form-control quantity-input">
+            <input id="quantity" readonly type="number" value="<%= qty %>" class="form-control quantity-input">
           </div>
           <div class="col-md-3 price">
             <span><%= @ticket.price * qty %>£</span>
