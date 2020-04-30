@@ -10,8 +10,8 @@ Ticket.create!([
   {event_id: 1, price: 123.0, name: "Ticket 2", description: "Test description"}
 ])
 Order.create!([
-  {user_id: 1, comments: "", PriceTotal: 10.0, isComplete: false},
-  {user_id: 1, comments: "This is a test comment.", PriceTotal: 1.0, isComplete: false}
+  {user_id: 1, comments: "", PriceTotal: 10.0},
+  {user_id: 1, comments: "This is a test comment.", PriceTotal: 1.0}
 ])
 Purchase.create!([
   {ticket_id: 1, order_id: 1, qty: 3},
