@@ -1,10 +1,23 @@
 class CartController < ApplicationController
 
+
+  def cart
+    @cartItems = CartController.all_cart_items(session)
+    @total = CartController.total_price_cart(session)
+  end
+
   def check_cart
     if !session[:cart]
       session[:cart] = {}
     end
   end
+
+  def self.check_cart(session)
+    if !session[:cart]
+      session[:cart] = {}
+    end
+  end
+  helper_method :check_cart
 
   def change_qty
     check_cart
@@ -62,8 +75,8 @@ class CartController < ApplicationController
     end
   end
 
-  def all_cart_items
-    check_cart
+  def self.all_cart_items(session)
+    check_cart(session)
     return session[:cart]
   end
   helper_method :all_cart_items

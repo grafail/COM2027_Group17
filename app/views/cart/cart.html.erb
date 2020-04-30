@@ -1,66 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-8">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <div class="row">
-              <div class="col-xs-6">
-                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-              </div>
-              <!--Button for continue shopping, links to events page-->
-              <div class="col-xs-6">
-                <%= button_to events_path, :method=>:get, :class => 'btn btn-primary btn-sm btn-block' do %>
-                  <span class="glyphicon glyphicon-share-alt"></span>   Continue Shopping
+
+	<main class="page">
+	 	<section class="shopping-cart dark">
+	 		<div class="container">
+		        <div class="block-heading">
+		          <h2>Shopping Cart</h2>
+		        </div>
+		        <div class="content">
+	 				<div class="row">
+	 					<div class="col-md-12 col-lg-8">
+	 						<div class="items">
+                <% @cartItems.each do |item| %>
+
+                  <%= render partial: 'shared/cartItem', :locals => {:item => item} %>
+
                 <% end %>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <%@total = 0 %>
-        <div class="panel-body">
-
-          <% if all_cart_items.length == 0 %>
-
-            <div class="row">
-              <div class="text-center">
-                <h1>Cart is empty!</h1>
-              </div>
-            </div>
-
-          <% end %>
-
-          <% all_cart_items.each do |item| %>
-
-            <%= render partial: 'shared/cartItem', :locals => {:item => item} %>
-
-          <% end %>
-
-          <div class="row">
-            <div class="text-center">
-              <div class="col-xs-9">
-                <h6 class="text-right"></h6>
-              </div>
-              <div class="col-xs-3">
-                <%= button_to 'Empty cart', '/cart/empty', :method=>:get, :class => "btn btn-default btn-xs" %>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="panel-footer">
-          <div class="row text-center">
-            <div class="col-xs-9">
-              <h4 class="text-right">Total <strong>£<%=@total %></strong></h4>
-            </div>
-            <div class="col-xs-3">
-              <%= button_to 'Checkout', new_purchase_path, :method=>:get, :class => "btn btn-success btn-block" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+				 			</div>
+			 			</div>
+			 			<div class="col-md-12 col-lg-4">
+			 				<div class="summary">
+			 					<h3>Summary</h3>
+			 					<div class="summary-item"><span class="text">Total</span><span class="price"><%=@total%>£</span></div>
+                <%= button_to 'Checkout', checkout_path, :method => 'get',:class => "btn btn-primary btn-lg btn-block" %>
+				 			</div>
+			 			</div>
+		 			</div> 
+		 		</div>
+	 		</div>
+		</section>
+	</main>
