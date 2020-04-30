@@ -148,6 +148,7 @@ div{
 
 html {
   box-sizing: border-box;
+
 }
 
 .column {
@@ -163,17 +164,14 @@ html {
 }
 
 .about-section {
-  padding: 30px;
-  text-align: center;
-  background-color: #474e5d;
-  color: black ;
   background-image: url("about-us-title-image.png");
-  background-size: cover;
   background-repeat: no-repeat;
-  height: 345px;
-  width: 100%;
-}
+  background-size: cover;
+  background-position: center center;
+  padding-top: 110px;
+  padding-bottom:128px;
 
+}
 
 @media screen and (max-width: 650px) {
   .column {
@@ -181,5 +179,15 @@ html {
     display: block;
   }
 }
+
+.contact {
+  background-image: url("contact 2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding-top: 110px;
+  padding-bottom:110px;
+}
+
 
 
