@@ -17,16 +17,17 @@
 @import "owl.carousel";
 @import "owl.theme.default";
 @import 'slick';
-@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "style";
 @import "toastr";
 
+@import "style";
 @import 'home';
 @import 'events';
 @import 'purchases';
 @import 'tickets';
 @import 'orders';
+@import 'cart';
+@import 'checkout';
 
 ul.header {
   list-style-type: none;
