@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'checkout', to: 'checkout#index'
   get 'cart', to: 'cart#cart'
   resources :purchases
   resources :orders
