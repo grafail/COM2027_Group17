@@ -2,6 +2,7 @@ class CheckoutController < ApplicationController
   def index
     if !current_user
       redirect_to cart_path, notice: 'You should be logged in!'
+      return
     end
     @cartItems = CartController.all_cart_items(session)
     if @cartItems.length == 0
@@ -16,7 +17,7 @@ class CheckoutController < ApplicationController
     end
     @cartItems = CartController.all_cart_items(session)
     @total = CartController.total_price_cart(session)
-    
+
     require 'active_merchant'
 
     # Use the TrustCommerce test servers
