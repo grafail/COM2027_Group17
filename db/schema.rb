@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_132255) do
+ActiveRecord::Schema.define(version: 2020_04_29_211541) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_132255) do
     t.float "PriceTotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "isComplete", default: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
