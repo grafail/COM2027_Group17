@@ -19,6 +19,7 @@
 @import 'slick';
 @import "bootstrap";
 @import "toastr";
+@import "font-awesome";
 
 @import "style";
 @import 'home';
@@ -28,6 +29,7 @@
 @import 'orders';
 @import 'cart';
 @import 'checkout';
+@import 'modals';
 
 ul.header {
   list-style-type: none;

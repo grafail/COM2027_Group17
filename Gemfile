@@ -6,6 +6,8 @@ ruby '~>2.5'
 gem 'activemerchant'
 
 gem 'bootstrap'
+gem "font-awesome-rails"
+gem "simple_form", "~> 4.0"
 gem 'modernizr-rails'
 gem 'rails-controller-testing'
 gem 'devise'
