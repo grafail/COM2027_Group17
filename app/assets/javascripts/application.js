@@ -26,7 +26,3 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require main
-
-document.addEventListener('DOMContentLoaded', function() {
-    AOS.init();
-});
