@@ -21,7 +21,7 @@
     <% end %>
     <% if user_signed_in? %>
 
-      <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+      <li class="dropdown"><a data-toggle="dropdown"><%= link_to "My Profile", '/users/edit' %><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
     <ul class="dropdown-menu">
       <%= link_to "My Profile", '/users/edit' %>
       <%= link_to "My Tickets", '/tickets' %>
