@@ -1,55 +1,44 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="header" id="myHeader">
+<ul class="header">
 
   <%= image_tag("eventus.png", :align => "left", :size => "60x60") %>
 
-   <%= link_to "Home", '/home' %>
-   <%= link_to "Events", '/events' %>
-   <%= link_to "About", '/about' %>
-   <%= link_to "BuyTickets", '/tickets' %>
-
-
+  <li> <%= link_to "Home", '/home' %> </li>
+  <li> <%= link_to "Events", '/events' %> </li>
+  <li> <%= link_to "About", '/about' %> </li>
+  <% if user_signed_in? %>
+    <li> <%= link_to "My Tickets", '/tickets' %> </li>
+  <%end %>
 
   <div id="corner" >
     <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
     <% if !session[:cart] then session[:cart] = {} end %>
     <% cartSize = session[:cart].length %>
     <% if cartSize == 0 %>
-      <%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%>
+      <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%></li>
     <% else %>
       <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
     <% end %>
     <% if user_signed_in? %>
 
+      <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <%= link_to "My Profile", '/users/edit' %>
+      <%= link_to "My Tickets", '/tickets' %>
+    </ul>
 
-      <div class="dropdown ">
-        <button class="dropbtn ">My Profile
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content dropOverflow">
-          <%= link_to "My Profile", '/users/edit' %>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
 
-  <% else %>
-       <%= link_to t('Sign In'), new_user_session_path %>
-       <%= link_to t('Sign Up'), new_user_registration_path %>
+      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+
+    <% else %>
+      <li> <%= link_to t('Sign In'), new_user_session_path %></li>
+      <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
     <% end %>
-
     </div>
 
     <!--
-
       <li><a href="/tickets">Tickets</a></li>
       <li><a href="/purchases">Purchases</a></li> -->
 
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
 
-
-
-
-
+    </ul>
