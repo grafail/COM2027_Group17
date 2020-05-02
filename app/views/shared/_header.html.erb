@@ -8,16 +8,7 @@
    <%= link_to "About", '/about' %>
    <%= link_to "BuyTickets", '/tickets' %>
 
-  <div class="dropdown">
-    <button class="dropbtn">My Profile
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <%= link_to "My Profile", '/users/edit' %>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
+
 
   <div id="corner" >
     <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
@@ -30,8 +21,20 @@
     <% end %>
     <% if user_signed_in? %>
 
+
+      <div class="dropdown ">
+        <button class="dropbtn ">My Profile
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content dropOverflow">
+          <%= link_to "My Profile", '/users/edit' %>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-    <% else %>
+
+  <% else %>
        <%= link_to t('Sign In'), new_user_session_path %>
        <%= link_to t('Sign Up'), new_user_registration_path %>
     <% end %>

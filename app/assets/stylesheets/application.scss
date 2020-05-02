@@ -151,6 +151,10 @@ html {
 
 }
 
+.dropOverflow{
+  position: absolute;
+  z-index: 999;
+}
 
 
 .about-section {
@@ -182,10 +186,9 @@ html {
   padding: 20px;
 }
 .header {
-  overflow: hidden;
+  //overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
-
 }
 
 .header a {
