@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require jquery3
 //= require jquery_ujs
 //= require jquery-ui
 //= require popper
@@ -26,3 +25,8 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require main
+//= require rails.validations
+
+$(document).on('shown.bs.modal', '.modal', function() {
+    $('form[data-client-side-validations]').enableClientSideValidations();
+});

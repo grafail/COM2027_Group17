@@ -7,7 +7,8 @@ gem 'activemerchant'
 
 gem 'bootstrap'
 gem "font-awesome-rails"
-gem "simple_form", "~> 4.0"
+gem 'client_side_validations'
+
 gem 'modernizr-rails'
 gem 'rails-controller-testing'
 gem 'devise'
