@@ -34,6 +34,16 @@ body {
   font-size: medium;
 }
 
+a,
+a:visited {
+  color: #98B3F7;
+}
+
+a:hover {
+  color: #FFA4B6;
+  text-decoration: none;
+}
+
 ul.header {
   list-style-type: none;
   margin: auto;
@@ -127,4 +137,54 @@ li a.active {
 .yellow {
   background-color: #FFF6A4;
   color: #666;
+}
+
+.button-color {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.button-color:hover {
+  background-color: white;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.btn-primary.button-color:active:hover,
+.btn-primary.button-color:active:focus,
+.btn-primary.button-color:active.focus,
+.btn-primary.button-color.active:hover,
+.btn-primary.button-color.active:focus,
+.btn-primary.button-color.active.focus,
+.open > .btn-primary.button-color.dropdown-toggle:hover,
+.open > .btn-primary.button-color.dropdown-toggle:focus,
+.open > .btn-primary.button-color.dropdown-toggle.focus {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  color: #98B3F7;
+}
+
+label {
+  font-weight: normal !important;
 }

@@ -29,6 +29,7 @@
 
 .form-control {
   text-align: center;
+  font-size: medium;
 }
 
 .yellow-border input[type=text]:focus:not([readonly]) {
@@ -37,18 +38,11 @@
 }
 
 .btn.btn-sm.height-auto.px-4.py-3.btn-primary {
-  background-color: white;
-  color: black;
-  border-width: 3px;
-  border-color: #FFF6A4;
+  border-width: 1px;
   display: inline-block;
   transition-duration: 0.4s;
   font-size: 15px;
   padding-top: 7px;
   padding-bottom: 7px;
   border-radius: 7px;
-}
-
-.btn.btn-sm.height-auto.px-4.py-3.btn-primary:hover {
-  background-color: #FFF6A4;
 }

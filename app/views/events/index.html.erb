@@ -75,7 +75,7 @@
               <div class="slider-range"></div>
             </div>
             <div class="list-group-item" style="align-content: center">
-                <label for="amount">Min: </label>
+                <label for="min">Min: </label>
                 <input type="text" id="min" readonly style="border:0; font-weight: bold;">
 
                 <label for="max" style="align-content: end;">Max: </label>
@@ -161,35 +161,41 @@
 
       <!-- product list-->
       <% @events.each do |event| %>
-      <div class="event-box yellow row mb-5" style="padding-top: 20px;">
-        <div class="col-md-2 col-sm-3 col-12 text-center">
-          <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
-        </div>
-        <div class="col-md-6 col-sm-7 col-6">
-          <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><a href="#modalProduct" data-toggle="modal" class="yellow"><%= event.name %></a></h5>
-          <p class="text-truncate mb-0"><%= event.description %></p>
-          <a href="#modalProduct" class="btn btn-outline-secondary mt-2">Ticket price</a>
-        </div>
-        <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
-          <h6 class="small text-wide text-truncate"><%= event.location %></h6>
-          <div class="float-right text-nowrap"><span class="text-primary"><i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i></span></div>
-        </div>
-      </div>
-        <br \>
+
+        <a href="#modalProduct">
+          <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+            <div class="col-md-2 col-sm-3 col-12 text-center">
+              <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
+            </div>
+            <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+              <%= link_to event do %>
+                <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
+              <% end %>
+              <p><%= event.description %></p>
+              <a href="#modalProduct">Ticket price</a>
+            </div>
+            <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+              <p class="text-wide text-truncate"><span class="glyphicon glyphicon-map-marker" aria-hidden="false"></span>
+                <%= event.location %></p>
+              <div class="float-right text-nowrap"><span class="text-primary"><i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i></span></div>
+            </div>
+          </div>
+          <br \>
+        </a>
       <% end %>
 
 <!-- pagination -->
       <div class="row">
         <div class="col-lg-6 mx-lg-auto py-2" id="_">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
+          <ul class="pagination justify-content-center button-color">
+            <li class="page-item disabled blue-text">
               <a class="page-link border-0" href="#" aria-label="Previous">
                 <span aria-hidden="true">❮</span>
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li class="page-item active">
-              <a class="page-link border-0" href="#_">1 <span class="sr-only">(current)</span></a>
+            <li class="page-item active button-color">
+              <a class="page-link border-0 button-color" href="#_">1 <span class="sr-only button-color">(current)</span></a>
             </li>
             <li class="page-item"><a class="page-link border-0" href="#_">2</a></li>
             <li class="page-item"><a class="page-link border-0" href="#_">3</a></li>
@@ -213,7 +219,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="mb-0">Digital SLR</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" class="close button-color" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -231,4 +237,5 @@
       </div>
     </div>
   </div>
+
 </div>
