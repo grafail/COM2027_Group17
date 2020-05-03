@@ -20,19 +20,18 @@
       <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
     <% end %>
     <% if user_signed_in? %>
-      
+
       <li>
-      <div class="dropdown">
-        <%= button_to "My Profile", '/users/edit', :class => "dropbtn", :method => "get" %>
-        <div class="dropdown-content">
-          <%= link_to "My Profile", '/users/edit' %>
-          <%= link_to "My Tickets", '/tickets' %>
+        <div class="dropdown">
+          <%= link_to "My Profile", '/users/edit', :class => "dropbtn", :method => "get" %>
+          <div class="dropdown-content" style="font-size: 12px; font-family: verdana, arial, helvetica, sans-serif;">
+            <%= link_to "My Profile", '/users/edit' %>
+            <%= link_to "My Tickets", '/tickets' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+          </div>
         </div>
-      </div>
       </li>
-
-
-      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
 
     <% else %>
       <li>  <%= link_to "Sign In", "", data: {toggle: "modal", target: ".modalLogin"} %> </li>
