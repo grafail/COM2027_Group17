@@ -1,3 +1,56 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.event-box {
+  border-color: #ddd;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 7px;
+}
+
+.button-color {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.button-color:hover {
+  background-color: white;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.btn-primary.button-color:active:hover,
+.btn-primary.button-color:active:focus,
+.btn-primary.button-color:active.focus,
+.btn-primary.button-color.active:hover,
+.btn-primary.button-color.active:focus,
+.btn-primary.button-color.active.focus,
+.open > .btn-primary.button-color.dropdown-toggle:hover,
+.open > .btn-primary.button-color.dropdown-toggle:focus,
+.open > .btn-primary.button-color.dropdown-toggle.focus {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+.slider-selection.tick-slider-selection {
+  background-image: linear-gradient(to bottom, #FFF6A4 0%, #FFF6A4 100%);
+  background-repeat: repeat-x;
+  background-color: #FFF6A4;
+}
+
+.slider-handle,
+.slider-tick.in-selection {
+  background-image: linear-gradient(to bottom, #FFF6A4 0%, #FFF066 100%);
+  background-repeat: repeat-x;
+  background-color: #FFF066;
+}

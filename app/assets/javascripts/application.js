@@ -25,9 +25,59 @@
 //= require turbolinks
 //= require_tree .
 
-//= require bootstrap-sprockets
 //= require main
+//= require bootstrap-sprockets
+//= require bootstrap-slider
 
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init();
 });
+
+/*$( function() {
+    $( "#slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 250,
+        values: [ 25, 100 ],
+        focus: true,
+        slide: function( event, ui ) {
+            $( "#max" ).val( "£" + ui.values[ 1 ] );
+            $( "#min" ).val( "£" + ui.values[ 0 ] );
+        }
+    });
+    $( "#max" ).val( "£" + $( "#slider-range" ).slider( "values", 1 ));
+    $( "#min" ).val( "£" + $( "#slider-range" ).slider("values", 0 ));
+} );*/
+
+$('.input-daterange').datepicker({
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true
+});
+
+$(document).on('turbolinks:load', function(){
+    $('.slider').slider({
+        range: true,
+        min: 0,
+        max: 250,
+        values: [ 25, 100 ],
+        focus: true
+    });
+});
+
+$(function(){
+    $('.slider-range').slider({
+        range: true,
+        values: [ 0, 250 ],
+        min: 0,
+        max: 250,
+        step: 5,
+        slide: function( event, ui ) {
+            $("#max").val("£" + ui.values[1]);
+            $("#min").val("£" + ui.values[0]);
+        }
+    });
+    $( "#max" ).val( "£" + $( ".slider-range" ).slider( "values", 1 ));
+    $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
+});
+
