@@ -1,0 +1,48 @@
+ <main class="page payment-page">
+    <section class="payment-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h2>Payment</h2>
+        </div>
+        <%= form_with do %>
+          <div class="products">
+            <h3 class="title">Checkout</h3>
+            <% @cartItems.each do |item| %>
+
+              <%= render partial: 'shared/checkoutItem', :locals => {:item => item} %>
+
+            <% end %>
+            <div class="total">Total<span class="price"><%= @total %>£</span></div>
+          </div>
+          <div class="card-details">
+            <h3 class="title">Credit Card Details</h3>
+            <div class="row">
+              <div class="form-group col-sm-7">
+                <%= label_tag(:"card-holder", "Card Holder:") %>
+                <%= text_field_tag(:'card-holder', nil,:class=>"form-control",:placeholder=>"Card Holder",:'aria-label'=>"Card Holder", :'aria-describedby'=>"basic-addon1") %>
+              </div>
+              <div class="form-group col-sm-5">
+                <%= label_tag(:"MM", "Expiration Date:") %>
+                <div class="input-group expiration-date">
+                  <%= text_field_tag(:'MM', nil,:class=>"form-control",:placeholder=>"MM",:'aria-label'=>"MM", :'aria-describedby'=>"basic-addon1") %>
+                  <span class="date-separator">/</span>
+                  <%= text_field_tag(:'YYYY', nil,:class=>"form-control",:placeholder=>"YYYY",:'aria-label'=>"YYYY", :'aria-describedby'=>"YYYY") %>
+                </div>
+              </div>
+              <div class="form-group col-sm-8">
+                <%= label_tag(:"card-number", "Card Number:") %>
+                <%= text_field_tag(:'card-number', nil,:class=>"form-control",:placeholder=>"Card Number",:'aria-label'=>"Card Number", :'aria-describedby'=>"basic-addon1") %>
+              </div>
+              <div class="form-group col-sm-4">
+                <%= label_tag(:"cvc", "CVC") %>
+                <%= text_field_tag(:'cvc', nil,:class=>"form-control",:placeholder=>"CVC",:'aria-label'=>"CVC", :'aria-describedby'=>"basic-addon1") %>
+              </div>
+              <div class="form-group col-sm-12">
+                <%= submit_tag("Proceed", :class=>"btn btn-primary btn-block") %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </main>

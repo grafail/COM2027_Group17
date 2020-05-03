@@ -19,12 +19,33 @@
 </head>
 
 <body>
+
+<% unless flash.empty? %>
+  <script type="text/javascript">
+      <% flash.each do |f| %>
+      toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "positionClass": "toast-bottom-right",
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
+      toastr.info('<%= f[1] %>');
+      <% end %>
+  </script>
+<% end %>
 <div class="site-wrap">
   <%= render 'shared/header' %>
-  <!--    <p class="notice"><%#= notice %></p>
-    <p class="alert"><%#= alert %></p>-->
   <%= yield %>
   <%= render 'shared/footer' %>
 </div>
 </body>
 </html>
+

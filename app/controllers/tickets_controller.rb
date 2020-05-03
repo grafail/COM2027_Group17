@@ -5,6 +5,12 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
+    ##Temporary fix (Tests and route should be adjusted)
+    if user_signed_in?
+      @myTickets = TicketsController.get_user_tickets(current_user.id)
+    else
+      @myTickets = []
+    end
   end
 
   # GET /tickets/1
@@ -28,7 +34,8 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        @event = Event.find(ticket_params[:event_id])
+        format.html { redirect_to @event, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
@@ -71,4 +78,14 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit(:event_id, :price, :name, :description)
     end
+
+  def self.get_user_tickets(id)
+    ticket_list=[]
+    Order.where(user:id).each do |orderItem|
+      ticket_list+=Purchase.where(order:orderItem.id)
+    end
+    return ticket_list
+  end
+  helper_method :get_user_tickets
+
 end

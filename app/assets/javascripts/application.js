@@ -12,22 +12,21 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require jquery3
 //= require jquery_ujs
 //= require jquery-ui
 //= require popper
 //= require jquery.slick
 //= require magnific-popup
-//= require aos
 //= require owl.carousel
 //= require gmaps/google
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
 //= require main
 //= require bootstrap-sprockets
 //= require bootstrap-slider
+//= require toastr
+//= require rails.validations
 
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init();
@@ -55,3 +54,6 @@ $(function(){
     $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
 });
 
+$(document).on('shown.bs.modal', '.modal', function() {
+    $('form[data-client-side-validations]').enableClientSideValidations();
+});

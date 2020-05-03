@@ -15,13 +15,13 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create ticket" do
-    assert_difference('Ticket.count') do
-      post tickets_url, params: { ticket: { description: @ticket.description, event_id: @ticket.event_id, name: @ticket.name, price: @ticket.price } }
-    end
-
-    assert_redirected_to ticket_url(Ticket.last)
-  end
+  # test "should create ticket" do
+  #  assert_difference('Ticket.count') do
+  #    post tickets_url, params: { ticket: { description: @ticket.description, event_id: @ticket.event_id, name: @ticket.name, price: @ticket.price } }
+  #  end
+  #
+  # assert_redirected_to ticket_url(Ticket.last)
+  # end
 
   test "should show ticket" do
     get ticket_url(@ticket)

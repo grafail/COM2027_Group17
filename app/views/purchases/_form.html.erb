@@ -12,23 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :ticket_id %>
-    <%= form.text_field :ticket_id %>
+    <%= form.collection_select :ticket_id, Ticket.all, :id, :name, {:include_blank => false}%>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :order_id %>
+    <%= form.collection_select :order_id, Order.all, :id, :user, {:include_blank => false}%>
   </div>
 
   <div class="field">
-    <%= form.label :comments %>
-    <%= form.text_field :comments %>
-  </div>
-
-  <div class="field">
-    <%= form.label :PriceTotal %>
-    <%= form.text_field :PriceTotal %>
+    <%= form.label :qty %>
+    <%= form.number_field :qty %>
   </div>
 
   <div class="actions">

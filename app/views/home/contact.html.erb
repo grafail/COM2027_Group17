@@ -1,0 +1,98 @@
+<%= form_tag request_contact_path, method: 'post' do end%>
+<div class="messages"></div>
+<div class="contact"></div>
+<div class="controls">
+  <div class="container">
+    <h1>
+      <%= t('.title') %>
+    </h1>
+    <p>
+      <%= t('.contact_us') %>
+    </p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_name">First Name *</label>
+          <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your first name *" required="required" data-error="Firstname is required.">
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_lastname">Last Name *</label>
+          <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your last name *" required="required" data-error="Lastname is required.">
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_email">Email *</label>
+          <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_need">Choose the issue*</label>
+          <select id="form_need" name="need" class="form-control" required="required" data-error="Choose the issue.">
+            <option value=""></option>
+            <option value="Help with ticket"> Ticket Issues</option>
+            <option value="Help with the website ">Website Issues</option>
+            <option value="Help with refunds and exchanges">Refund and Exchange</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      <%= t('.information') %>
+    </p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_event_name">Event Name *</label>
+          <input id="form_event_name" type="text" name="eventname" class="form-control" placeholder="Please enter your event name *" required="required" data-error="event name is required.">
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form_event_date">Event Date (dd/mm/yyyy)*</label>
+          <input id="form_event_date" type="text" name="eventdate" class="form-control" placeholder="Please enter the date of the event *" required="required" data-error="event date is required.">
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="form_message">Message *</label>
+          <textarea id="form_message" name="message" class="form-control" placeholder="Write your message here.." rows="4" required="required" data-error="Please, leave us a message."></textarea>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <input type="submit" class="btn btn-success btn-send" value="Send">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-muted">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

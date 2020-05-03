@@ -1,0 +1,12 @@
+<div class="item">
+  <a href="/events/<%= item.id %>" itemprop="url">
+    <img src="https://via.placeholder.com/130x100" width="130" height="100" itemprop="image" alt=""/>
+    <div class="info">
+      <div class="title" itemprop="name">Event name: <%= item.name %></div>
+      <div class="subtitle"> Location: <%= item.location %></div>
+      <div class="description" itemprop="description">
+        <%= item.description %>
+      </div>
+    </div>
+  </a>
+</div>

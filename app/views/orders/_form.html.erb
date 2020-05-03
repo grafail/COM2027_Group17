@@ -1,0 +1,37 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <% if user_signed_in? %>
+      <%@currentUser= User.where("id"=>current_user.id) %>
+      <%= form.collection_select :user_id, @currentUser, :id, :email, {:include_blank => false}%>
+    <% else %>
+      <p>You must sign in</p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PriceTotal %>
+    <%= form.text_field :PriceTotal %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

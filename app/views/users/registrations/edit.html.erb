@@ -1,0 +1,148 @@
+<head>
+  <title>Account page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<p><% if user_signed_in? %>
+    <%= "Welcome, #{current_user.email}"%><br>
+  <% else %>
+  <% end %><hr>
+  </p>
+<nav>
+  <div class="btn-group">
+    <div class="col-sm-4 col-md-3">
+      <button type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 12px">
+        <i class="glyphicon glyphicon-user"></i><%= link_to t(' My Account'), edit_user_registration_path %>
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+        <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
+        <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
+        <li style="font-size: 12px"><%= link_to t('Settings'), edit_user_registration_path %></li>
+        <div class="dropdown-divider"></div>
+        <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container bootstrap snippet">
+  <div class="row">
+      <div class="col-md-3 ">
+        <h1><%= I18n.t('registrations.edit.name') %></h1>
+      <div class="list-group ">
+        <div style="font-size: 12px;">
+          <%= link_to 'Profile', 'users/edit', :method=>:get, :class => "list-group-item list-group-item-action active" %>
+          <%= link_to 'My Tickets', tickets_path, :method=>:get, :class => "list-group-item list-group-item-action " %>
+          <%= link_to 'Settings', new_purchase_path, :method=>:get, :class => "list-group-item list-group-item-action" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="card align-items-center">
+        <div class="card-body">
+          <h1 class="text-center">Your Profile</h1>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="text-center">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle">
+                <h6>Add a profile picture...</h6>
+                <input type="file" class="text-center center-block file-upload">
+              </div></hr><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <form>
+                <div class="form-group row">
+                  <label for="name" class="col-4 col-form-label">Prefix</label>
+                  <div class="col-8">
+                    <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option value="1">Dr.</option>
+                      <option value="2">Prof.</option>
+                      <option value="3">Mr.</option>
+                      <option value="1">Mrs.</option>
+                      <option value="2">Miss.</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="name" class="col-4 col-form-label">First Name</label>
+                  <div class="col-8">
+                    <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                  <div class="col-8">
+                    <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="Phone Number" class="col-4 col-form-label">Phone Number</label>
+                  <div class="col-8">
+                    <input id="phone number" name="phone number" placeholder="Phone Number" class="form-control here" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="email" class="col-4 col-form-label">Email*</label>
+                  <div class="col-8">
+                    <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password" class="col-4 col-form-label">Password</label>
+                  <div class="col-8">
+                    <input id="password" name="password" placeholder="Password" class="form-control" required="required" type="password">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="newpass" class="col-4 col-form-label">Verify Password</label>
+                  <div class="col-8">
+                    <input id="verify password" name="verify password" placeholder="Verify Password" class="form-control here" type="password">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="offset-4 col-8">
+
+                    <br>
+                    <button class="btn btn-default btn-sm" type="submit"style="font-size: 12px"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                    <button class="btn btn-default btn-sm" type="reset"style="font-size: 12px"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <hr>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br>

@@ -3,10 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~>2.5'
 
-gem 'bootstrap-sass'
+gem 'activemerchant'
+
+gem 'bootstrap'
+gem "font-awesome-rails"
+gem 'client_side_validations'
+
 gem 'modernizr-rails'
+gem 'rails-controller-testing'
 gem 'devise'
-gem 'animation-rails', git: "https://github.com/avlos/animation-rails.git"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'magnific-popup-rails'
@@ -14,6 +19,8 @@ gem 'owlcarousel-rails', git: "https://github.com/acrogenesis/owlcarousel-rails.
 gem 'popper_js'
 gem 'jquery-slick-rails'
 gem 'bootstrap-slider-rails'
+gem 'toastr-rails'
+
 gem 'gmaps4rails'
 gem 'geocoder'
 
@@ -79,3 +86,5 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+

@@ -1,0 +1,35 @@
+<% id = item[0] %>
+<% qty = item[1].to_i %>
+<% @ticket = Ticket.find_by(:id => id) %>
+<% @event = Event.find_by(:id => @ticket.event_id) %>
+<div class="product">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-fluid mx-auto d-block image" src="/assets/eventus.png">
+    </div>
+    <div class="col-md-8">
+      <div class="info">
+        <div class="row">
+          <div class="col-md-5 product-name">
+            <div class="product-name">
+              <a href="/ticket/<%= id %>"><%= @ticket.name %> </a>
+              <div class="product-info">
+                <div><%= @ticket.description %></div>
+                <div>
+                  <%= link_to image_tag("trash.png"),cart_remove_path(id: id), :method => :get, :class => 'btn btn-default btn-xs'%>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 quantity">
+            <label for="quantity">Quantity:</label>
+            <input id="quantity" readonly type="number" value="<%= qty %>" class="form-control quantity-input">
+          </div>
+          <div class="col-md-3 price">
+            <span><%= @ticket.price * qty %>£</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

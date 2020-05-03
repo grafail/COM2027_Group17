@@ -1,0 +1,88 @@
+.modal-login {
+  color: #636363;
+  width: 350px;
+
+  .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .modal-header {
+    border-bottom: none;
+    position: relative;
+    justify-content: center;
+  }
+
+  h4 {
+    text-align: center;
+    font-size: 26px;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  i {
+    position: absolute;
+    left: 13px;
+    top: 11px;
+    font-size: 18px;
+  }
+
+  .form-control {
+    padding-left: 40px;
+
+    &:focus {
+      border-color: #FFF6A4;
+    }
+
+    min-height: 40px;
+    border-radius: 3px;
+  }
+
+  .btn {
+    min-height: 40px;
+    border-radius: 3px;
+  }
+
+  .hint-text {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+
+  .btn {
+    background: #f3df13;
+    border: none;
+    line-height: normal;
+
+    &:hover, &:focus {
+      background: #f3be0b;
+    }
+  }
+
+  .modal-footer {
+    background: #ecf0f1;
+    border-color: #dee4e7;
+    text-align: center;
+    margin: 0 -20px -20px;
+    border-radius: 5px;
+    font-size: 13px;
+    justify-content: center;
+
+    a {
+      color: #999;
+    }
+  }
+}
+
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}

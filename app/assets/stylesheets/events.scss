@@ -32,4 +32,37 @@
 
 .ui-slider .ui-slider-handle {
   background: #FFF066;
+.item {
+  background-color:#FFFFFF;
+  width:100%;
+  border:1px solid #e9e9e9;
+  float:left;
+}
+.item:hover {
+  background-color:#f2faff;
+  border:1px solid #e7f6ff
+}
+img {
+  padding:10px;
+  float:left
+}
+.info {
+  padding:10px 20px 10px 10px;
+  height:100px;
+}
+.info .title {
+  font-size:18px;
+  font-weight:700;
+  color:#000000;
+}
+.info .subtitle {
+  font-size:16px;
+  font-weight:200;
+  color:#000000;
+}
+.info .description {
+  font-size:14px;
+  font-weight:200;
+  color:#666;
+  margin-top:8px;
 }
