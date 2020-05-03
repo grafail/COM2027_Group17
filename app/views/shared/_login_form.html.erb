@@ -1,0 +1,29 @@
+<div id="myModal" class="modal fade modalLogin">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Member Login</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <i class="fa fa-envelope"></i>
+            <%= f.text_field(:email,:class=>"form-control",:placeholder=>"Email Address") %>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-lock"></i>
+            <%= f.text_field(:password,:class=>"form-control",:placeholder=>"Password") %>
+          </div>
+          <div class="form-group">
+            <%= f.submit("Login", :class=>"btn btn-primary btn-block btn-lg") %>
+          </div>
+        <%end %>
+
+      </div>
+      <div class="modal-footer">
+        <a href="#">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,8 +36,11 @@
       <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
 
     <% else %>
-      <li> <%= link_to t('Sign In'), new_user_session_path %></li>
-      <li> <%= link_to t('Sign Up'), new_user_registration_path %> </li>
+      <li>  <%= link_to "Sign In", "", data: {toggle: "modal", target: ".modalLogin"} %> </li>
+
+      <li>  <%= link_to "Sign up", "", data: {toggle: "modal", target: ".modalSignup"} %> </li>
+      <%= render 'shared/login_form' %>
+      <%= render 'shared/signupForm' %>
     <% end %>
     </div>
 
