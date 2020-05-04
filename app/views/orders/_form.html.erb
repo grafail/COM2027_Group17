@@ -13,7 +13,12 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <% if user_signed_in? %>
+      <%@currentUser= User.where("id"=>current_user.id) %>
+      <%= form.collection_select :user_id, @currentUser, :id, :email, {:include_blank => false}%>
+    <% else %>
+      <p>You must sign in</p>
+    <% end %>
   </div>
 
   <div class="field">

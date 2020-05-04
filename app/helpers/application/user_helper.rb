@@ -1,0 +1,2 @@
+module Application::UserHelper
+end

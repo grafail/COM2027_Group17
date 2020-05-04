@@ -1,0 +1,8 @@
+<% id = item[0] %>
+<% qty = item[1].to_i %>
+<% @ticket = Ticket.find_by(:id => id) %>
+<div class="item">
+  <span class="price"><%=@ticket.price*qty%>£</span>
+  <p class="item-name"><%=@ticket.name%> (x<%=qty%>)</p>
+  <p class="item-description"><%=@ticket.description%></p>
+</div>

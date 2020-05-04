@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'checkout', to: 'checkout#index'
   get 'cart', to: 'cart#cart'
   resources :purchases
   resources :orders
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
 
   get 'contact', to: 'home#contact'
   post 'request_contact', to: 'home#request_contact'
+  post 'checkout', to: 'checkout#payment', as: :complete_payment
+
+  get 'about', to: 'home#about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -11,7 +11,7 @@
 
 </head>
 <p><% if user_signed_in? %>
-    <%= "Welcome,#{current_user.email}"%><br>
+    <%= "Welcome, #{current_user.email}"%><br>
   <% else %>
   <% end %><hr>
   </p>
@@ -27,7 +27,7 @@
 
         <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
         <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
-        <li style="font-size: 12px"></i><%= link_to t('Settings'), edit_user_registration_path %></li>
+        <li style="font-size: 12px"><%= link_to t('Settings'), edit_user_registration_path %></li>
         <div class="dropdown-divider"></div>
         <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
       </ul>
@@ -41,28 +41,31 @@
         <h1><%= I18n.t('registrations.edit.name') %></h1>
       <div class="list-group ">
         <div style="font-size: 12px;">
-        <a href="#" class="list-group-item list-group-item-action active">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action">My Tickets</a>
-          <a href="#" class="list-group-item list-group-item-action">Settings</a>
+          <%= link_to 'Profile', 'users/edit', :method=>:get, :class => "list-group-item list-group-item-action active" %>
+          <%= link_to 'My Tickets', tickets_path, :method=>:get, :class => "list-group-item list-group-item-action " %>
+          <%= link_to 'Settings', new_purchase_path, :method=>:get, :class => "list-group-item list-group-item-action" %>
         </div>
       </div>
     </div>
 
     <div class="col-md-9">
-      <div class="card">
+      <div class="card align-items-center">
         <div class="card-body">
+          <h1 class="text-center">Your Profile</h1>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-8">
               <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle">
                 <h6>Add a profile picture...</h6>
                 <input type="file" class="text-center center-block file-upload">
               </div></hr><br>
-              <h4>Your Profile</h4>
-              <hr>
             </div>
           </div>
+        </div>
+      </div>
 
+      <div class="card">
+        <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <form>
@@ -139,6 +142,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 <br>

@@ -22,5 +22,36 @@
 
 <p>Coordinates: <%= @event.latitude %>, <%= @event.longitude %></p>
 
+<%@tickets = Ticket.where(event:@event) %>
+<h1>Available Tickets for this Event</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Event</th>
+    <th>Price</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.event.id %></td>
+      <td><%= ticket.price %></td>
+      <td><%= ticket.name %></td>
+      <td><%= ticket.description %></td>
+      <td><%= link_to 'Show', ticket %></td>
+      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+      <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Create Ticket', new_ticket_path(event_id: @event) %> |
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

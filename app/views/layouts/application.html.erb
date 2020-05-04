@@ -8,7 +8,6 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
 
   <script src="//maps.google.com/maps/api/js?key=AIzaSyBCimMQ3NNgvRBuEQQcgykflfiS-3praNg"></script>
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -22,6 +21,20 @@
 <% unless flash.empty? %>
   <script type="text/javascript">
       <% flash.each do |f| %>
+      toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "positionClass": "toast-bottom-right",
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
       toastr.info('<%= f[1] %>');
       <% end %>
   </script>

@@ -17,16 +17,19 @@
 @import "owl.carousel";
 @import "owl.theme.default";
 @import 'slick';
-@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "style";
 @import "toastr";
+@import "font-awesome";
 
+@import "style";
 @import 'home';
 @import 'events';
 @import 'purchases';
 @import 'tickets';
 @import 'orders';
+@import 'cart';
+@import 'checkout';
+@import 'modals';
 
 ul.header {
   list-style-type: none;
@@ -137,13 +140,50 @@ div{
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
 }
 
 #cart{
   padding-bottom: 8px;
 
+}
+
+html {
+  box-sizing: border-box;
+
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.about-section {
+  background-image: url("about-us-title-image.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding-top: 110px;
+  padding-bottom:128px;
+
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.contact {
+  background-image: url("contact.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding-top: 110px;
+  padding-bottom:110px;
 }
 
 
