@@ -10,32 +10,9 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-<p><% if user_signed_in? %>
-    <%= "Welcome, #{current_user.email}"%><br>
-  <% else %>
-  <% end %><hr>
-  </p>
-<nav>
-  <div class="btn-group">
-    <div class="col-sm-4 col-md-3">
-      <button type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 12px">
-        <i class="glyphicon glyphicon-user"></i><%= link_to t(' My Account'), edit_user_registration_path %>
-        <span class="caret"></span>
-      </button>
+<br>
 
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-        <li style="font-size: 12px"><%= link_to t('Profile'), edit_user_registration_path %> </li>
-        <li style="font-size: 12px"><%= link_to t('My Tickets'), edit_user_registration_path %></li>
-        <li style="font-size: 12px"><%= link_to t('Settings'), edit_user_registration_path %></li>
-        <div class="dropdown-divider"></div>
-        <li style="font-size: 12px"><%= link_to t('Sign Out'), destroy_user_session_path, method: 'delete' %></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="container bootstrap snippet">
+<div class="container bootstrap snippet"style="background-color: #f3f3f3">
   <div class="row">
       <div class="col-md-3 ">
         <h1><%= I18n.t('registrations.edit.name') %></h1>
