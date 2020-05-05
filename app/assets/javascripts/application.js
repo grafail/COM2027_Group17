@@ -30,3 +30,5 @@
 $(document).on('shown.bs.modal', '.modal', function() {
     $('form[data-client-side-validations]').enableClientSideValidations();
 });
+
+
