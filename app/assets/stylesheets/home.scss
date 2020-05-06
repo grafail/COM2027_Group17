@@ -25,6 +25,8 @@
   background: url(image_path('map.jpg')) no-repeat center center;
   background-size: cover;
   width: 100%;
+  position: relative;
+  z-index: -1;
 }
 
 .form-control {
