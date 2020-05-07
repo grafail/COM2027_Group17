@@ -78,7 +78,7 @@ li {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-height: 60px;
+  line-height: 59px;
   width: 100px;
   text-align: center;
 }
@@ -184,19 +184,19 @@ html {
   position: relative;
   display: inline-block;
   z-index: 1;
+  width: 100px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  left: -10px;
+  left: -1px;
   background-color: #f3f3f3;
   width: 100px;
   //padding: 12px 16px;
   z-index:999;
 
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
