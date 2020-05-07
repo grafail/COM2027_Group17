@@ -104,9 +104,7 @@ li a.active {
 #corner {
   float: right;
 }
-nav{
-  text-align: right;
-}
+
 
 .footer{
 
@@ -200,5 +198,11 @@ html {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.list-group-color .list-group-item{
+  background-color: #f3f3f3;
+}
 
+.list-group-color .list-group-item:hover{
+  background-color: #FFF6A4;
+}
 

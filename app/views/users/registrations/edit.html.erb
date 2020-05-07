@@ -16,11 +16,10 @@
   <div class="row">
       <div class="col-md-3 ">
         <h1><%= I18n.t('registrations.edit.name') %></h1>
-      <div class="list-group ">
-        <div style="font-size: 12px;">
-          <%= link_to 'Profile', 'users/edit', :method=>:get, :class => "list-group-item list-group-item-action active" %>
+      <div class="list-group list-group-color">
+        <div style="font-size: 16px; font-family: verdana, arial, helvetica, sans-serif;">
+          <%= link_to 'Profile', '/users/edit', :method=>:get, :class => "list-group-item list-group-item-action " %>
           <%= link_to 'My Tickets', tickets_path, :method=>:get, :class => "list-group-item list-group-item-action " %>
-          <%= link_to 'Settings', new_purchase_path, :method=>:get, :class => "list-group-item list-group-item-action" %>
         </div>
       </div>
     </div>
