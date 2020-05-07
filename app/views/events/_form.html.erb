@@ -12,31 +12,39 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
     <% if user_signed_in? %>
-      <%@currentUser= User.where("id"=>current_user.id) %>
-      <%= form.collection_select :user_id, @currentUser, :id, :email, {:include_blank => false}%>
+      <%@currentUser= User.find_by("id"=>current_user.id) %>
+      <%= form.hidden_field :user_id, value: @currentUser.id %>
     <% else %>
       <p>You must sign in</p>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group row">
+    <%= form.label :name, :class => 'col-xl-1 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, :class => 'form-control', :placeholder=>"e.g. Jane's Party" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="form-group row">
+    <%= form.label :description, :class => 'col-xl-1 col-form-label'%>
+    <div class="col-sm-10">
+      <%= form.text_field :description, :class => 'form-control', :placeholder=>"e.g. Celebrating Jane's 18th Birthday" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+  <div class="form-group row">
+    <%= form.label :location, :class => 'col-xl-1 col-form-label'%>
+    <div class="col-sm-10">
+      <%= form.text_field :location, :class => 'form-control', :placeholder=>"e.g. 100 Fox Lane, ..." %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit :class => 'btn btn-success'  %>
+    </div>
   </div>
+
 <% end %>
