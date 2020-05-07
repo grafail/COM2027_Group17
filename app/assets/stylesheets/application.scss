@@ -139,7 +139,7 @@ div{
 .container {
   border-radius: 5px;
   padding: 20px;
-  //background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
 
 #cart{
@@ -147,9 +147,8 @@ div{
 
 }
 
-html {
+* {
   box-sizing: border-box;
-
 }
 
 .about-section {
@@ -159,17 +158,22 @@ html {
   background-position: center center;
   padding-top: 110px;
   padding-bottom:128px;
+  width: 100%;
+  height: auto;
 
 }
 
 .contact {
-  background-image: url("contact.png");
+  background: url("contact.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   padding-top: 110px;
   padding-bottom:110px;
+  width: 100%;
+  height: auto;
 }
+
 
 .drpbtn{
   background-color: #f3f3f3;

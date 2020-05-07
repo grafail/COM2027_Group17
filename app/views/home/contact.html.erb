@@ -1,7 +1,8 @@
 <%= form_tag request_contact_path, method: 'post' do end%>
-<div class="messages"></div>
-<div class="contact"></div>
-<div class="controls">
+
+<div class="contact">
+</div>
+
   <div class="container">
     <h1>
       <%= t('.title') %>
@@ -38,9 +39,9 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label for="form_need">Choose the issue*</label>
+          <label for="form_need">Select the issue*</label>
           <select id="form_need" name="need" class="form-control" required="required" data-error="Choose the issue.">
-            <option value=""></option>
+            <option selected>Choose...</option>
             <option value="Help with ticket"> Ticket Issues</option>
             <option value="Help with the website ">Website Issues</option>
             <option value="Help with refunds and exchanges">Refund and Exchange</option>
@@ -93,6 +94,6 @@
       </div>
     </div>
   </div>
-</div>
+
 
 
