@@ -22,13 +22,38 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-sprockets
-//= require toastr
 //= require main
+//= require bootstrap-sprockets
+//= require bootstrap-slider
+//= require toastr
 //= require rails.validations
+
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init();
+});
+
+$('.input-daterange').datepicker({
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true
+});
+
+$(function(){
+    $('.slider-range').slider({
+        range: true,
+        values: [ 25, 100 ],
+        min: 0,
+        max: 250,
+        step: 5,
+        slide: function( event, ui ) {
+            $("#max").val("£" + ui.values[1]);
+            $("#min").val("£" + ui.values[0]);
+        }
+    });
+    $( "#max" ).val( "£" + $( ".slider-range" ).slider( "values", 1 ));
+    $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
+});
 
 $(document).on('shown.bs.modal', '.modal', function() {
     $('form[data-client-side-validations]').enableClientSideValidations();
 });
-
-

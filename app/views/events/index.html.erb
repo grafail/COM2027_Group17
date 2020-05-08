@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<!--
+<p id="notice"><%#= notice %></p>
 
 <h1>Events</h1>
 
@@ -9,6 +10,236 @@
   <%= button_to 'New Event', new_event_path, :method => :get, :class => "btn btn-primary" %>
 </div>
 
+<script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%#=raw @events_default.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+    });
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @events.each do |event| %>
+      <tr>
+        <td><%#= event.user.id %></td>
+        <td><%#= event.name %></td>
+        <td><%#= event.description %></td>
+        <td><%#= event.location %></td>
+        <td><%#= link_to 'Show', event %></td>
+        <td><%#= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%# end %>
+  </tbody>
+</table>
+
 <br>
 
+<%#= link_to 'New Event', new_event_path %>
+-->
+<div class="container py-3" style="padding-top: 20px;">
+  <header style="font-size: xx-large;">Events</header>
 
+  <div class="row mt-2" style="padding-top: 20px">
+    <div class="col-md-3 pb-4">
+      <!-- product sidebar filters -->
+      <div class="row">
+
+        <!-- categories -->
+        <div class="col-md-12 col-6 mb-4">
+          <div class="list-group small rounded-0">
+            <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Event Type</div>
+            <div class="list-group-item list-group-item-action yellow" id="list1" data-toggle="list" href="#list1">Music <span class="badge badge-pill badge-dark float-right">12</span></div>
+            <div class="list-group-item list-group-item-action" id="list2" data-toggle="list" href="#list2">Sports <span class="badge badge-pill badge-light float-right">1</span></div>
+            <div class="list-group-item list-group-item-action" id="list3" data-toggle="list" href="#list3">Religious <span class="badge badge-pill badge-primary float-right">3</span></div>
+            <div class="list-group-item list-group-item-action" id="list4" data-toggle="list" href="#list4">Charitable <span class="badge badge-pill badge-light float-right">18</span></div>
+            <div class="list-group-item list-group-item-action" id="list5" data-toggle="list" href="#list5">Hobby <span class="badge badge-pill badge-light float-right">18</span></div>
+            <div class="list-group-item list-group-item-action" id="list6" data-toggle="list" href="#list6">Misc. <span class="badge badge-pill badge-light float-right">18</span></div>
+          </div>
+        </div>
+
+        <!-- price range slider -->
+        <div class="col-md-12 col-6 mb-4">
+          <div class="list-group small rounded-0">
+            <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Price range</div>
+            <div class="list-group-item">
+              <div class="slider-range"></div>
+            </div>
+            <div class="list-group-item" style="align-content: center">
+                <label for="min">Min: </label>
+                <input type="text" id="min" readonly style="border:0; font-weight: bold;">
+
+              <div style="align-content: end;">
+                <label for="max">Max: </label>
+                <input type="text" id="max" readonly style="border:0; font-weight: bold;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- date filter selector -->
+        <div class="col-md-12 col-6 mb-4">
+          <div class="list-group small rounded-0">
+             <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Date</div>
+            <div class="list-group-item">
+
+              <div class="input-daterange input-group" id="datepicker">
+                <input type="text" class="input-sm form-control" name="start" placeholder="date" />
+                <span class="input-group-addon">to</span>
+                <input type="text" class="input-sm form-control" name="end" placeholder="date" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- distance slider -->
+        <div class="col-md-12 col-6 mb-4">
+          <div class="list-group small rounded-0">
+            <div class="list-group-item bg-light text-uppercase text-dark">Within ... miles</div>
+            <div class="list-group-item">
+              <input type="text" style="width: 100%; background-color: #FFF6A4" id="distance" data-provide="slider" data-slider-ticks="[0, 25, 50, 75, 100]" data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["0","25", "50", "75", "100"]' data-slider-value="100" step="25" />
+            </div>
+          </div>
+        </div>
+
+        <!-- apply filters button -->
+        <div class="col-md-12 col-6 mb-4">
+          <div class="list-group small rounded-0">
+            <button class="btn btn-block btn-primary button-color">Apply</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- site section -->
+    <div class="col-md-9">
+
+      <!-- filter drop down -->
+      <div class="row align">
+        <div class="col-md-12 mb-1" style="text-align: right;">
+          <div class="d-flex align-items-end flex-column" style="align-content: end;">
+
+            <div class="p-2 dropdown">
+              <button class="btn btn-primary dropdown-toggle button-color" id="menu1" type="button" data-toggle="dropdown">Sort by:
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (descending)</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (descending)</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Distance</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- map with markers -->
+
+      <div style='width: 100%; padding-bottom: 20px;'>
+        <div id="map" style='width: 100%; height: 500px;'></div>
+      </div>
+
+      <script type="text/javascript">
+          handler = Gmaps.build('Google');
+          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers(<%=raw @events_default.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+          });
+      </script>
+
+      <!-- product list-->
+      <% @events.each do |event| %>
+
+        <a href="#modalProduct">
+          <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+            <div class="col-md-2 col-sm-3 col-12 text-center">
+              <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
+            </div>
+            <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+              <%= link_to event do %>
+                <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
+              <% end %>
+              <p><%= event.description %></p>
+              <a href="#modalProduct">Ticket price</a>
+            </div>
+            <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+              <p class="text-wide text-truncate"><i class="material-icons small">location_on</i>
+                <%= event.location %></p>
+            </div>
+          </div>
+          <br \>
+        </a>
+      <% end %>
+
+<!-- pagination -->
+      <div class="row">
+        <div class="col-lg-6 mx-lg-auto py-2" id="_">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled blue-text">
+              <a class="page-link border-0" href="#" aria-label="Previous">
+                <span aria-hidden="true">❮</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active button-color">
+              <a class="page-link border-0 button-color" href="#_">1 <span class="sr-only button-color">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link border-0" href="#_">2</a></li>
+            <li class="page-item"><a class="page-link border-0" href="#_">3</a></li>
+            <li class="page-item"><a class="page-link border-0" href="#_">4</a></li>
+            <li class="page-item disabled">
+              <a class="page-link border-0" href="#_" aria-label="Next">
+                <span aria-hidden="true">❯</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- product modal pop up -->
+
+  <div id="modalProduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="mb-0">Digital SLR</h3>
+          <button type="button" class="close button-color" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-4 text-center">
+              <img src="//robohash.org/92340?size=150x150" class="mx-auto img-fluid" alt="Product detail image">
+              <h6 class="small text-wide text-uppercase"><a href="">Digital SLR</a></h6>
+            </div>
+            <div class="col-lg-8">
+              <p class="lead"> Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level irony ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch, mumblecore PBR try-hard kale chips. </p>
+              <h2>$129.00</h2>
+              <a href="./cart.html" class="btn btn-lg btn-primary mt-1">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

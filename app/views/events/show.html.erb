@@ -1,57 +1,106 @@
-<p id="notice"><%= notice %></p>
+<!--
+<p id="notice"><%#= notice %></p>
 
 <p>
   <strong>User:</strong>
-  <%= @event.user.id %>
+  <%#= @event.user.id %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @event.name %>
+  <%#= @event.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @event.description %>
+  <%#= @event.description %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @event.location %>
+  <%#= @event.location %>
 </p>
 
-<p>Coordinates: <%= @event.latitude %>, <%= @event.longitude %></p>
+<p>Coordinates: <%#= @event.latitude %>, <%#= @event.longitude %></p>
 
-<%@tickets = Ticket.where(event:@event) %>
-<h1>Available Tickets for this Event</h1>
+<%#= link_to 'Edit', edit_event_path(@event) %> |
+<%#= link_to 'Back', events_path %>
+-->
 
-<table>
-  <thead>
-  <tr>
-    <th>Event</th>
-    <th>Price</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+<div class="container py-3" style="padding-top: 20px;">
+  <header style="font-size: xx-large;"><%= @event.name %></header>
 
-  <tbody>
-  <% @tickets.each do |ticket| %>
-    <tr>
-      <td><%= ticket.event.id %></td>
-      <td><%= ticket.price %></td>
-      <td><%= ticket.name %></td>
-      <td><%= ticket.description %></td>
-      <td><%= link_to 'Show', ticket %></td>
-      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-      <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+  <div class="row mt-2" style="padding-top: 20px">
+    <div class="col-md-3 pb-4">
+      <!-- product sidebar filters -->
+    </div>
 
-<%= link_to 'Create Ticket', new_ticket_path(event_id: @event) %> |
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+    <!-- site section -->
+    <div class="col-md-9">
+
+      <!-- filter drop down -->
+      <div class="row align">
+        <div class="col-md-12 mb-5" style="padding-bottom: 10px; text-align: right;">
+          <div class="d-flex align-items-end flex-column" style="align-content: end;">
+
+            <div class="p-2 dropdown">
+              <button class="btn btn-primary dropdown-toggle button-color" id="menu1" type="button" data-toggle="dropdown">Sort by:
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (descending)</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (descending)</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Distance</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- map with markers -->
+
+      <div style='width: 100%; padding-bottom: 20px;'>
+        <div id="map" style='width: 100%; height: 500px;'></div>
+      </div>
+
+      <script type="text/javascript">
+          handler = Gmaps.build('Google');
+          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers(<%=raw @events_default.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+          });
+      </script>
+
+      <!-- product list-->
+      <% @events.each do |event| %>
+
+        <a href="#modalProduct">
+          <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+            <div class="col-md-2 col-sm-3 col-12 text-center">
+              <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
+            </div>
+            <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+              <%= link_to event do %>
+                <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
+              <% end %>
+              <p><%= event.description %></p>
+              <a href="#modalProduct">Ticket price</a>
+            </div>
+            <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+              <p class="text-wide text-truncate"><span class="glyphicon glyphicon-map-marker" aria-hidden="false"></span>
+                <%= event.location %></p>
+              <div class="float-right text-nowrap"><span class="text-primary"><i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i></span></div>
+            </div>
+          </div>
+          <br \>
+        </a>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>
