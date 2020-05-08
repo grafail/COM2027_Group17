@@ -6,23 +6,24 @@ ruby '~>2.5'
 gem 'activemerchant'
 
 gem 'bootstrap'
-gem "font-awesome-rails"
 gem 'client_side_validations'
+gem "font-awesome-rails"
 
-gem 'modernizr-rails'
-gem 'rails-controller-testing'
+gem 'bootstrap-slider-rails'
 gem 'devise'
 gem 'jquery-rails'
+gem 'jquery-slick-rails'
 gem 'jquery-ui-rails'
 gem 'magnific-popup-rails'
+gem 'material_icons'
+gem 'modernizr-rails'
 gem 'owlcarousel-rails', git: "https://github.com/acrogenesis/owlcarousel-rails.git"
 gem 'popper_js'
-gem 'jquery-slick-rails'
-gem 'bootstrap-slider-rails'
+gem 'rails-controller-testing'
 gem 'toastr-rails'
 
-gem 'gmaps4rails'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
@@ -64,8 +65,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
