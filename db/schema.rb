@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_132255) do
+ActiveRecord::Schema.define(version: 2020_05_12_174649) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 2020_04_20_132255) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.text "comments", default: ""
+    t.text "comments"
     t.float "PriceTotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "isComplete", default: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_132255) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "isBusiness"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
