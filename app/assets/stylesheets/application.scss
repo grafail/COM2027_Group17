@@ -12,14 +12,18 @@
  *
  */
 
+@import "style";
 @import "magnific-popup";
 @import "jquery-ui";
+@import "jquery-ui/slider.css";
 @import "owl.carousel";
 @import "owl.theme.default";
 @import 'slick';
 @import "bootstrap";
+@import "bootstrap-slider";
 @import "toastr";
 @import "font-awesome";
+@import "material_icons";
 
 @import "style";
 @import 'home';
@@ -30,6 +34,21 @@
 @import 'cart';
 @import 'checkout';
 @import 'modals';
+
+body {
+  font-family: "Muli", sans-serif;
+  font-size: medium;
+}
+
+a,
+a:visited {
+  color: #98B3F7;
+}
+
+a:hover {
+  color: #FFA4B6;
+  text-decoration: none;
+}
 
 ul.header {
   list-style-type: none;
@@ -62,7 +81,6 @@ div.footerView {
 li.footer {
   //float: left;
   color: #47525E;
-  font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10px;
   //font-weight: 400;
   line-height: 20px;
@@ -75,7 +93,6 @@ li.footer {
 li {
   float: left;
   color: #47525E;
-  font-family: verdana, arial, helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 59px;
@@ -161,6 +178,67 @@ div{
   width: 100%;
   height: auto;
 
+}
+
+.yellow {
+  background-color: #FFF6A4;
+  color: #666;
+}
+
+.button-color {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.button-color:hover {
+  background-color: white;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.btn-primary.button-color:active:hover,
+.btn-primary.button-color:active:focus,
+.btn-primary.button-color:active.focus,
+.btn-primary.button-color.active:hover,
+.btn-primary.button-color.active:focus,
+.btn-primary.button-color.active.focus,
+.open > .btn-primary.button-color.dropdown-toggle:hover,
+.open > .btn-primary.button-color.dropdown-toggle:focus,
+.open > .btn-primary.button-color.dropdown-toggle.focus {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  color: #98B3F7;
+}
+
+label {
+  font-weight: normal !important;
+}
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
 }
 
 .contact {

@@ -1,0 +1,5 @@
+main yellow: #FFF6A4
+darker yellow: #FFF066
+blue: #98B3F7
+coral: #FFA4B6
+grey border: #ddd
