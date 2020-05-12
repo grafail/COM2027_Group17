@@ -329,3 +329,9 @@ label {
 .strong{
   font-weight: bolder;
 }
+.bullet-point-list{
+  list-style-type: circle;
+  .unordered-list{
+    font-size: 18px;
+  }
+}
