@@ -291,3 +291,41 @@ label {
   background-color: #FFF6A4;
 }
 
+#Privacy\ heading{
+  text-align: center;
+  background-color:	#D3D3D3;
+  padding: 40px 0;
+  margin-bottom: 40px;
+}
+.page-container-container-sm{
+  color: black;
+
+}
+
+.l-mar-top-10 {
+  margin-top: 50px;
+}
+.g-grid, .overlay-dialog__frame {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+  letter-spacing: 0;
+}
+
+@media only screen and (max-width: 799px) and (min-width: 480px) {
+  .g-grid, .overlay-dialog__frame, .g-group--page-margin-reset {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+.section{
+  display: block;
+}
+.sidenav--article-bg{
+  background-color: #f3f3f3;
+}
+
+.strong{
+  font-weight: bolder;
+}
