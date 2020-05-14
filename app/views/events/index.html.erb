@@ -61,12 +61,9 @@
         <div class="col-md-12 col-6 mb-4">
           <div class="list-group small rounded-0">
             <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Event Type</div>
-            <div class="list-group-item list-group-item-action yellow" id="list1" data-toggle="list" href="#list1">Music <span class="badge badge-pill badge-dark float-right">12</span></div>
-            <div class="list-group-item list-group-item-action" id="list2" data-toggle="list" href="#list2">Sports <span class="badge badge-pill badge-light float-right">1</span></div>
-            <div class="list-group-item list-group-item-action" id="list3" data-toggle="list" href="#list3">Religious <span class="badge badge-pill badge-primary float-right">3</span></div>
-            <div class="list-group-item list-group-item-action" id="list4" data-toggle="list" href="#list4">Charitable <span class="badge badge-pill badge-light float-right">18</span></div>
-            <div class="list-group-item list-group-item-action" id="list5" data-toggle="list" href="#list5">Hobby <span class="badge badge-pill badge-light float-right">18</span></div>
-            <div class="list-group-item list-group-item-action" id="list6" data-toggle="list" href="#list6">Misc. <span class="badge badge-pill badge-light float-right">18</span></div>
+            <%Event::eventTypes.each do |type| %>
+              <div class="list-group-item list-group-item-action" id=<%=type[0]%> data-toggle="list" href="#list1"><%=type[0]%> <span class="badge badge-pill badge-light float-right"><%= @events.where(eventType: type[1]).count %></span></div>
+            <% end %>
           </div>
         </div>
 
@@ -79,11 +76,11 @@
             </div>
             <div class="list-group-item" style="align-content: center">
                 <label for="min">Min: </label>
-                <input type="text" id="min" readonly style="border:0; font-weight: bold;">
+                <input type="text" id="min" style="border:0; font-weight: bold;">
 
               <div style="align-content: end;">
                 <label for="max">Max: </label>
-                <input type="text" id="max" readonly style="border:0; font-weight: bold;">
+                <input type="text" id="max" style="border:0; font-weight: bold;">
               </div>
             </div>
           </div>
@@ -182,6 +179,7 @@
             <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
               <p class="text-wide text-truncate"><i class="material-icons small">location_on</i>
                 <%= event.location %></p>
+              <p><%= event.eventType %></p>
             </div>
           </div>
           <br \>
