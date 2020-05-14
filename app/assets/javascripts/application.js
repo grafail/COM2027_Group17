@@ -28,10 +28,6 @@
 //= require toastr
 //= require rails.validations
 
-document.addEventListener('DOMContentLoaded', function() {
-    AOS.init();
-});
-
 $('.input-daterange').datepicker({
     clearBtn: true,
     autoclose: true,
