@@ -2,8 +2,9 @@ User.create!([
   {email: "test@example.org", password: "123456", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil}
 ])
 Event.create!([
-  {user_id: 1, name: "Test Event 1", description: "This is a description.", location: "Guildford", latitude: 51.2356068, longitude: -0.5732063},
-  {user_id: 1, name: "Test Event 2", description: "This is a description.", location: "New York", latitude: 40.7127281, longitude: -74.0060152}
+  {user_id: 1, name: "Test Event 1", description: "This is a description.", location: "Guildford", latitude: 51.2356068, longitude: -0.5732063, eventType: 1},
+  {user_id: 1, name: "Test Event 2", description: "This is a description.", location: "New York", latitude: 40.7127281, longitude: -74.0060152, eventType: 1},
+  {user_id: 1, name: "Test Event 3", description: "This is a description.", location: "New York", latitude: 40.7127281, longitude: -74.0060152, eventType: 0}
 ])
 Ticket.create!([
   {event_id: 1, price: 1.0, name: "Ticket 1", description: "Test description"},
