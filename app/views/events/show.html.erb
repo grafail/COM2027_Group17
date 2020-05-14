@@ -28,37 +28,12 @@
 -->
 
 <div class="container py-3" style="padding-top: 20px;">
-  <header style="font-size: xx-large;"><%= @event.name %></header>
+  <header style="font-size: xx-large;">Events</header>
 
-  <div class="row mt-2" style="padding-top: 20px">
-    <div class="col-md-3 pb-4">
-      <!-- product sidebar filters -->
-    </div>
+  <div class="row mt-2" style="padding-top: 20px; text-align: center;">
 
     <!-- site section -->
     <div class="col-md-9">
-
-      <!-- filter drop down -->
-      <div class="row align">
-        <div class="col-md-12 mb-5" style="padding-bottom: 10px; text-align: right;">
-          <div class="d-flex align-items-end flex-column" style="align-content: end;">
-
-            <div class="p-2 dropdown">
-              <button class="btn btn-primary dropdown-toggle button-color" id="menu1" type="button" data-toggle="dropdown">Sort by:
-                <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (descending)</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (descending)</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Distance</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- map with markers -->
 
@@ -76,31 +51,24 @@
       </script>
 
       <!-- product list-->
-      <% @events.each do |event| %>
-
-        <a href="#modalProduct">
-          <div class="event-box yellow row mb-5" style="padding-top: 20px;">
-            <div class="col-md-2 col-sm-3 col-12 text-center">
-              <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
-            </div>
-            <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
-              <%= link_to event do %>
-                <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
-              <% end %>
-              <p><%= event.description %></p>
-              <a href="#modalProduct">Ticket price</a>
-            </div>
-            <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
-              <p class="text-wide text-truncate"><span class="glyphicon glyphicon-map-marker" aria-hidden="false"></span>
-                <%= event.location %></p>
-              <div class="float-right text-nowrap"><span class="text-primary"><i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i> <i class="ion-ios-star fa fa-star"></i></span></div>
-            </div>
+      <a href="#modalProduct">
+        <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+          <div class="col-md-2 col-sm-3 col-12 text-center">
+            <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
           </div>
-          <br \>
-        </a>
-      <% end %>
+          <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+            <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= @event.name %></h5>
+            <p><%= @event.description %></p>
+            <a href="#modalProduct">Ticket price</a>
+          </div>
+          <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+            <p class="text-wide text-truncate"><i class="material-icons small">location_on</i>
+              <%= @event.location %></p>
+          </div>
+        </div>
+        <br \>
+      </a>
     </div>
   </div>
-
 
 </div>
