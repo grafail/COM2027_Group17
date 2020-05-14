@@ -96,8 +96,10 @@ li {
   font-size: 18px;
   font-weight: 400;
   line-height: 59px;
-  width: 100px;
   text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+
 }
 
 li a {
@@ -291,3 +293,44 @@ label {
   background-color: #FFF6A4;
 }
 
+.form-group{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-control:focus {
+  border-color: #fff6a4;
+  border-width: 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+label {
+  font-weight: bold;
+}
+
+.eventNumBox{
+
+  //up right down left
+  margin: 0px 10px 20px 50px;
+  border: 9px solid #fff6a4;
+  width: 75px;
+  height: 75px;
+  border-radius: 25%;
+
+  text-align: center;
+  vertical-align: middle;
+  line-height: 56px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.numBoxText{
+  text-align: center;
+  vertical-align: middle;
+  line-height: 56px;
+}
+
+.numField{
+  width:100px;
+}

@@ -1,15 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  def self.load_events
-    return Gmaps4rails.build_markers(Event.all) do |venue, marker|
-      marker.lat venue.latitude
-      marker.lng venue.longitude
 
-      marker.infowindow venue.name
-    end
-  end
-  helper_method :load_events
 
   # GET /events
   # GET /events.json
@@ -36,15 +28,17 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    if user_signed_in?
+      @event = Event.new(event_params)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to new_ticket_path(event_id: @event), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,6 +67,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def myEvents
+    #redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+    @myEvents = Event.where(user:current_user.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -81,6 +80,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:user_id, :name, :description, :location)
+      params.require(:event).permit(:user_id, :name, :description, :type, :location, :eventDate)
     end
 end
