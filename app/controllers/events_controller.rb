@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def self.load_events(events)
-    return Gmaps4rails.build_markers(events) do |venue, marker|
+    Gmaps4rails.build_markers(events) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
 
@@ -11,82 +11,67 @@ class EventsController < ApplicationController
   end
 
   def cheapestTicket(id)
-    Ticket.where(event:id).minimum(:price)
+    Ticket.where(event: id).minimum(:price)
   end
   helper_method :cheapestTicket
 
-  def betweenPrice(events, minPrice,maxPrice)
+  def betweenPrice(events, minPrice, maxPrice)
     results = []
-    if minPrice.present?
-      minPrice = minPrice.to_i
-    end
+    minPrice = minPrice.to_i if minPrice.present?
 
-    if maxPrice.present?
-      maxPrice = maxPrice.to_i
-    end
+    maxPrice = maxPrice.to_i if maxPrice.present?
     events.each do |eventItem|
-      if(Ticket.where(event:eventItem.id).length==0)
-        next
-      end
+      next if Ticket.where(event: eventItem.id).empty?
+
       minTicket = cheapestTicket(eventItem.id)
-        if minPrice.present? and maxPrice.present?
-          if(minTicket >= minPrice and minTicket <= maxPrice)
-            results<<eventItem
-          end
-        elsif minPrice.present?
-          if(minTicket >= minPrice)
-            results<<eventItem
-          end
-        elsif maxPrice.present?
-          if(minTicket <= maxPrice)
-            results<<eventItem
-          end
-        else
-          results<<eventItem
-        end
+      if minPrice.present? && maxPrice.present?
+        results << eventItem if (minTicket >= minPrice) && (minTicket <= maxPrice)
+      elsif minPrice.present?
+        results << eventItem if minTicket >= minPrice
+      elsif maxPrice.present?
+        results << eventItem if minTicket <= maxPrice
+      else
+        results << eventItem
+      end
     end
 
-    return Event.where(id: results.map(&:id))
-
+    Event.where(id: results.map(&:id))
   end
 
-  def distanceCheck(events,distance)
-    if(distance.present? and distance.to_i!=0)
+  def distanceCheck(events, distance)
+    if distance.present? && (distance.to_i != 0)
       events.each do |event|
-
       end
     else
-      return events
+      events
     end
   end
 
   # GET /events
   # GET /events.json
   def index
-
-    @eventsNoCategory = betweenPrice(Events.all,params[:priceMin],params[:priceMax])
+    @eventsNoCategory = betweenPrice(Events.all, params[:priceMin], params[:priceMax])
     @events = @eventsNoCategory.in_category(params[:category])
-    @events_default=EventsController.load_events(@events)
-    setFilterValues()
-
+    @events_default = EventsController.load_events(@events)
+    setFilterValues
   end
 
-  #Sets the values the filters will have
+  # Sets the values the filters will have
   def setFilterValues
-    if params[:priceMin].present?
-      @minPrice = params[:priceMin]
-    else
-      @minPrice = 0
-    end
+    @minPrice = if params[:priceMin].present?
+                  params[:priceMin]
+                else
+                  0
+                end
 
-    if params[:priceMax].present?
-      @maxPrice = params[:priceMax]
-    else
-      @maxPrice = maximumGlobalPrice()
-    end
+    @maxPrice = if params[:priceMax].present?
+                  params[:priceMax]
+                else
+                  maximumGlobalPrice
+                end
   end
 
-  #Maximum price across all tickets
+  # Maximum price across all tickets
   def maximumGlobalPrice
     Ticket.all.maximum(:price)
   end
@@ -103,8 +88,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
@@ -147,14 +131,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:user_id, :name, :description, :location, :eventType)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:user_id, :name, :description, :location, :eventType)
+  end
 end

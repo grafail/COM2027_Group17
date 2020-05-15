@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :order, dependent: :destroy
   has_many :event, dependent: :destroy
-  
-  validates_confirmation_of :password
 
+  validates_confirmation_of :password
 end
