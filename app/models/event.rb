@@ -6,4 +6,13 @@ class Event < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
+
+  def self.in_category(category)
+    if category.present?
+      where('eventType = ?', category)
+    else
+      all
+    end
+  end
+
 end
