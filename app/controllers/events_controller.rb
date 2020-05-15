@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @events = Event.all
   end
 
   # GET /events/new

@@ -23,6 +23,7 @@
 //= require turbolinks
 //= require_tree .
 //= require main
+//= require events
 //= require bootstrap-sprockets
 //= require bootstrap-slider
 //= require toastr
