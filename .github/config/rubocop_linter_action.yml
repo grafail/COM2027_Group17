@@ -1,3 +1,1 @@
-rubocop_excluded_cops:
-  - 'Style/FrozenStringLiteralComment'
-  - 'Layout/LineLength'
+rubocop_config_path: '.rubocop.yml'

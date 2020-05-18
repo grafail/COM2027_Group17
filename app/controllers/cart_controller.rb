@@ -1,21 +1,15 @@
 class CartController < ApplicationController
-
-
   def cart
     @cartItems = CartController.all_cart_items(session)
     @total = CartController.total_price_cart(session)
   end
 
   def check_cart
-    if !session[:cart]
-      session[:cart] = {}
-    end
+    session[:cart] = {} unless session[:cart]
   end
 
   def self.check_cart(session)
-    if !session[:cart]
-      session[:cart] = {}
-    end
+    session[:cart] = {} unless session[:cart]
   end
   helper_method :check_cart
 
@@ -44,9 +38,7 @@ class CartController < ApplicationController
   def remove
     check_cart
     id = params[:id]
-    if (session[:cart][id])
-      session[:cart].delete(id)
-    end
+    session[:cart].delete(id) if session[:cart][id]
     respond_to do |format|
       format.html { redirect_to '/cart', notice: 'Ticket was removed!' }
     end
@@ -77,28 +69,27 @@ class CartController < ApplicationController
 
   def self.all_cart_items(session)
     check_cart(session)
-    return session[:cart]
+    session[:cart]
   end
   helper_method :all_cart_items
 
   def self.length_of_cart(session)
     check_cart(session)
-    return session[:cart].length
+    session[:cart].length
   end
   helper_method :length_of_cart
 
   def self.total_price_cart(session)
-    if !session[:cart]
-      return 0
-    end
+    return 0 unless session[:cart]
+
     total = 0
     session[:cart].each do |item|
       id = item[0]
       qty = item[1].to_i
-      ticket = Ticket.find_by(:id => id)
-      total += ticket.price*qty
+      ticket = Ticket.find_by(id: id)
+      total += ticket.price * qty
     end
-    return total
+    total
   end
   helper_method :total_price_cart
 end
