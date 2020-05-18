@@ -110,10 +110,10 @@ class EventsController < ApplicationController
   end
 
   def myEvents
-    if user_signed_in? && User.find_by(id:current_user.id).isBusiness
+    if user_signed_in? && User.find_by(id:current_user.id).isBusiness?
       @myEvents = Event.where(user:current_user.id)
     else
-      redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+      redirect_to root_path, notice: 'Please login into a business account'
     end
   end
 
