@@ -1,5 +1,5 @@
 class AddIsBusinessToUser < ActiveRecord::Migration[5.2]
   def change
-    add_column :users, :isBusiness, :boolean
+    add_column :users, :isBusiness, :boolean, null: false
   end
 end

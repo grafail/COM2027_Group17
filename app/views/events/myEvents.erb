@@ -1,6 +1,6 @@
-<h1>Hi</h1>
+<h1>Your Event Listings</h1>
 
-<table>
+<table id="myEventTable">
   <thead>
   <tr>
     <th></th>
@@ -16,29 +16,29 @@
 
   <tbody>
   <% @myEvents.each do |event| %>
-  <%@ticket = Ticket.find_by(event:event.id) %>
     <tr>
-      <td>
+      <td class = "tableBorder">
         <table>
           <tr>
             <td>
-              <%= link_to 'Edit', edit_event_path(event) %>
+              <div class = "linkButton"><%= link_to 'Edit', edit_event_path(event) %></div>
             </td>
           </tr>
           <tr>
             <td>
-              <%= link_to 'New Ticket', new_ticket_path(event_id: @event) %>
+              <div class = "linkButton"><%= link_to 'New Ticket', new_ticket_path(event_id: event) %></div>
             </td>
           </tr>
         </table>
       </td>
-      <td>
-        <%= event.name %></td>
-      <td>
+      <td class = "tableBorder">
+        <%= link_to event.name , event %>
+      </td>
+      <td class = "tableBorder">
         <table>
           <tr>
-            <td>
-              <%="Date & Time: #{event.eventDate}" %>
+            <td >
+              <%="Date & Time: #{event.eventDate.try(:strftime, ("%-d/%-m/%y: %H:%M"))}" %>
             </td>
           </tr>
           <tr>
@@ -47,23 +47,56 @@
             </td>
           </tr>
           <tr>
-            <td>
-              <%="Event Type: #{event.type}" %>
+            <td >
+              <%="Event Type: #{event.eventType}" %>
             </td>
           </tr>
           <tr>
-            <td>
+            <td >
               <%="Description: #{event.description}" %>
             </td>
           </tr>
         </table>
       </td>
 
-      <td><!--Tickets--></td>
-
-      <td><%=@ticket.name %></td>
-      <td><%="£#{@ticket.price}"%></td>
-      <td><%=@ticket.quantity %></td>
+      <td class = "tableBorder"><!--Tickets--></td>
+      <%@tickets = Ticket.where(event:event.id) %>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <table>
+          <% @tickets.each do |eventTicket| %>
+            <tr>
+              <td>
+                <%= link_to eventTicket.name , eventTicket %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <!-- Doing each row for ticket price of an event-->
+      <td class = "tableBorder">
+        <table>
+          <% @tickets.each do |eventTicket| %>
+            <tr>
+              <td>
+                <%=eventTicket.price%>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <table>
+          <% @tickets.each do |eventTicket| %>
+            <tr>
+              <td>
+                <%=eventTicket.quantity%>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
     </tr>
   <% end %>
   </tbody>

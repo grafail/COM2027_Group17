@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events_default=EventsController.load_events
+    # @events_default=EventsController.load_events
     @events = Event.all
   end
 
@@ -18,7 +18,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    if user_signed_in? && User.find_by(id:current_user.id).isBusiness == true
+      @event = Event.new
+    else
+      redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+    end
   end
 
   # GET /events/1/edit
@@ -68,8 +72,11 @@ class EventsController < ApplicationController
   end
 
   def myEvents
-    #redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
-    @myEvents = Event.where(user:current_user.id)
+    if user_signed_in? && User.find_by(id:current_user.id).isBusiness
+      @myEvents = Event.where(user:current_user.id)
+    else
+      redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+    end
   end
 
   private
@@ -80,6 +87,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:user_id, :name, :description, :type, :location, :eventDate)
+      params.require(:event).permit(:user_id, :name, :description, :eventType, :location, :eventDate)
     end
 end

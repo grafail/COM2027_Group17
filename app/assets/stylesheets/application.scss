@@ -333,3 +333,49 @@ label {
 .numField{
   width:100px;
 }
+
+/**table, th, td {
+  border: 1px solid black;
+}
+*/
+
+.linkButton{
+  border-radius: 50%;
+  border: 2px solid grey;
+  width:68px;
+  height:65px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 63px;
+  background-color: white;
+}
+
+#myEventTable{
+  border: 3px solid grey;
+  margin: 60px auto 30px auto;
+  background-color: #fff6a4;
+}
+
+table{
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+th{
+  border: 2px solid grey;
+  background-color: white;
+  padding: 9px;
+  font-weight: bold;
+  text-align:center;
+}
+
+td{
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+.tableBorder{
+  border: 2px solid grey;
+}

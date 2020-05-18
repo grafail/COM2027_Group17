@@ -18,7 +18,8 @@
       <%if ticket.event_id.nil? == false%>
         <%@availableEvents = Event.find_by("id"=>@ticket.event_id)%>
         <%= form.text_field :event_id, value: @availableEvents.name, class: "form-control", readonly: true %>
-      <%else%>
+        <%= form.hidden_field :event_id, value: @availableEvents.id %>
+    <%else%>
         <%@availableEvents = Event.all%>
         <%=form.collection_select :event_id, @availableEvents, :id, :name, {:include_blank => false}, class: "form-control custom-select"%>
       <%end%>

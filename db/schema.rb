@@ -16,24 +16,22 @@ ActiveRecord::Schema.define(version: 2020_05_12_181639) do
     t.integer "user_id", null: false
     t.string "name", null: false
     t.text "description"
-    t.integer "type"
+    t.integer "eventType"
     t.text "location", null: false
     t.datetime "eventDate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.integer "eventType"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.text "comments"
+    t.text "comments", default: ""
     t.float "PriceTotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "isComplete", default: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
