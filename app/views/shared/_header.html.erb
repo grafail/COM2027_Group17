@@ -1,4 +1,5 @@
-<ul class='header'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<ul class="header">
 
   <%= image_tag("eventus.png", :align => "left", :size => "60x60") %>
 
@@ -6,7 +7,7 @@
   <li> <%= link_to "Events", '/events' %> </li>
   <li> <%= link_to "About", '/about' %> </li>
   <% if user_signed_in? %>
-  <li> <%= link_to "My Tickets", '/tickets' %> </li>
+    <li> <%= link_to "My Tickets", '/tickets' %> </li>
   <%end %>
 
   <div id="corner" >
@@ -19,9 +20,21 @@
       <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
     <% end %>
     <% if user_signed_in? %>
-      <li><%= link_to "My Profile", '/users/edit' %></li>
-      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-      </div>
+
+
+      <li>
+        <div class="dropdown" style=" font-size:18px;font-weight: 400; font-family: verdana, arial, helvetica, sans-serif;">
+          <%= link_to '/users/edit', :class => "dropbtn", :method => "get" do %> <i class="fa fa-user-circle"></i> Profile<% end %>
+          <div class="dropdown-content" style="font-size: 12px; font-family: verdana, arial, helvetica, sans-serif;">
+            <%= link_to '/users/edit' do %><i class= "fa fa-user-circle"></i> Profile<% end %>
+            <%= link_to '/tickets' do %><i class= "fa fa-ticket"></i> My Tickets<% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+
+          </div>
+        </div>
+      </li>
+
     <% else %>
       <li>  <%= link_to "Sign In", "", data: {toggle: "modal", target: ".modalLogin"} %> </li>
 
@@ -29,17 +42,11 @@
       <%= render 'shared/login_form' %>
       <%= render 'shared/signupForm' %>
     <% end %>
-    </div>
+  </div>
 
-    <!--
-
-      <li><a href="/tickets">Tickets</a></li>
-      <li><a href="/purchases">Purchases</a></li> -->
-
-
-    </ul>
+  <!--
+    <li><a href="/tickets">Tickets</a></li>
+    <li><a href="/purchases">Purchases</a></li> -->
 
 
-
-
-
+</ul>
