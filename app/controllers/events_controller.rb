@@ -102,10 +102,10 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    if user_signed_in? && User.find_by(id:current_user.id).isBusiness == true
+    if user_signed_in? && User.find_by(id:current_user.id).isBusiness? == true
       @event = Event.new
     else
-      redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+      redirect_to root_path, notice: 'Please login into a business account'
     end
   end
 
