@@ -38,22 +38,40 @@ class EventsController < ApplicationController
     Event.where(id: results.map(&:id))
   end
 
-  def distanceCheck(events, distance)
-    if distance.present? && (distance.to_i != 0)
+  def distanceCheck(events, distance, location)
+    results=[]
+    distance = distance.to_i
+    if distance.present? && location.present? && (distance != 0)
+      coords = Geocoder.coordinates(location)
       events.each do |event|
+        if(Geocoder::Calculations.distance_between([event.latitude,event.longitude],coords))<=distance
+          results<<event
+        end
       end
+      Event.where(id: results.map(&:id))
     else
       events
     end
+
   end
 
   # GET /events
   # GET /events.json
   def index
-    @eventsNoCategory = betweenPrice(Events.all, params[:priceMin], params[:priceMax])
+    if not validateParameters
+
+      redirect_to events_path, notice: 'Invalid values supplied!'
+
+    end
+    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate],params[:endDate]), params[:priceMin], params[:priceMax]),params[:distance],params[:location])
     @events = @eventsNoCategory.in_category(params[:category])
     @events_default = EventsController.load_events(@events)
     setFilterValues
+  end
+
+  def validateParameters
+    #TODO: Add validation for parameters
+    true
   end
 
   # Sets the values the filters will have

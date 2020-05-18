@@ -7,8 +7,11 @@ Event.create!([
                 { user_id: 1, name: "Test Event 3", description: "This is a description.", location: "New York", latitude: 40.7127281, longitude: -74.0060152, eventType: 0 }
               ])
 Ticket.create!([
-                 { event_id: 1, price: 1.0, name: "Ticket 1", description: "Test description" },
-                 { event_id: 1, price: 123.0, name: "Ticket 2", description: "Test description" }
+                 { event_id: 1, price: 50.0, name: "Ticket 1", description: "Test description" },
+                 { event_id: 1, price: 150.0, name: "Ticket 2", description: "Test description" },
+                 { event_id: 2, price: 20.0, name: "Ticket 3", description: "Test description" },
+                 { event_id: 2, price: 80.0, name: "Ticket 4", description: "Test description" },
+                 { event_id: 3, price: 1000.0, name: "Ticket 5", description: "Test description" }
                ])
 Order.create!([
                 { user_id: 1, comments: "", PriceTotal: 10.0 },
