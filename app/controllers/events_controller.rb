@@ -74,6 +74,8 @@ class EventsController < ApplicationController
   def sort_events(events,sort)
     if not sort.present?
       sort = 1
+    elsif sort.to_i>=1 and sort.to_i<=6
+      @sortNum = sort
     end
       case sort.to_i
       when 1
@@ -107,6 +109,7 @@ class EventsController < ApplicationController
 
   # Sets the values the filters will have
   def setFilterValues
+    @maxPriceGlobal = maximumGlobalPrice
     @minPrice = if params[:priceMin].present?
                   params[:priceMin]
                 else
@@ -116,7 +119,7 @@ class EventsController < ApplicationController
     @maxPrice = if params[:priceMax].present?
                   params[:priceMax]
                 else
-                  maximumGlobalPrice
+                  @maxPriceGlobal
                 end
   end
 

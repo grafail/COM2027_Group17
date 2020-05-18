@@ -3,9 +3,9 @@
     $(function(){
         $('.slider-range').slider({
             range: true,
-            values: [ 0, <%= @maxPrice %>],
+            values: [ <%= @minPrice %>, <%= @maxPrice %>],
             min: 0,
-            max: <%= @maxPrice %>,
+            max: <%= @maxPriceGlobal %>,
             step: 5,
             slide: function( event, ui ) {
                 $("#max").val("£" + ui.values[1]);
@@ -30,7 +30,8 @@
         data["location"] = document.getElementById('location').value;
         if(sort!=undefined)
             data["sort"]=sort;
-        console.log(data);
+        else
+            data["sort"]=<%=@sortNum || 1;%>;
         let link = "";
         for (let key in data) {
             if (data[key] === undefined || data[key] === "" || data[key].length === 0)
