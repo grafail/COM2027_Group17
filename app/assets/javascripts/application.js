@@ -24,15 +24,8 @@
 //= require_tree .
 //= require main
 //= require bootstrap-sprockets
-//= require bootstrap-slider
 //= require toastr
 //= require rails.validations
-
-$('.input-daterange').datepicker({
-    clearBtn: true,
-    autoclose: true,
-    todayHighlight: true
-});
 
 $(document).on('shown.bs.modal', '.modal', function() {
     $('form[data-client-side-validations]').enableClientSideValidations();

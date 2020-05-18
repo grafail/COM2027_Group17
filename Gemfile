@@ -9,7 +9,6 @@ gem 'bootstrap'
 gem 'client_side_validations'
 gem "font-awesome-rails"
 
-gem 'bootstrap-slider-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'jquery-slick-rails'
