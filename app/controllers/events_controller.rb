@@ -66,7 +66,38 @@ class EventsController < ApplicationController
     @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate],params[:endDate]), params[:priceMin], params[:priceMax]),params[:distance],params[:location])
     @events = @eventsNoCategory.in_category(params[:category])
     @events_default = EventsController.load_events(@events)
+    @events = sort_events(@events,params[:sort])
+
     setFilterValues
+  end
+
+  def sort_events(events,sort)
+    if not sort.present?
+      sort = 1
+    end
+      case sort.to_i
+      when 1
+        @sort = 'Name (ascending)'
+        events.sort { |a, b|  a.name <=> b.name }
+      when 2
+        @sort = 'Name (descending)'
+        events.sort { |a, b|  b.name <=> a.name }
+      when 3
+        @sort = 'Price (ascending)'
+        events.sort { |a, b|  cheapestTicket(a.id) <=> cheapestTicket(b.id) }
+      when 4
+        @sort = 'Price (descending)'
+        events.sort { |a, b|  cheapestTicket(b.id) <=> cheapestTicket(a.id) }
+      when 5
+        @sort = 'Date (ascending)'
+        events.sort { |a, b|  a.eventDate <=> b.eventDate }
+      when 6
+        @sort = 'Date (descending)'
+        events.sort { |a, b|  b.eventDate <=> a.eventDate }
+      else
+        @sort = ''
+        events
+      end
   end
 
   def validateParameters
