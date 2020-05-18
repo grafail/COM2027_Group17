@@ -5,9 +5,18 @@ one:
   name: MyString
   description: MyString
   location: MyString
+  eventType: 1
 
 two:
   user: two
   name: MyString
   description: MyString
   location: MyString
+  eventType: 0
+
+three:
+  user: three
+  name: MyString
+  description: MyString
+  location: MyString
+  eventType: 0
