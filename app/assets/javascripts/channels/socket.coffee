@@ -11,7 +11,6 @@ $(document).on "turbolinks:load", ->
     this.viewed()
   disconnected: ->
     # Called when the subscription has been terminated by the server
-    this.viewed()
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
