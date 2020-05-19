@@ -136,7 +136,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    if user_signed_in? && User.find_by(id:current_user.id).isBusiness? == true
+    if user_signed_in? && current_user.isBusiness? == true
       @event = Event.new
     else
       redirect_to root_path, notice: 'Please login into a business account'
@@ -144,7 +144,7 @@ class EventsController < ApplicationController
   end
 
   def myEvents
-    if user_signed_in? && User.find_by(id:current_user.id).isBusiness?
+    if user_signed_in? && current_user.isBusiness?
       @myEvents = Event.where(user:current_user.id)
     else
       redirect_to root_path, notice: 'Please login into a business account'
