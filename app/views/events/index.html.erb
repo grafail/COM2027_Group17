@@ -1,11 +1,12 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
 <script>
 
     $(function(){
         $('.slider-range').slider({
             range: true,
-            values: [ 0, <%= @maxPrice %>],
+            values: [ <%= @minPrice %>, <%= @maxPrice %>],
             min: 0,
-            max: <%= @maxPrice %>,
+            max: <%= @maxPriceGlobal %>,
             step: 5,
             slide: function( event, ui ) {
                 $("#max").val("£" + ui.values[1]);
@@ -16,7 +17,7 @@
         $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
     });
 
-    function applyFilters() {
+    function applyFilters(sort) {
 
         let data = {};
         data["priceMin"] = document.getElementById('min').value.substring(1);
@@ -28,7 +29,10 @@
         data["beginDate"] = document.getElementById('beginDate').value;
         data["endDate"] = document.getElementById('endDate').value;
         data["location"] = document.getElementById('location').value;
-        console.log(data);
+        if(sort!=undefined)
+            data["sort"]=sort;
+        else
+            data["sort"]=<%=@sortNum || 1;%>;
         let link = "";
         for (let key in data) {
             if (data[key] === undefined || data[key] === "" || data[key].length === 0)
@@ -126,21 +130,22 @@
 
       <!-- filter drop down -->
       <div class="row align">
-        <div class="col-md-12 mb-1" style="text-align: right;">
+        <div class="col-sm-10 mb-1" style="text-align: right;">
           <div class="d-flex align-items-end flex-column" style="align-content: end;">
 
             <div class="p-2 dropdown">
               <button class="btn btn-primary dropdown-toggle button-color" id="menu1" type="button" data-toggle="dropdown">Sort
-                by:
+                by: <%= @sort %>
                 <span class="caret"></span></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Name (descending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('1')" tabindex="-1" href="#">Name (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('2')" tabindex="-1" href="#">Name (descending)</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price (descending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('3')" tabindex="-1" href="#">Price (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('4')" tabindex="-1" href="#">Price (descending)</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Distance</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('5')" tabindex="-1" href="#">Date (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters('6')" tabindex="-1" href="#">Date (descending)</a></li>
               </ul>
             </div>
           </div>

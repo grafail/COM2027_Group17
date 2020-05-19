@@ -16,12 +16,13 @@ ActiveRecord::Schema.define(version: 2020_05_14_105052) do
     t.integer "user_id", null: false
     t.string "name", null: false
     t.text "description"
+    t.integer "eventType"
     t.text "location", null: false
+    t.datetime "eventDate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.integer "eventType"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_105052) do
     t.float "price", null: false
     t.string "name", null: false
     t.text "description"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_tickets_on_event_id"
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_105052) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "isBusiness"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

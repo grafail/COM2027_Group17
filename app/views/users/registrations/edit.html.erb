@@ -2,12 +2,6 @@
   <title>Account page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <br>
@@ -46,20 +40,6 @@
             <div class="col-md-12">
               <form>
                 <div class="form-group row">
-                  <label for="name" class="col-4 col-form-label">Prefix</label>
-                  <div class="col-8">
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option value="1">Dr.</option>
-                      <option value="2">Prof.</option>
-                      <option value="3">Mr.</option>
-                      <option value="1">Mrs.</option>
-                      <option value="2">Miss.</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group row">
                   <label for="name" class="col-4 col-form-label">First Name</label>
                   <div class="col-8">
                     <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
@@ -74,9 +54,10 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="Phone Number" class="col-4 col-form-label">Phone Number</label>
+                  <label for="twitter" class="col-4 col-form-label">Twitter Account</label>
                   <div class="col-8">
-                    <input id="phone number" name="phone number" placeholder="Phone Number" class="form-control here" type="text">
+                    <!-- TODO: Link this with twitter API -->
+                    <input id="twitter" name="twitter" readonly placeholder="No account linked" class="form-control here" type="text">
                   </div>
                 </div>
 
