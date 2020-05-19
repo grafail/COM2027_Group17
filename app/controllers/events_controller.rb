@@ -1,37 +1,175 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
-  def self.load_events
-    return Gmaps4rails.build_markers(Event.all) do |venue, marker|
+  def self.load_events(events)
+    Gmaps4rails.build_markers(events) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
 
       marker.infowindow venue.name
     end
   end
-  helper_method :load_events
+
+  def cheapestTicket(id)
+    Ticket.where(event: id).minimum(:price)
+  end
+  helper_method :cheapestTicket
+
+  def betweenPrice(events, minPrice, maxPrice)
+    results = []
+    minPrice = minPrice.to_i if minPrice.present?
+
+    maxPrice = maxPrice.to_i if maxPrice.present?
+    events.each do |eventItem|
+      next if Ticket.where(event: eventItem.id).empty?
+
+      minTicket = cheapestTicket(eventItem.id)
+      if minPrice.present? && maxPrice.present?
+        results << eventItem if (minTicket >= minPrice) && (minTicket <= maxPrice)
+      elsif minPrice.present?
+        results << eventItem if minTicket >= minPrice
+      elsif maxPrice.present?
+        results << eventItem if minTicket <= maxPrice
+      else
+        results << eventItem
+      end
+    end
+
+    Event.where(id: results.map(&:id))
+  end
+
+  def distanceCheck(events, distance, location)
+    results=[]
+    distance = distance.to_i
+    if distance.present? && location.present? && (distance != 0)
+      coords = Geocoder.coordinates(location)
+      events.each do |event|
+        if(Geocoder::Calculations.distance_between([event.latitude,event.longitude],coords))<=distance
+          results<<event
+        end
+      end
+      Event.where(id: results.map(&:id))
+    else
+      events
+    end
+
+  end
+
+  def nearby_events(currentEvent)
+    results=[]
+    distance = 10
+    if currentEvent.location.present? && (distance != 0)
+      coords = Geocoder.coordinates(location)
+      Event.all.each do |event|
+        if currentEvent.id!=event.id and (Geocoder::Calculations.distance_between([event.latitude,event.longitude],[currentEvent.latitude,currentEvent.longitude]))<=distance
+          results<<event
+        end
+      end
+      Event.where(id: results.map(&:id))
+    else
+      Event.all
+    end
+  end
 
   # GET /events
   # GET /events.json
   def index
-    @events_default=EventsController.load_events
-    @events = Event.all
+    if not validateParameters
+
+      redirect_to events_path, notice: 'Invalid values supplied!'
+
+    end
+    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate],params[:endDate]), params[:priceMin], params[:priceMax]),params[:distance],params[:location])
+    @events = @eventsNoCategory.in_category(params[:category])
+    @events_default = EventsController.load_events(@events)
+    @events = sort_events(@events,params[:sort])
+
+    setFilterValues
+  end
+
+  def sort_events(events,sort)
+    if not sort.present?
+      sort = 1
+    elsif sort.to_i>=1 and sort.to_i<=6
+      @sortNum = sort
+    end
+      case sort.to_i
+      when 1
+        @sort = 'Name (ascending)'
+        events.sort { |a, b|  a.name <=> b.name }
+      when 2
+        @sort = 'Name (descending)'
+        events.sort { |a, b|  b.name <=> a.name }
+      when 3
+        @sort = 'Price (ascending)'
+        events.sort { |a, b|  cheapestTicket(a.id) <=> cheapestTicket(b.id) }
+      when 4
+        @sort = 'Price (descending)'
+        events.sort { |a, b|  cheapestTicket(b.id) <=> cheapestTicket(a.id) }
+      when 5
+        @sort = 'Date (ascending)'
+        events.sort { |a, b|  a.eventDate <=> b.eventDate }
+      when 6
+        @sort = 'Date (descending)'
+        events.sort { |a, b|  b.eventDate <=> a.eventDate }
+      else
+        @sort = ''
+        events
+      end
+  end
+
+  def validateParameters
+    #TODO: Add validation for parameters
+    true
+  end
+
+  # Sets the values the filters will have
+  def setFilterValues
+    @maxPriceGlobal = maximumGlobalPrice
+    @minPrice = if params[:priceMin].present?
+                  params[:priceMin]
+                else
+                  0
+                end
+
+    @maxPrice = if params[:priceMax].present?
+                  params[:priceMax]
+                else
+                  @maxPriceGlobal
+                end
+  end
+
+  # Maximum price across all tickets
+  def maximumGlobalPrice
+    Ticket.all.maximum(:price)
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @eventsNearby = nearby_events(@event)
   end
 
   # GET /events/new
   def new
-    @event = Event.new
+    if user_signed_in? && current_user.isBusiness? == true
+      @event = Event.new
+    else
+      redirect_to root_path, notice: 'Please login into a business account'
+    end
+  end
+
+  def myEvents
+    if user_signed_in? && current_user.isBusiness?
+      @myEvents = Event.where(user:current_user.id)
+    else
+      redirect_to root_path, notice: 'Please login into a business account'
+    end
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
@@ -74,13 +212,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:user_id, :name, :description, :location)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:user_id, :name, :description, :location, :eventType)
+  end
 end

@@ -19,6 +19,10 @@
             <i class="fa fa-lock"></i>
             <%= f.text_field(:password_confirmation,:class=>"form-control",:placeholder=>"Password Confirmation", :validate => true) %>
           </div>
+          <div class="form-check form-group">
+            <%= f.check_box(:isBusiness, :class=>"form-check-input", :checked_value => "true", :unchecked_value => "false") %>
+            <%= f.label "Business Account", :class => 'form-check-label' %>
+          </div>
           <div class="form-group">
             <%= f.submit("Signup", :class=>"btn btn-primary btn-block btn-lg") %>
           </div>

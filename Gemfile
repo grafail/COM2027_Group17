@@ -6,22 +6,23 @@ ruby '~>2.5'
 gem 'activemerchant'
 
 gem 'bootstrap'
-gem "font-awesome-rails"
 gem 'client_side_validations'
+gem "font-awesome-rails"
 
-gem 'modernizr-rails'
-gem 'rails-controller-testing'
 gem 'devise'
 gem 'jquery-rails'
+gem 'jquery-slick-rails'
 gem 'jquery-ui-rails'
 gem 'magnific-popup-rails'
+gem 'material_icons'
+gem 'modernizr-rails'
 gem 'owlcarousel-rails', git: "https://github.com/acrogenesis/owlcarousel-rails.git"
 gem 'popper_js'
-gem 'jquery-slick-rails'
+gem 'rails-controller-testing'
 gem 'toastr-rails'
 
-gem 'gmaps4rails'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
@@ -58,13 +59,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -79,11 +80,9 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
-
-

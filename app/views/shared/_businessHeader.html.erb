@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<ul class="header">
+
+  <%= image_tag("eventus.png", :align => "left", :size => "60x60") %>
+
+  <li> <%= link_to "Create Event", '/events/new' %> </li>
+  <li> <%= link_to "My Events", '/myevents' %> </li>
+  <li> <%= link_to "Your Details", '/users/edit' %> </li>
+
+  <div id="corner" >
+    <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
+    <% if !session[:cart] then session[:cart] = {} end %>
+    <% cartSize = session[:cart].length %>
+    <% if cartSize == 0 %>
+      <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%></li>
+    <% else %>
+      <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
+    <% end %>
+    <% if user_signed_in? %>
+
+
+      <li>
+        <div class="dropdown" style=" font-size:18px;font-weight: 400; font-family: verdana, arial, helvetica, sans-serif;">
+          <%= link_to '/users/edit', :class => "dropbtn", :method => "get" do %> <i class="fa fa-user-circle"></i> Profile<% end %>
+          <div class="dropdown-content" style="font-size: 12px; font-family: verdana, arial, helvetica, sans-serif;">
+            <%= link_to '/users/edit' do %><i class= "fa fa-user-circle"></i> Profile<% end %>
+            <%= link_to '/tickets' do %><i class= "fa fa-ticket"></i> My Tickets<% end %>
+            <a href = "/"><i class= "fa fa-child"> </i>User Mode</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+          </div>
+        </div>
+      </li>
+
+    <% else %>
+      <li>  <%= link_to "Sign In", "", data: {toggle: "modal", target: ".modalLogin"} %> </li>
+
+      <li>  <%= link_to "Sign up", "", data: {toggle: "modal", target: ".modalSignup"} %> </li>
+      <%= render 'shared/login_form' %>
+      <%= render 'shared/signupForm' %>
+    <% end %>
+  </div>
+
+  <!--
+    <li><a href="/tickets">Tickets</a></li>
+    <li><a href="/purchases">Purchases</a></li> -->
+
+
+</ul>

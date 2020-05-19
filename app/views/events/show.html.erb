@@ -1,57 +1,115 @@
-<p id="notice"><%= notice %></p>
+<div class="container py-3" style="padding-top: 20px;">
+  <h1 style="font-size: xx-large;"><%=@event.name%></h1>
 
-<p>
-  <strong>User:</strong>
-  <%= @event.user.id %>
-</p>
+  <div class="container event-indiv">
+    <div class="row align-items-center" style="padding-top: 10px; text-align: center;">
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+      <!-- site section -->
+      <!-- map with marker, can and should be replaced with picture of event set by user -->
+      <div class="col-8">
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+        <div style='width: 100%; padding-bottom: 20px;'>
+          <div id="map" style='width: 100%; height: 375px;'></div>
+        </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+        <script type="text/javascript">
+            handler = Gmaps.build('Google');
+            handler.buildMap({
+                    provider: {
+                        zoom: 17,
+                        center: new google.maps.LatLng(<%=@event.latitude%>,<%=@event.longitude%>)
+                    },
+                    internal: {id: 'map'}},
 
-<p>Coordinates: <%= @event.latitude %>, <%= @event.longitude %></p>
+                function(){
+                    markers = handler.addMarkers([
+                        {
+                            lat: <%=@event.latitude%>,
+                            lng: <%=@event.longitude%>,
+                            infowindow: "<%=@event.name%>"
+                        }
+                    ]);
+                });
+        </script>
 
-<%@tickets = Ticket.where(event:@event) %>
-<h1>Available Tickets for this Event</h1>
+      </div>
 
-<table>
-  <thead>
-  <tr>
-    <th>Event</th>
-    <th>Price</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+      <div class ="col-4">
+        <h2><i class="material-icons">location_on</i><%=@event.location%></h2>
+        <p><%=@event.description%></p>
+        <p style="font-size: smaller;">Number of people currently looking at this event:<br>
+          <i class="material-icons">account_circle</i></p>
+      </div>
 
-  <tbody>
-  <% @tickets.each do |ticket| %>
-    <tr>
-      <td><%= ticket.event.id %></td>
-      <td><%= ticket.price %></td>
-      <td><%= ticket.name %></td>
-      <td><%= ticket.description %></td>
-      <td><%= link_to 'Show', ticket %></td>
-      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-      <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
 
-<%= link_to 'Create Ticket', new_ticket_path(event_id: @event) %> |
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+    </div>
+
+    <!-- Tabs -->
+    <div class="row" style="padding-right: 10px; padding-left: 10px;">
+      <ul class="nav nav-tabs nav-justified" style="width: 100%; padding-left: 10px; padding-right: 10px; font-size: medium;">
+        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#description">Description</a></li>
+        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#ticket-info">Ticket Info</a></li>
+        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#nearby">Nearby Events</a></li>
+      </ul>
+    </div>
+
+    <!-- Tab content-->
+    <div class="row" style="width: 100%; text-align: center; padding-top: 10px; padding-left: 30px; padding-right: 10px;">
+      <div class="tab-content" style="width: 100%; font-size: medium;">
+        <div class="tab-pane fade show" role="tabpanel" id="description">
+
+          <!-- Location -->
+          <div style='width: 100%;'>
+            <div id="map2" style='width: 100%; height: 375px;'></div>
+          </div>
+
+          <script type="text/javascript">
+              handler = Gmaps.build('Google');
+              handler.buildMap({
+                      provider: {
+                          zoom: 17,
+                          center: new google.maps.LatLng(<%=@event.latitude%>,<%=@event.longitude%>)
+                      },
+                      internal: {id: 'map2'}},
+
+                  function(){
+                      markers = handler.addMarkers([
+                          {
+                              lat: <%=@event.latitude%>,
+                              lng: <%=@event.longitude%>,
+                              infowindow: "<%=@event.name%>"
+                          }
+                      ]);
+                  });
+          </script>
+
+        </div>
+
+        <div class="tab-pane fade show" role="tabpanel" id="ticket-info">
+          <h3 style="padding-top: 10px;">Ticket Prices</h3>
+          <h4>Standard: <%=@event.name%></h4>
+          <button class="btn btn-block btn-primary button-color">Buy ticket</button>
+
+          <p>Tickets remaining: </p>
+        </div>
+
+        <div class="tab-pane fade show" role="tabpanel" id="nearby">
+
+          <% @eventsNearby.each do |event| %>
+
+            <%= render :partial => 'shared/eventItem', locals:{event:event} %>
+
+        <% end %>
+          <!-- In case no nearby events exist -->
+          <% if @eventsNearby.length == 0%>
+            <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+                  <h5 style="font-family: 'Domine', serif; font-size: xx-large;">No nearby events found!</h5>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

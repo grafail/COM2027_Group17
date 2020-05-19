@@ -22,9 +22,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require main
 //= require bootstrap-sprockets
 //= require toastr
-//= require main
 //= require rails.validations
 
 $(document).on('shown.bs.modal', '.modal', function() {

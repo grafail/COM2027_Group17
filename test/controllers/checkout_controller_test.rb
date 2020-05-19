@@ -5,5 +5,4 @@ class CheckoutControllerTest < ActionDispatch::IntegrationTest
     get checkout_url
     assert_response :found
   end
-
 end

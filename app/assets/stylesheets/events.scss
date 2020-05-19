@@ -2,6 +2,68 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.material-icons.yellow {
+  color: #FFF066;
+}
+
+.event-indiv {
+  background-color: #F8F8FF;
+  border-radius: 100px;
+}
+
+.event-box {
+  border-color: #ddd;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 7px;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+.slider-selection.tick-slider-selection {
+  background-image: linear-gradient(to bottom, #FFF6A4 0%, #FFF6A4 100%);
+  background-repeat: repeat-x;
+  background-color: #FFF6A4;
+}
+
+.list-group-item-action:active,
+.list-group-item:active,
+.list-group-item.active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #FFF6A4;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  color: #666;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.page-item.active .page-link {
+  background-color: #FFF6A4;
+  color: black;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.slider-handle,
+.slider-tick.in-selection {
+  background-image: linear-gradient(to bottom, #FFF6A4 0%, #FFF066 100%);
+  background-repeat: repeat-x;
+  background-color: #FFF066;
+}
+
+.ui-slider .ui-slider-range {
+  background: #FFF6A4;
+}
+
+.ui-slider .ui-slider-handle {
+  background: #FFF066;
+}
 .item {
   background-color:#FFFFFF;
   width:100%;

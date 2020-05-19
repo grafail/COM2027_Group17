@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   get '/home', to: redirect('/')
   resources :tickets
   resources :events
-  devise_for :users
+  Rails.application.routes.draw do
+    devise_for :users, controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations'
+    }
+  end
+
   root 'home#home'
   get 'cart/empty', to: 'cart#clear'
   get 'cart/change/:id/:qty', to: 'cart#change_qty', as: :cart_change_qty
@@ -19,6 +25,8 @@ Rails.application.routes.draw do
   post 'checkout', to: 'checkout#payment', as: :complete_payment
 
   get 'about', to: 'home#about'
+  get 'privacy', to: 'home#privacy'
 
+  get 'myevents', to: 'events#myEvents'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

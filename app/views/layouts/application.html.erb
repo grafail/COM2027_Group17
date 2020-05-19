@@ -13,6 +13,9 @@
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
   <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
   <script src='//underscorejs.org/underscore-min.js' type='text/javascript'></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Domine|Muli">
+
+  <%= yield (:head_tags) %>
 
 </head>
 
@@ -40,7 +43,11 @@
   </script>
 <% end %>
 <div class="site-wrap">
-  <%= render 'shared/header' %>
+  <% if user_signed_in? and current_user.isBusiness? %>
+    <%= render 'shared/businessHeader' %>
+  <% else %>
+    <%= render 'shared/header' %>
+  <% end %>
   <%= yield %>
   <%= render 'shared/footer' %>
 </div>

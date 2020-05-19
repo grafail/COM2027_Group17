@@ -1,12 +1,22 @@
-<div class="item">
-  <a href="/events/<%= item.id %>" itemprop="url">
-    <img src="https://via.placeholder.com/130x100" width="130" height="100" itemprop="image" alt=""/>
-    <div class="info">
-      <div class="title" itemprop="name">Event name: <%= item.name %></div>
-      <div class="subtitle"> Location: <%= item.location %></div>
-      <div class="description" itemprop="description">
-        <%= item.description %>
-      </div>
+<a href="#modalProduct">
+  <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+    <div class="col-md-2 col-sm-3 col-12 text-center">
+      <a href="#modalProduct"><img src="" class="mx-auto img-fluid" alt="product thumbnail"></a>
     </div>
-  </a>
-</div>
+    <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+      <%= link_to event do %>
+        <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
+      <% end %>
+      <p><%= event.description %></p>
+      <a href="#modalProduct">Cheapest available ticket: <%= cheapestTicket(event.id) %>£</a>
+    </div>
+    <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+      <p class="text-wide text-truncate"><i class="material-icons small">location_on</i>
+        <%= event.location %></p>
+      <p><%= event.eventType %></p>
+      <p><%= event.eventDate %></p>
+
+    </div>
+  </div>
+  <br \>
+</a>
