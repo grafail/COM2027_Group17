@@ -43,7 +43,11 @@
   </script>
 <% end %>
 <div class="site-wrap">
-  <%= render 'shared/businessHeader' %>
+  <% if user_signed_in? and current_user.isBusiness? %>
+    <%= render 'shared/businessHeader' %>
+  <% else %>
+    <%= render 'shared/header' %>
+  <% end %>
   <%= yield %>
   <%= render 'shared/footer' %>
 </div>
