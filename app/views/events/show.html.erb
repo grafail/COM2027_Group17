@@ -1,3 +1,14 @@
+<% content_for :head_tags do %>
+  <%= action_cable_meta_tag %>
+  <%=javascript_include_tag 'cable.js'%>
+<% end %>
+
+<script>
+    function get_reading() {
+        App.socket.viewed();
+    }
+</script>
+
 <div class="container py-3" style="padding-top: 20px;">
   <h1 style="font-size: xx-large;"><%=@event.name%></h1>
 
@@ -38,7 +49,10 @@
         <h2><i class="material-icons">location_on</i><%=@event.location%></h2>
         <p><%=@event.description%></p>
         <p style="font-size: smaller;">Number of people currently looking at this event:<br>
-          <i class="material-icons">account_circle</i></p>
+          <i class="material-icons">account_circle</i>
+          <span id="viewingNow"></span>
+        </p>
+        <input type="hidden" id="eventID" name="eventID" value="<%= @event.id %>">
       </div>
 
 
@@ -58,30 +72,7 @@
       <div class="tab-content" style="width: 100%; font-size: medium;">
         <div class="tab-pane fade show" role="tabpanel" id="description">
 
-          <!-- Location -->
-          <div style='width: 100%;'>
-            <div id="map2" style='width: 100%; height: 375px;'></div>
-          </div>
-
-          <script type="text/javascript">
-              handler = Gmaps.build('Google');
-              handler.buildMap({
-                      provider: {
-                          zoom: 17,
-                          center: new google.maps.LatLng(<%=@event.latitude%>,<%=@event.longitude%>)
-                      },
-                      internal: {id: 'map2'}},
-
-                  function(){
-                      markers = handler.addMarkers([
-                          {
-                              lat: <%=@event.latitude%>,
-                              lng: <%=@event.longitude%>,
-                              infowindow: "<%=@event.name%>"
-                          }
-                      ]);
-                  });
-          </script>
+          <%= render :partial => 'shared/eventItem', locals:{event:@event} %>
 
         </div>
 
