@@ -55,6 +55,22 @@ class EventsController < ApplicationController
 
   end
 
+  def nearby_events(currentEvent)
+    results=[]
+    distance = 10
+    if currentEvent.location.present? && (distance != 0)
+      coords = Geocoder.coordinates(location)
+      Event.all.each do |event|
+        if currentEvent.id!=event.id and (Geocoder::Calculations.distance_between([event.latitude,event.longitude],[currentEvent.latitude,currentEvent.longitude]))<=distance
+          results<<event
+        end
+      end
+      Event.where(id: results.map(&:id))
+    else
+      Event.all
+    end
+  end
+
   # GET /events
   # GET /events.json
   def index
@@ -132,7 +148,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @events = Event.all
+    @eventsNearby = nearby_events(@event)
   end
 
   # GET /events/new
