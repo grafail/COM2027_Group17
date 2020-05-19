@@ -21,7 +21,6 @@
 //= require gmaps/google
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require main
 //= require bootstrap-sprockets
 //= require toastr
