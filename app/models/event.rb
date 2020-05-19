@@ -19,9 +19,15 @@ class Event < ApplicationRecord
 
   def self.in_dates(start_date, end_date)
     if start_date.present? and end_date.present?
-      where('date >= ? AND date <= ?', start_date, end_date)
+      start_date = start_date.to_datetime
+      end_date = end_date.to_datetime.at_end_of_day
+      where('eventDate >= ? AND eventDate <= ?', start_date, end_date)
     elsif start_date.present?
-      where('date = ?', start_date)
+      start_date = start_date.to_datetime
+      where('eventDate >= ?', start_date)
+    elsif end_date.present?
+    end_date = end_date.to_datetime.at_end_of_day
+    where('eventDate <= ?', end_date)
     else
       all
     end
