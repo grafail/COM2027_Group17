@@ -1,3 +1,26 @@
+<script>
+
+    function applyFilters() {
+
+        let data = {};
+        data["location"] = document.getElementById('location').value;
+        data["distance"] = "10";
+        let link = "";
+        for (let key in data) {
+            if (data[key] === undefined || data[key] === "" || data[key].length === 0)
+                continue;
+            if (link != "") {
+                link += "&";
+            }
+            link += key + "=" + encodeURIComponent(data[key]);
+        }
+
+        window.location.href = "/events?" + link;
+    }
+
+
+</script>
+
 <div class="site-blocks-cover inner-page bg">
 
   <div class="container">
@@ -7,10 +30,10 @@
       <div class="col-md-12 text-center" style="width: 75%;">
         <div class="main-text" style="padding-bottom: 10px;">Find events near you:</div>
         <div class="yellow-border">
-          <input class="form-control" type="text" placeholder="Enter location" aria-label="Search">
+          <input class="form-control" id="location" type="text" placeholder="Enter location" aria-label="Search">
         </div>
 
-        <p style="padding-top: 10px"><a href="" class="btn btn-sm height-auto px-4 py-3 btn-primary button-color">Search</a></p>
+        <p style="padding-top: 10px"><a href="" onclick="applyFilters()" class="btn btn-sm height-auto px-4 py-3 btn-primary button-color">Search</a></p>
       </div>
 
     </div>
