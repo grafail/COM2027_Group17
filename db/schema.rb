@@ -18,12 +18,9 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.text "description"
     t.integer "eventType"
     t.text "location", null: false
-    t.datetime "eventDate"
+    t.datetime "eventDate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "viewCount", default: 0
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -51,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.float "price", null: false
     t.string "name", null: false
     t.text "description"
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_tickets_on_event_id"
