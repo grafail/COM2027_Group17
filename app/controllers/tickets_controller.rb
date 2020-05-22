@@ -19,7 +19,11 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    if user_signed_in? && User.find_by(id:current_user.id).isBusiness
+      @ticket = Ticket.new
+    else
+      redirect_to root_path, notice: 'Please login into a business account' unless user_signed_in?
+    end
   end
 
   # GET /tickets/1/edit
@@ -33,7 +37,7 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.save
         @event = Event.find(ticket_params[:event_id])
-        format.html { redirect_to @event, notice: 'Ticket was successfully created.' }
+        format.html { redirect_to '/myevents', notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
@@ -47,7 +51,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to '/myevents', notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -75,7 +79,7 @@ class TicketsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ticket_params
-    params.require(:ticket).permit(:event_id, :price, :name, :description)
+    params.require(:ticket).permit(:event_id, :price, :name, :description, :quantity)
   end
 
   def self.get_user_tickets(id)
