@@ -51,7 +51,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to '/myevents', notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -79,7 +79,7 @@ class TicketsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ticket_params
-    params.require(:ticket).permit(:event_id, :price, :name, :description)
+    params.require(:ticket).permit(:event_id, :price, :name, :description, :quantity)
   end
 
   def self.get_user_tickets(id)

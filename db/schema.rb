@@ -25,18 +25,18 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.text "comments", default: ""
-    t.float "PriceTotal"
+    t.float "PriceTotal", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "ticket_id"
-    t.integer "order_id"
-    t.integer "qty"
+    t.integer "ticket_id", null: false
+    t.integer "order_id", null: false
+    t.integer "qty", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_purchases_on_order_id"

@@ -38,8 +38,8 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update ticket" do
-    patch ticket_url(@ticket), params: { ticket: { description: @ticket.description, event_id: @ticket.event_id, name: @ticket.name, price: @ticket.price } }
-    assert_redirected_to ticket_url(@ticket)
+    patch ticket_url(@ticket), params: { ticket: { description: @ticket.description, event_id: @ticket.event_id, name: @ticket.name, price: @ticket.price, quantity: @ticket.quantity  } }
+    assert_redirected_to '/myevents'
   end
 
   test "should destroy ticket" do

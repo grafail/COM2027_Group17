@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :tickets, dependent: :destroy
   enum eventType: %i[Music Sports Religious Charitable Hobby Misc.]
-  validates :user, :name, :location, :eventType, presence: true
+  validates :user, :name, :location, :eventType, :eventDate, presence: true
   validate :date_cannot_be_in_the_past
   validate :must_be_business_account
 
