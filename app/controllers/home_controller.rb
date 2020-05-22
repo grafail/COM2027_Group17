@@ -8,5 +8,7 @@ class HomeController < ApplicationController
   def about; end
   
   def privacy; end
+
+  def termsandconditions; end
   
 end
