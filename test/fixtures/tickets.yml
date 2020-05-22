@@ -5,9 +5,12 @@ one:
   price: 1.5
   name: MyString
   description: MyString
+  quantity: 1
 
 two:
   event: two
   price: 1.5
   name: MyString
   description: MyString
+  quantity: 1
+

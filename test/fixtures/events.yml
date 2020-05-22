@@ -6,6 +6,7 @@ one:
   description: MyString
   location: MyString
   eventType: 1
+  eventDate: 2021-12-25 18:00:00
 
 two:
   user: two
@@ -13,6 +14,7 @@ two:
   description: MyString
   location: MyString
   eventType: 0
+  eventDate: 2021-12-25 18:00:00
 
 three:
   user: three
@@ -20,3 +22,4 @@ three:
   description: MyString
   location: MyString
   eventType: 0
+  eventDate: 2021-12-25 18:00:00

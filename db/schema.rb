@@ -18,28 +18,25 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.text "description"
     t.integer "eventType"
     t.text "location", null: false
-    t.datetime "eventDate"
+    t.datetime "eventDate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "viewCount", default: 0
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.text "comments", default: ""
-    t.float "PriceTotal"
+    t.float "PriceTotal", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "ticket_id"
-    t.integer "order_id"
-    t.integer "qty"
+    t.integer "ticket_id", null: false
+    t.integer "order_id", null: false
+    t.integer "qty", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_purchases_on_order_id"
@@ -51,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.float "price", null: false
     t.string "name", null: false
     t.text "description"
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_tickets_on_event_id"

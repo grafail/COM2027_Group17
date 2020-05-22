@@ -5,7 +5,8 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.float :price, null: false
       t.string :name, null: false
       t.text :description
-      t.integer :quantity
+      t.integer :quantity, null: false
+
 
       t.timestamps
     end
