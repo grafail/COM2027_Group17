@@ -74,8 +74,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-slider-rails (9.8.0)
-      railties (>= 3.2, < 6.0)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -163,6 +161,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pg (1.2.3)
     popper_js (1.16.0)
     public_suffix (4.0.3)
     puma (3.12.4)
@@ -276,7 +275,6 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (>= 1.1.0)
   bootstrap
-  bootstrap-slider-rails
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -295,6 +293,7 @@ DEPENDENCIES
   material_icons
   modernizr-rails
   owlcarousel-rails!
+  pg
   popper_js
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)

@@ -41,7 +41,6 @@
     <orderEntry type="library" scope="PROVIDED" name="binding_of_caller (v0.8.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.4.6, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap (v4.4.1, RVM: ruby-2.5.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bootstrap-slider-rails (v9.8.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.1, RVM: ruby-2.5.5) [gem]" level="application" />
@@ -89,6 +88,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.9, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="owlcarousel-rails (v2.2.3.5@d1bdb7, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="popper_js (v1.16.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v4.0.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.4, RVM: ruby-2.5.5) [gem]" level="application" />
