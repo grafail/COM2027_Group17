@@ -47,6 +47,6 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       delete ticket_url(@ticket)
     end
 
-    assert_redirected_to tickets_url
+    assert_redirected_to '/myevents'
   end
 end
