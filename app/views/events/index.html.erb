@@ -1,3 +1,4 @@
+<% content_for :head_tags do %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
 <script>
 
@@ -15,6 +16,14 @@
         });
         $( "#max" ).val( "£" + $( ".slider-range" ).slider( "values", 1 ));
         $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
+
+        <% if @beginDate.present? %>
+        document.getElementById('beginDate').value= "<%= @beginDate %>";
+        <% end %>
+        <% if @endDate.present? %>
+        document.getElementById('endDate').value= "<%= @endDate %>";
+        <% end %>
+
     });
 
     function applyFilters(sort) {
@@ -48,7 +57,7 @@
 
 
 </script>
-
+<% end %>
 <div class="container py-3" style="padding-top: 20px;">
   <header style="font-size: xx-large;">Events</header>
 
@@ -62,7 +71,11 @@
           <div class="list-group small rounded-0">
             <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Event Type</div>
             <% Event::eventTypes.each do |type| %>
-              <div class="list-group-item list-group-item-action categoryChoice" id="<%= type[0] %>" data-toggle="list"><%= type[0] %>
+              <div class="list-group-item list-group-item-action categoryChoice
+              <%if @category and @category==type[0] %>
+                   active
+              <% end %>
+              " id="<%= type[0] %>" data-toggle="list"><%= type[0] %>
                 <span class="badge badge-pill badge-light float-right"><%= @eventsNoCategory.where(eventType: type[1]).count %></span>
               </div>
             <% end %>
