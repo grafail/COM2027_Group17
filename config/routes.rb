@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'cart/change/:id/:qty', to: 'cart#change_qty', as: :cart_change_qty
   get 'cart/remove/:id', to: 'cart#remove', as: :cart_remove
 
+  get 'ticket/delete/:id', to: 'tickets#destroy', as: :ticket_delete
+
   get 'contact', to: 'home#contact'
   post 'request_contact', to: 'home#request_contact'
   post 'checkout', to: 'checkout#payment', as: :complete_payment

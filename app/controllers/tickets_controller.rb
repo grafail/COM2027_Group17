@@ -49,9 +49,13 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
+    if not user_signed_in? or !@ticket or current_user.id!=@ticket.event.user.id
+      redirect_to root_path, notice: 'Unauthorised action'
+      return
+    end
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to '/myevents', notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to myevents_url, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -63,9 +67,13 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
+    if not user_signed_in? or !@ticket or current_user.id!=@ticket.event.user.id
+      redirect_to root_path, notice: 'Unauthorised action'
+      return
+    end
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      format.html { redirect_to myevents_url, notice: 'Ticket was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,7 +82,7 @@ class TicketsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id]) rescue nil
   end
 
   # Only allow a list of trusted parameters through.
