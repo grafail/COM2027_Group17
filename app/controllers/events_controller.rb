@@ -158,7 +158,6 @@ class EventsController < ApplicationController
 
     if params[:page] and params[:page].match("[0-9]+") and (params[:page].to_i-1)*2<@events.length and params[:page].to_i>=1
       @page = params[:page].to_i
-      console
     else
       @page = 1
     end
