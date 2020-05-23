@@ -111,10 +111,18 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
+    et-orbi (1.2.4)
+      tzinfo
+    eu_central_bank (1.5.0)
+      money (~> 6.13, >= 6.13.6)
+      nokogiri (~> 1.9)
     execjs (2.7.0)
     ffi (1.12.2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
+    fugit (1.3.5)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.1)
     geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -156,6 +164,15 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     modernizr-rails (2.7.1)
+    monetize (1.9.4)
+      money (~> 6.12)
+    money (6.13.7)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.13.3)
+      activesupport (>= 3.0)
+      monetize (~> 1.9.0)
+      money (~> 6.13.2)
+      railties (>= 3.0)
     msgpack (1.3.3)
     nio4r (2.5.2)
     nokogiri (1.10.9)
@@ -165,6 +182,7 @@ GEM
     popper_js (1.16.0)
     public_suffix (4.0.3)
     puma (3.12.4)
+    raabro (1.3.1)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -207,6 +225,8 @@ GEM
       railties (>= 5.0)
     ruby_dep (1.5.0)
     rubyzip (2.2.0)
+    rufus-scheduler (3.6.0)
+      fugit (~> 1.1, >= 1.1.6)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -281,6 +301,7 @@ DEPENDENCIES
   client_side_validations
   coffee-rails (~> 4.2)
   devise
+  eu_central_bank
   font-awesome-rails
   geocoder
   gmaps4rails
@@ -292,12 +313,14 @@ DEPENDENCIES
   magnific-popup-rails
   material_icons
   modernizr-rails
+  money-rails
   owlcarousel-rails!
   pg
   popper_js
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)
   rails-controller-testing
+  rufus-scheduler
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
