@@ -42,6 +42,7 @@ class CheckoutController < ApplicationController
       if response.success?
         puts "Successfully charged £#{format('%.2f', amount / 100)} to the credit card #{credit_card.display_number}"
         create_order_from_cart(@cartItems, @total)
+        session[:cart] = {}
         m = 'Order was completed successfully! (' + (amount / 100).to_s + '£)'
       else
         raise StandardError, response.message
