@@ -83,7 +83,7 @@ class CartController < ApplicationController
 
   def self.length_of_cart(session)
     check_cart(session)
-    session[:cart].length
+    all_cart_items(session[:cart]).length
   end
   helper_method :length_of_cart
 
