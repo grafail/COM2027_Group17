@@ -74,11 +74,9 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if not validateParameters
 
-      redirect_to events_path, notice: 'Invalid values supplied!'
+    validateParameters
 
-    end
     @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate],params[:endDate]), params[:priceMin], params[:priceMax]),params[:distance],params[:location])
     @events = @eventsNoCategory.in_category(params[:category])
     @events_default = EventsController.load_events(@events)
@@ -119,8 +117,18 @@ class EventsController < ApplicationController
   end
 
   def validateParameters
-    #TODO: Add validation for parameters
-    true
+    if params[:category] and not Event.eventTypes.keys().include?(params[:category])
+      params.delete("category")
+    end
+
+    if params[:beginDate] and not params[:beginDate].match("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}")
+      params.delete("beginDate")
+    end
+
+    if params[:endDate] and not params[:endDate].match("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}")
+      params.delete("endDate")
+    end
+
   end
 
   # Sets the values the filters will have
@@ -137,6 +145,24 @@ class EventsController < ApplicationController
                 else
                   @maxPriceGlobal
                 end
+    if params[:beginDate]
+      @beginDate = params[:beginDate]
+    end
+    if params[:endDate]
+      @endDate = params[:endDate]
+    end
+
+    if params[:category]
+      @category = params[:category]
+    end
+
+    if params[:page] and params[:page].match("[0-9]+") and (params[:page].to_i-1)*2<@events.length and params[:page].to_i>=1
+      @page = params[:page].to_i
+      console
+    else
+      @page = 1
+    end
+
   end
 
   # Maximum price across all tickets

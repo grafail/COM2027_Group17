@@ -86,7 +86,7 @@
 
         <div class="tab-pane fade show" role="tabpanel" id="nearby">
 
-          <% @eventsNearby.each do |event| %>
+          <% @eventsNearby[0..3].each do |event| %>
 
             <%= render :partial => 'shared/eventItem', locals:{event:event} %>
 

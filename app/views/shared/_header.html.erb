@@ -28,7 +28,6 @@
           <div class="dropdown-content" style="font-size: 12px; font-family: verdana, arial, helvetica, sans-serif;">
             <%= link_to '/users/edit' do %><i class= "fa fa-user-circle"></i> Profile<% end %>
             <%= link_to '/tickets' do %><i class= "fa fa-ticket"></i> My Tickets<% end %>
-            <%= link_to '/tickets' do %><i class= "fa fa-child"></i>User Mode<% end %>
             <div class="dropdown-divider"></div>
             <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
           </div>

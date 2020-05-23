@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.datetime "eventDate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "viewCount", default: 0
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

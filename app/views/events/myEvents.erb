@@ -6,11 +6,10 @@
     <th></th>
     <th>Event Name:</th>
     <th>Event Details:</th>
-    <th>Tickets:</th>
+    <th></th>
     <th>Name of Ticket:</th>
     <th>Price:</th>
     <th>Quantity:</th>
-    <th colspan="3"></th>
   </tr>
   </thead>
 
@@ -59,7 +58,7 @@
         </table>
       </td>
 
-      <td class = "tableBorder"><!--Tickets--></td>
+      <td class = "tableBorder"> Tickets: <!--Tickets--></td>
       <%@tickets = Ticket.where(event:event.id) %>
       <!-- Doing each row for ticket names of an event-->
       <td class = "tableBorder">

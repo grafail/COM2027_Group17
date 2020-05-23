@@ -1,24 +1,52 @@
-<p id="notice"><%= notice %></p>
+<h1>Ticket Details:</h1>
 
-<p>
-  <strong>Event:</strong>
-  <%= Event.find_by("id"=>@ticket.event.id).name %>
-</p>
+<table id="myEventTable">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Ticket Name:</th>
+    <th>Ticket Description:</th>
+    <th>Price:</th>
+    <th>Quantity:</th>
+    <th>Event:</th>
+  </tr>
+  </thead>
 
-<p>
-  <strong>Price:</strong>
-  <%= @ticket.price %>
-</p>
+  <tbody>
+    <tr>
+      <td class = "tableBorder">
+        <table>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Edit', edit_ticket_path(@ticket) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Remove', ticket_delete_path(@ticket) %></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td class = "tableBorder">
+        <%= link_to @ticket.name , @ticket %>
+      </td>
+      <td class = "tableBorder">
+        <%= @ticket.description %>
+      </td>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @ticket.description %>
-</p>
-
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+      <!-- Doing each row for ticket price of an event-->
+      <td class = "tableBorder">
+        <%=@ticket.price%>
+      </td>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <%=@ticket.quantity%>
+      </td>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <%= link_to @ticket.event.name , @ticket.event %>
+      </td>
+    </tr>
+  </tbody>
+</table>
