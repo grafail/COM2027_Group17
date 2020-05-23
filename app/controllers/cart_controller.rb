@@ -69,7 +69,13 @@ class CartController < ApplicationController
 
   def self.all_cart_items(session)
     check_cart(session)
-    session[:cart]
+    all_tickets=[]
+    session[:cart].each do |item|
+      ticket = Ticket.where(id:item[0])
+      if !ticket.empty? and ticket.quantity<=item[1].to_i
+        all_tickets+=item
+      end
+    end
   end
   helper_method :all_cart_items
 
