@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   get 'checkout', to: 'checkout#index'
   get 'cart', to: 'cart#cart'
-  resources :purchases, :only => [:show,:create]
-  resources :orders, :only => [:show,:create]
+  resources :purchases
+  resources :orders
   resources :tickets
   resources :events
   get 'home/home'
