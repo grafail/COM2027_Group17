@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   get 'checkout', to: 'checkout#index'
   get 'cart', to: 'cart#cart'
-  resources :purchases
-  resources :orders
-  get 'home/home'
-  get '/home', to: redirect('/')
+  resources :purchases, :only => [:show,:create]
+  resources :orders, :only => [:show,:create]
   resources :tickets
   resources :events
+  get 'home/home'
+  get '/home', to: redirect('/')
   Rails.application.routes.draw do
     devise_for :users, controllers: {
         sessions: 'users/sessions',

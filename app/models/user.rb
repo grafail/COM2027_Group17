@@ -7,5 +7,4 @@ class User < ApplicationRecord
   has_many :event, dependent: :destroy
 
   validates_confirmation_of :password
-  validates :isBusiness, presence: true
 end
