@@ -77,11 +77,16 @@
         </div>
 
         <div class="tab-pane fade show" role="tabpanel" id="ticket-info">
-          <h3 style="padding-top: 10px;">Ticket Prices</h3>
-          <h4>Standard: <%=@event.name%></h4>
-          <button class="btn btn-block btn-primary button-color">Buy ticket</button>
+          <h3 style="padding-top: 10px;">Tickets:</h3>
+          <% Ticket.where(event:@event).each do |ticket| %>
 
-          <p>Tickets remaining: </p>
+            <h4> <%=ticket.name%></h4>
+            <%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %>
+
+            <p>Tickets remaining: <%= ticket.quantity %> </p>
+
+          <% end %>
+
         </div>
 
         <div class="tab-pane fade show" role="tabpanel" id="nearby">
