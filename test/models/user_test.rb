@@ -15,12 +15,4 @@ class UserTest < ActiveSupport::TestCase
     user.save
     assert user.valid?
   end
-
-  test 'should not save user without business status' do
-    user = User.new
-    user.email = 'bob@example.com'
-    user.password = '12345678'
-    user.save
-    refute user.valid?
-  end
 end
