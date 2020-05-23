@@ -14,8 +14,16 @@ MoneyRails.configure do |config|
   # (The conversion rate refers to one direction only)
   #
   # Example:
-  # config.add_rate "USD", "CAD", 1.24515
-  # config.add_rate "CAD", "USD", 0.803115
+  # Run only on tests
+  if Rails.env.test?
+
+    config.add_rate "GBP", "CAD", 1
+    config.add_rate "GBP", "EUR", 1
+    config.add_rate "GBP", "USD", 1
+    config.add_rate "GBP", "AUD", 1
+    config.add_rate "GBP", "HKD", 1
+
+  end
 
   # To handle the inclusion of validations for monetized fields
   # The default value is true
