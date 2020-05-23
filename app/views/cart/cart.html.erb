@@ -29,7 +29,10 @@
           <div class="col-md-12 col-lg-4">
             <div class="summary">
               <h3>Summary</h3>
-              <div class="summary-item"><span class="text">Total</span><span class="price"><%= @total %>£</span></div>
+              <div class="summary-item"><span class="text">Total</span><span class="price">£<%= number_with_precision(@total, :precision => 2) %> (GBP)</span></div>
+              <% %w(EUR USD CAD AUD HKD).each do |cur| %>
+                <span class="price"><%= humanized_money_with_symbol MoneyRails.default_bank.exchange(@total*100,"GBP",cur)  %> (<%= cur %>)</span> <br>
+              <% end %>
               <%= button_to 'Checkout', checkout_path, :method => 'get', :class => "btn btn-primary btn-lg btn-block" %>
               <%= button_to 'Empty cart', '/cart/empty', :method => 'get', :class => "btn btn-secondary btn-lg btn-block" %>
             </div>
