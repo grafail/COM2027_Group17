@@ -9,7 +9,11 @@ class CartController < ApplicationController
   end
 
   def self.check_cart(session)
+    if session.blank?
+      session = {}
+    end
     session[:cart] = {} unless session[:cart]
+    return session
   end
   helper_method :check_cart
 
@@ -68,20 +72,21 @@ class CartController < ApplicationController
   end
 
   def self.all_cart_items(session)
-    check_cart(session)
+    session = check_cart(session)
     all_tickets=[]
     session[:cart].each do |item|
-      ticket = Ticket.where(id:item[0])
-      if !ticket.empty? and ticket.quantity<=item[1].to_i
-        all_tickets+=item
+      ticket = Ticket.find_by(id:item[0].to_i)
+      if !ticket.blank? and ticket.quantity>=item[1]
+        all_tickets<<item
       end
     end
+    return all_tickets
   end
   helper_method :all_cart_items
 
   def self.length_of_cart(session)
-    check_cart(session)
-    session[:cart].length
+    session = check_cart(session)
+    all_cart_items(session).length
   end
   helper_method :length_of_cart
 
@@ -89,7 +94,7 @@ class CartController < ApplicationController
     return 0 unless session[:cart]
 
     total = 0
-    session[:cart].each do |item|
+    all_cart_items(session).each do |item|
       id = item[0]
       qty = item[1].to_i
       ticket = Ticket.find_by(id: id)
