@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :events
   get 'home/home'
   get '/home', to: redirect('/')
+  get '/users', to: redirect('/')
   Rails.application.routes.draw do
     devise_for :users, controllers: {
         sessions: 'users/sessions',

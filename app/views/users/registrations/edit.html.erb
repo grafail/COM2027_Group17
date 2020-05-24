@@ -5,7 +5,8 @@
 
 </head>
 <br>
-
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 <div class="container bootstrap snippet"style="background-color: #f3f3f3">
   <div class="row">
       <div class="col-md-3 ">
@@ -26,8 +27,6 @@
             <div class="col-sm-8">
               <div class="text-center">
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" style="border-radius: 50%">
-                <h6 style="text-align: center">Add a profile picture...</h6>
-                <input type="file" class="text-center center-block file-upload">
               </div></hr><br>
             </div>
           </div>
@@ -42,35 +41,42 @@
                 <div class="form-group row">
                   <label for="name" class="col-4 col-form-label">First Name</label>
                   <div class="col-8">
-                    <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
+                    <%= f.text_field :firstName, :class=>"form-control here", :placeholder => "First Name", :required => "true", :value => current_user.firstName ,autocomplete: "fname" %>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="lastname" class="col-4 col-form-label">Last Name</label>
                   <div class="col-8">
-                    <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                    <%= f.text_field :lastName, :class=>"form-control here", :placeholder => "Last Name", :required => "true", :value => current_user.lastName , autocomplete: "lname" %>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="email" class="col-4 col-form-label">Email*</label>
                   <div class="col-8">
-                    <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                    <%= f.email_field :email, :class=>"form-control here", :placeholder => "Email address", :required => "true", :value => current_user.email , autocomplete: "email" %>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="password" class="col-4 col-form-label">Password</label>
+                  <label for="password" class="col-4 col-form-label">New Password <br> (leave blank if you don't want to change it)</label>
                   <div class="col-8">
-                    <input id="password" name="password" placeholder="Password" class="form-control" required="required" type="password">
+                    <%= f.password_field :password, :class=>"form-control here", :placeholder => "New password", autocomplete: "new-password" %>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="newpass" class="col-4 col-form-label">Verify Password</label>
+                  <label for="newpass" class="col-4 col-form-label">Verify New Password</label>
                   <div class="col-8">
-                    <input id="verify password" name="verify password" placeholder="Verify Password" class="form-control here" type="password">
+                    <%= f.password_field :password_confirmation, :class=>"form-control here", :placeholder => "Verify new password", autocomplete: "new-password" %>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="newpass" class="col-4 col-form-label">Current Password*</label>
+                  <div class="col-8">
+                    <%= f.password_field :current_password, :class=>"form-control here", :placeholder => "Verify current password", :required => "true", autocomplete: "current-password" %>
                   </div>
                 </div>
 
@@ -78,8 +84,10 @@
                   <div class="offset-4 col-8">
 
                     <br>
-                    <button class="btn btn-default btn-sm" type="submit"style="font-size: 12px"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                    <button class="btn btn-default btn-sm" type="reset"style="font-size: 12px"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                    <i class="fa fa-check-circle"><%= f.submit "Update", :class=>"btn btn-default btn-sm"%></i>
+
+
+                    <%end%>
                   </div>
                 </div>
 
