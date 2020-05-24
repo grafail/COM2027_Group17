@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def cheapestTicket(id)
     Ticket.where(event: id).minimum(:price)
   end
+
   helper_method :cheapestTicket
 
   def betweenPrice(events, minPrice, maxPrice)
@@ -39,13 +40,13 @@ class EventsController < ApplicationController
   end
 
   def distanceCheck(events, distance, location)
-    results=[]
+    results = []
     distance = distance.to_i
     if distance.present? && location.present? && (distance != 0)
       coords = Geocoder.coordinates(location)
       events.each do |event|
-        if(Geocoder::Calculations.distance_between([event.latitude,event.longitude],coords))<=distance
-          results<<event
+        if (Geocoder::Calculations.distance_between([event.latitude, event.longitude], coords)) <= distance
+          results << event
         end
       end
       Event.where(id: results.map(&:id))
@@ -56,13 +57,13 @@ class EventsController < ApplicationController
   end
 
   def nearby_events(currentEvent)
-    results=[]
+    results = []
     distance = 10
     if currentEvent.location.present? && (distance != 0)
       coords = Geocoder.coordinates(location)
       Event.all.each do |event|
-        if currentEvent.id!=event.id and (Geocoder::Calculations.distance_between([event.latitude,event.longitude],[currentEvent.latitude,currentEvent.longitude]))<=distance
-          results<<event
+        if currentEvent.id != event.id and (Geocoder::Calculations.distance_between([event.latitude, event.longitude], [currentEvent.latitude, currentEvent.longitude])) <= distance
+          results << event
         end
       end
       Event.where(id: results.map(&:id))
@@ -77,43 +78,43 @@ class EventsController < ApplicationController
 
     validateParameters
 
-    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate],params[:endDate]), params[:priceMin], params[:priceMax]),params[:distance],params[:location])
+    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate], params[:endDate]), params[:priceMin], params[:priceMax]), params[:distance], params[:location])
     @events = @eventsNoCategory.in_category(params[:category])
     @events_default = EventsController.load_events(@events)
-    @events = sort_events(@events,params[:sort])
+    @events = sort_events(@events, params[:sort])
 
     setFilterValues
   end
 
-  def sort_events(events,sort)
+  def sort_events(events, sort)
     if not sort.present?
       sort = 1
-    elsif sort.to_i>=1 and sort.to_i<=6
+    elsif sort.to_i >= 1 and sort.to_i <= 6
       @sortNum = sort
     end
-      case sort.to_i
-      when 1
-        @sort = 'Name (ascending)'
-        events.sort { |a, b|  a.name <=> b.name }
-      when 2
-        @sort = 'Name (descending)'
-        events.sort { |a, b|  b.name <=> a.name }
-      when 3
-        @sort = 'Price (ascending)'
-        events.sort { |a, b|  cheapestTicket(a.id) <=> cheapestTicket(b.id) }
-      when 4
-        @sort = 'Price (descending)'
-        events.sort { |a, b|  cheapestTicket(b.id) <=> cheapestTicket(a.id) }
-      when 5
-        @sort = 'Date (ascending)'
-        events.sort { |a, b|  a.eventDate <=> b.eventDate }
-      when 6
-        @sort = 'Date (descending)'
-        events.sort { |a, b|  b.eventDate <=> a.eventDate }
-      else
-        @sort = ''
-        events
-      end
+    case sort.to_i
+    when 1
+      @sort = 'Name (ascending)'
+      events.sort { |a, b| a.name <=> b.name }
+    when 2
+      @sort = 'Name (descending)'
+      events.sort { |a, b| b.name <=> a.name }
+    when 3
+      @sort = 'Price (ascending)'
+      events.sort { |a, b| cheapestTicket(a.id) <=> cheapestTicket(b.id) }
+    when 4
+      @sort = 'Price (descending)'
+      events.sort { |a, b| cheapestTicket(b.id) <=> cheapestTicket(a.id) }
+    when 5
+      @sort = 'Date (ascending)'
+      events.sort { |a, b| a.eventDate <=> b.eventDate }
+    when 6
+      @sort = 'Date (descending)'
+      events.sort { |a, b| b.eventDate <=> a.eventDate }
+    else
+      @sort = ''
+      events
+    end
   end
 
   def validateParameters
@@ -156,7 +157,7 @@ class EventsController < ApplicationController
       @category = params[:category]
     end
 
-    if params[:page] and params[:page].match("[0-9]+") and (params[:page].to_i-1)*2<@events.length and params[:page].to_i>=1
+    if params[:page] and params[:page].match("[0-9]+") and (params[:page].to_i - 1) * 2 < @events.length and params[:page].to_i >= 1
       @page = params[:page].to_i
     else
       @page = 1
@@ -187,7 +188,7 @@ class EventsController < ApplicationController
 
   def myEvents
     if user_signed_in? && current_user.isBusiness?
-      @myEvents = Event.where(user:current_user.id)
+      @myEvents = Event.where(user: current_user.id)
     else
       redirect_to root_path, notice: 'Please login into a business account'
     end
@@ -195,7 +196,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    if ! (user_signed_in? && current_user.isBusiness? == true)
+    if !(user_signed_in? && current_user.isBusiness? == true)
       redirect_to root_path, notice: 'Please login into a business account'
     end
   end
@@ -239,6 +240,25 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def self.findEventImage(event)
+
+    if event.Music?
+      "music.png"
+    elsif event.Sports?
+      "sports.png"
+    elsif event.Charitable?
+      "charitable.png"
+    elsif event.Hobby?
+      "hobby.png"
+    elsif event.Religious?
+      "religious.png"
+    else
+      "misc.png"
+    end
+  end
+
+  helper_method :findEventImage
 
   private
 
