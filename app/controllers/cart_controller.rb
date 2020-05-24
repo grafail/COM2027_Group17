@@ -20,6 +20,11 @@ class CartController < ApplicationController
   def change_qty
     check_cart
     id = params[:id]
+    @event = Event.find_by(id:id)
+    if @event.blank? or (current_user.isBusiness? and @event.user!=current_user.id)
+      redirect_to root_path, notice: 'Business user can only buy their own tickets'
+      return
+    end
     qty = params[:qty]
     tmp = session[:cart][id].to_i + qty.to_i
     if tmp > 0
