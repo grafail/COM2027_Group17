@@ -85,8 +85,10 @@
 
                     <br>
                     <i class="fa fa-check-circle"><%= f.submit "Update", :class=>"btn btn-default btn-sm"%></i>
-
-
+                    <br>
+                    <i class="fa fa-trash">
+                    <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, :class=>"btn btn-default btn-sm", method: :delete %>
+                    </i>
                     <%end%>
                   </div>
                 </div>
