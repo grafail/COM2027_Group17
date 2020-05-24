@@ -36,6 +36,9 @@
                 </div>
               </div>
             <% end %>
+            <% if @myTickets.length == 0 %>
+              <h2 style="text-align: center;" >No tickets found!</h2>
+          <% end %>
           </div>
         </div>
         <hr>
