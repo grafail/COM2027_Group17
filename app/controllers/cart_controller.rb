@@ -81,7 +81,7 @@ class CartController < ApplicationController
     all_tickets=[]
     session[:cart].each do |item|
       ticket = Ticket.find_by(id:item[0].to_i)
-      if !ticket.blank? and ticket.quantity>=item[1]
+      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1]
         all_tickets<<item
       end
     end

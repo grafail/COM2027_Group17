@@ -30,6 +30,17 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit; end
 
+  def self.ticketsSold(id)
+    return Purchase.where(ticket:id).sum(:qty)
+  end
+  helper_method :ticketsSold
+
+  def self.ticketsRemaining(id)
+    ticket = Ticket.find_by(id:id)
+    return ticket.quantity-ticketsSold(ticket.id)
+  end
+  helper_method :ticketsRemaining
+
   # POST /tickets
   # POST /tickets.json
   def create

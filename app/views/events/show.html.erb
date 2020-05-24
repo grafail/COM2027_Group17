@@ -80,12 +80,10 @@
           <h3 style="padding-top: 10px;">Tickets:</h3>
           <% Ticket.where(event:@event).each do |ticket| %>
 
-            <h4> <%=ticket.name%></h4>
-            <%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %>
+            <%= render partial: 'shared/ticketItem', :locals => {:ticket => ticket} %>
 
-            <p>Tickets remaining: <%= ticket.quantity %> </p>
 
-          <% end %>
+        <% end %>
 
         </div>
 
