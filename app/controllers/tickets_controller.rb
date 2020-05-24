@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
+    redirect_to root_path, notice: 'You should be logged in!' unless user_signed_in?
     @tickets = Ticket.all
     # #Temporary fix (Tests and route should be adjusted)
     @myTickets = if user_signed_in?
