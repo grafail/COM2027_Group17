@@ -50,6 +50,7 @@ gem 'eu_central_bank'
 
 gem 'rufus-scheduler'
 
+gem 'rails_12factor', group: :production
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
