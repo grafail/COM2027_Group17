@@ -199,7 +199,7 @@
               </a>
             </li>
             <% (1..2).each do |i| %>
-              <% if (@page-i-1)*2<@events.length and @page-i>=1%>
+              <% if (@page-i)*2<@events.length and @page-i>=1%>
                 <li class="page-item"><a class="page-link border-0" onclick = "applyFilters(<%= @page - i %>)" href="#"><%= @page - i %></a></li>
               <% end %>
               <% end %>
@@ -207,7 +207,7 @@
                 <a class="page-link border-0 button-color"> <%= @page %> <span class="sr-only button-color">(current)</span></a>
               </li>
               <% (1..2).each do |i| %>
-                <% if (@page+i-1)*2<@events.length and @page+i>=1%>
+                <% if (@page+i)*2<@events.length and @page+i>=1%>
                   <li class="page-item"><a class="page-link border-0" onclick = "applyFilters(<%= @page + i %>)" href="#"><%= @page + i %></a></li>
                 <% end %>
             <% end %>
