@@ -1,0 +1,23 @@
+<% event = Event.find_by("id" => ticket.event) %>
+
+<p>
+  <div class="event-box white row mb-5" style="padding-top: 20px;">
+    <div class="col-md-2 col-sm-3 col-12 text-center">
+      <a> <img src="/assets/eventus.png" width="100" height="100" itemprop="image" alt=""/></a>
+    </div>
+    <div class="col-md-6 col-sm-7 col-6" style="padding-bottom: 20px;">
+<h1 itemprop="name"><%= link_to ticket.name, ticket %></h1>
+<p itemprop="description">
+  <%= ticket.description %>
+</p>
+<p>
+  Price: £<%= ticket.price %>
+</p>
+</div>
+<div class="col-md-4 col-sm-2 col-6 text-right pl-0">
+
+  <p> </p><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %> </p>
+  <p> Remaining quantity: <%= TicketsController.ticketsRemaining(ticket.id) %> </p>
+
+</div>
+</div>
