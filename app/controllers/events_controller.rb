@@ -11,7 +11,19 @@ class EventsController < ApplicationController
   end
 
   def cheapestTicket(id)
-    Ticket.where(event: id).minimum(:price)
+    min = -1
+    @allPurchases = []
+    event = Event.find_by(id:id)
+    tickets = Ticket.where(event:event)
+    tickets.each do |ticket|
+      tmp = TicketsController.ticketsRemaining(ticket.id)
+      if tmp>0
+        if min==-1 or min>ticket.price
+          min = ticket.price
+        end
+      end
+    end
+    return min
   end
   helper_method :cheapestTicket
 
@@ -251,6 +263,17 @@ class EventsController < ApplicationController
       redirect_to root_path, notice: 'Please login into your business account'
     end
   end
+
+  def self.isSoldOut(event)
+    tickets = Ticket.where(event:event)
+    tickets.each do |ticket|
+      if TicketsController.ticketsRemaining(ticket.id)!=0
+        return false
+      end
+    end
+    return true
+  end
+  helper_method :isSoldOut
 
   def self.findEventImage(event)
 

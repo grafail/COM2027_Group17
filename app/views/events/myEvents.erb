@@ -97,7 +97,7 @@
           <% @tickets.each do |eventTicket| %>
             <tr>
               <td>
-                <%=eventTicket.quantity%>
+                <%=TicketsController.ticketsRemaining(eventTicket.id)%>/<%=eventTicket.quantity%>
               </td>
             </tr>
           <% end %>

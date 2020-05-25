@@ -8,8 +8,12 @@
         <h5 style="font-family: 'Domine', serif; font-size: xx-large;"><%= event.name %></h5>
       <% end %>
       <p><%= event.description %></p>
+      <% if EventsController.isSoldOut(event) %>
+      <p>Ticket is sold out!</p>
+      <% else %>
       <p>Cheapest available ticket: £<%= cheapestTicket(event.id) %></p>
-    </div>
+      <% end %>
+  </div>
     <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
       <p class="text-wide text-truncate"><i class="material-icons small">location_on</i>
         <%= event.location %></p>
