@@ -11,7 +11,10 @@ class EventsController < ApplicationController
   end
 
   def inCategory(events,category)
-    return events.where(:eventType => category)
+    if !category
+      return events
+    end
+    return events.where(:eventType => Event.eventTypes[category])
   end
 
   def cheapestTicket(id)
