@@ -26,7 +26,7 @@
               <% @event = Event.find_by("id"=>@currentTicket.event) %>
               <div class="item row">
 
-                <img src="/assets/eventus.png" width="100" height="100" itemprop="image" alt=""/>
+                <%= image_tag("eventus.png", :align => "left", :size => "100x100") %>
                 <div class="info">
                   <div class="title" itemprop="name">Event: <%= link_to @event.name, @event %></div>
                   <div class="subtitle"> Ticket: <%= link_to @currentTicket.name, @currentTicket %> (x<%= purchase.qty %>)</div>
