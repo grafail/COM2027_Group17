@@ -16,7 +16,9 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1
   # GET /tickets/1.json
-  def show; end
+  def show
+    redirect_to root_path, notice: 'You should be logged in to your business account!' unless user_signed_in? and current_user==@ticket.event.user
+  end
 
   # GET /tickets/new
   def new
