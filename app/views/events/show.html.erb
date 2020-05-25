@@ -46,13 +46,23 @@
       </div>
 
       <div class ="col-4">
-        <h2><i class="material-icons">location_on</i><%=@event.location%></h2>
+        <h3><i class="material-icons">location_on</i><%=@event.location%></h3>
         <p><%=@event.description%></p>
+        <input type="hidden" id="eventID" name="eventID" value="<%= @event.id %>">
+        <p>
+          <h4>Seller info</h4>
+          <div style="font-size: 15px">
+          <hr>
+          <%= @event.user.firstName + ' ' + @event.user.lastName %>
+          <br>
+          <%=  mail_to @event.user.email %>
+          </div>
+        </p>
+        <hr>
         <p style="font-size: smaller;">Number of people currently looking at this event:<br>
           <i class="material-icons">account_circle</i>
           <span id="viewingNow"></span>
         </p>
-        <input type="hidden" id="eventID" name="eventID" value="<%= @event.id %>">
       </div>
 
 
