@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+
   def cart
     @cartItems = CartController.all_cart_items(session)
     @total = CartController.total_price_cart(session)
@@ -20,21 +21,22 @@ class CartController < ApplicationController
   def change_qty
     check_cart
     id = params[:id]
-    @event = Event.find_by(id:id)
-    if @event.blank? or (current_user.isBusiness? and @event.user!=current_user.id)
+    @ticket = Ticket.find_by_id(id)
+    @event = @ticket.event
+    user = User.find_by_id(session[:user_id])
+    if @event.blank? or (user and user.isBusiness? and @event.user!=user.id)
       redirect_to root_path, notice: 'Business user can only buy their own tickets'
       return
     end
-    qty = params[:qty]
-    tmp = session[:cart][id].to_i + qty.to_i
-    if tmp > 0
-      session[:cart][id] = tmp
+    qty = params[:qty].to_i
+    if qty <= TicketsController.ticketsRemaining(@ticket)
+      session[:cart][id] = qty
       msg = 'Ticket was added!'
     else
-      msg = 'Ticket was not added!'
+      msg = 'Ticket could not be added!'
     end
 
-    if tmp == 0
+    if qty == 0
       redirect_to cart_remove_path(id: id)
       return
     end
@@ -79,10 +81,13 @@ class CartController < ApplicationController
   def self.all_cart_items(session)
     session = check_cart(session)
     all_tickets=[]
+    user = User.find_by_id(session[:user_id])
     session[:cart].each do |item|
       ticket = Ticket.find_by(id:item[0].to_i)
-      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1]
+      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(user and user.isBusiness? and @event.user!=user.id)
         all_tickets<<item
+      else
+        session[:cart].delete(item[0])
       end
     end
     return all_tickets
