@@ -81,10 +81,10 @@ class CartController < ApplicationController
   def self.all_cart_items(session)
     session = check_cart(session)
     all_tickets=[]
-    user = User.find_by_id(session[:user_id])
+    user = User.find_by_id(session[:'warden.user.user.key'][0][0])
     session[:cart].each do |item|
       ticket = Ticket.find_by(id:item[0].to_i)
-      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(user and user.isBusiness? and @event.user!=user.id)
+      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(!user.blank? and user.isBusiness? and ticket.event.user.id==user.id)
         all_tickets<<item
       else
         session[:cart].delete(item[0])
