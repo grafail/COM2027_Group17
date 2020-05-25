@@ -11,6 +11,7 @@
     <th>Name of Ticket:</th>
     <th>Price:</th>
     <th>Quantity:</th>
+    <th></th>
   </tr>
   </thead>
 
@@ -27,6 +28,11 @@
           <tr>
             <td>
               <div class = "linkButton"><%= link_to 'New Ticket', new_ticket_path(event_id: event) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %></div>
             </td>
           </tr>
         </table>
@@ -96,6 +102,9 @@
             </tr>
           <% end %>
         </table>
+      </td>
+      <td class = "tableBorder">
+        <%= link_to "View all purchases" , event_list_path(event) %>
       </td>
     </tr>
   <% end %>

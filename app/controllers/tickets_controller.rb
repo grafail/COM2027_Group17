@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[show edit update destroy]
+  before_action :set_ticket, only: %i[show edit update destroy list]
 
   # GET /tickets
   # GET /tickets.json
@@ -20,6 +20,9 @@ class TicketsController < ApplicationController
     redirect_to root_path, notice: 'You should be logged in to your business account!' unless user_signed_in? and current_user==@ticket.event.user
   end
 
+  def list
+    @ticketsBought = Purchase.where(ticket:@ticket)
+  end
   # GET /tickets/new
   def new
     if user_signed_in? && User.find_by(id:current_user.id).isBusiness

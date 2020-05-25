@@ -1,0 +1,34 @@
+
+<h1 style="text-align: center; padding-top: 10px;">All Purchases for <%= @ticket.name %>:</h1>
+
+<table id="myTicketTable">
+  <thead>
+  <tr>
+    <th>Name:</th>
+    <th>Event Details:</th>
+    <th>Quantity:</th>
+    <th>Price:</th>
+  </tr>
+  </thead>
+
+  <tbody style="font-size: 14px">
+  <% @ticketsBought.each do |purchase| %>
+    <% user = purchase.order.user %>
+    <% event = purchase.ticket.event %>
+    <tr>
+      <td class = "tableBorder">
+        <%= user.firstName[0] + ' ' + user.lastName %>
+      </td>
+      <td class = "tableBorder">
+        <%= link_to event.name , event %>
+      </td>
+      <td class = "tableBorder">
+        <%=purchase.qty%>
+      </td>
+      <td class = "tableBorder">
+        <%=purchase.qty*purchase.ticket.price%>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

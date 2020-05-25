@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_event, only: %i[show edit update destroy list]
 
   def self.load_events(events)
     Gmaps4rails.build_markers(events) do |venue, marker|
@@ -13,8 +13,15 @@ class EventsController < ApplicationController
   def cheapestTicket(id)
     Ticket.where(event: id).minimum(:price)
   end
-
   helper_method :cheapestTicket
+
+  def list
+    @allPurchases = []
+    tickets = Ticket.where(event:@event)
+    tickets.each do |ticket|
+      @allPurchases += Purchase.where(ticket:ticket)
+    end
+  end
 
   def betweenPrice(events, minPrice, maxPrice)
     results = []
@@ -234,10 +241,14 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in? && current_user.isBusiness? == true && current_user == @event.user
+      @event.destroy
+      respond_to do |format|
+        format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, notice: 'Please login into your business account'
     end
   end
 

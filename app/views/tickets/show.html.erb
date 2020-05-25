@@ -9,6 +9,7 @@
     <th>Price:</th>
     <th>Quantity:</th>
     <th>Event:</th>
+    <th></th>
   </tr>
   </thead>
 
@@ -49,6 +50,11 @@
       <td class = "tableBorder">
         <%= link_to @ticket.event.name , @ticket.event %>
       </td>
+
+      <td class = "tableBorder">
+        <%= link_to "View purchases" , ticket_list_path(@ticket) %>
+      </td>
+
     </tr>
   </tbody>
 </table>

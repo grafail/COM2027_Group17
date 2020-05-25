@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'about', to: 'home#about'
   get 'privacy', to: 'home#privacy'
   get 'termsandconditions', to: 'home#termsandconditions'
+  get 'tickets/list/:id', to:'tickets#list', as: :ticket_list
+  get 'events/list/:id', to:'events#list', as: :event_list
 
   get 'myevents', to: 'events#myEvents'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
