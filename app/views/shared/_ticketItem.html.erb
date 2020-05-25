@@ -17,7 +17,8 @@
 <div class="col-md-4 col-sm-2 col-6 text-right pl-0">
 
   <p> </p><%= button_to 'Add ticket to cart', cart_change_qty_path(id: ticket.id, qty: 1), :method=>:get, :class => "btn btn-primary" %> </p>
-  <p> Remaining quantity: <%= TicketsController.ticketsRemaining(ticket.id) %> </p>
+  <% tmp = TicketsController.ticketsRemaining(ticket.id) %>
+  <p> Remaining quantity: <%= tmp %> <br> (<%= number_with_precision((100-100*(tmp.to_f/ticket.quantity)), :precision => 1) %>% Sold out!) <p>
 
 </div>
 </div>

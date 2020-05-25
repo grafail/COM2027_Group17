@@ -41,7 +41,9 @@
       </td>
       <!-- Doing each row for ticket names of an event-->
       <td class = "tableBorder">
-        <%=@ticket.quantity%>
+        <% tmp = TicketsController.ticketsRemaining(@ticket) %>
+        <%=tmp%>/<%=@ticket.quantity%> <br>
+        (<%= number_with_precision((100-100*(tmp.to_f/@ticket.quantity)), :precision => 1) %>% Sold out!)
       </td>
       <!-- Doing each row for ticket names of an event-->
       <td class = "tableBorder">
