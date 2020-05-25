@@ -84,11 +84,9 @@
                   <div class="offset-4 col-8">
 
                     <br>
-                    <i class="fa fa-check-circle"><%= f.submit "Update", :class=>"btn btn-default btn-sm"%></i>
+                    <%= f.button image_tag('',:class=>"fa fa-check-circle")+" Update", :class=>"btn btn-default btn-sm"%>
                     <br>
-                    <i class="fa fa-trash">
-                    <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, :class=>"btn btn-default btn-sm", method: :delete %>
-                    </i>
+                    <%= link_to image_tag('',:class => "fa fa-trash") + " Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, :class=>"btn btn-default btn-sm", :style => "color:black;",method: :delete %>
                     <%end%>
                   </div>
                 </div>
