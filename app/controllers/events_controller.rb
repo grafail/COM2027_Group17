@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy list]
 
-  def self.load_events(events)
-    Gmaps4rails.build_markers(events) do |venue, marker|
+  def self.load_events(eventsList)
+    Gmaps4rails.build_markers(eventsList) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
 
       marker.infowindow venue.name
     end
+  end
+
+  def inCategory(events,category)
+    return events.where(:eventType => category)
   end
 
   def cheapestTicket(id)
@@ -98,7 +102,7 @@ class EventsController < ApplicationController
     validateParameters
 
     @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate], params[:endDate]), params[:priceMin], params[:priceMax]), params[:distance], params[:location])
-    @events = @eventsNoCategory.in_category(params[:category])
+    @events = inCategory(@eventsNoCategory,params[:category])
     @events_default = EventsController.load_events(@events)
     @events = sort_events(@events, params[:sort])
 
