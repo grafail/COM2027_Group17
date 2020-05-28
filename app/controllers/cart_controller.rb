@@ -88,7 +88,7 @@ class CartController < ApplicationController
       end
     session[:cart].each do |item|
       ticket = Ticket.find_by(id:item[0].to_i)
-      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(!user.blank? and user.isBusiness? and ticket.event.user.id==user.id)
+      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(!user.blank? and user.isBusiness? and ticket.event.user.id!=user.id)
         all_tickets<<item
       else
         session[:cart].delete(item[0])
