@@ -104,7 +104,7 @@ class EventsController < ApplicationController
 
     validateParameters
 
-    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:startDate], params[:endDate]), params[:priceMin], params[:priceMax]), params[:distance], params[:location])
+    @eventsNoCategory = distanceCheck(betweenPrice(Event.in_dates(params[:beginDate], params[:endDate]), params[:priceMin], params[:priceMax]), params[:distance], params[:location])
     @events = inCategory(@eventsNoCategory,params[:category])
     @events_default = EventsController.load_events(@events)
     @events = sort_events(@events, params[:sort])
