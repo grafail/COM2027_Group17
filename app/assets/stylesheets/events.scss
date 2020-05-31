@@ -104,3 +104,20 @@ img {
   color:#666;
   margin-top:8px;
 }
+
+.input-group-addon {
+  color: black;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  width: auto;
+  border-radius: 0;
+}
+
+.input-sm {
+  font-size: xx-small;
+}
