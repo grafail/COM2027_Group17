@@ -15,9 +15,17 @@
         });
         $( "#max" ).val( "£" + $( ".slider-range" ).slider( "values", 1 ));
         $( "#min" ).val( "£" + $( ".slider-range" ).slider("values", 0 ));
+
+        <% if @beginDate.present? %>
+        document.getElementById('beginDate').value= "<%= @beginDate %>";
+        <% end %>
+        <% if @endDate.present? %>
+        document.getElementById('endDate').value= "<%= @endDate %>";
+        <% end %>
+
     });
 
-    function applyFilters(sort) {
+    function applyFilters(page,sort) {
 
         let data = {};
         data["priceMin"] = document.getElementById('min').value.substring(1);
@@ -29,10 +37,13 @@
         data["beginDate"] = document.getElementById('beginDate').value;
         data["endDate"] = document.getElementById('endDate').value;
         data["location"] = document.getElementById('location').value;
+        data["page"] = page;
         if(sort!=undefined)
             data["sort"]=sort;
         else
             data["sort"]=<%=@sortNum || 1;%>;
+        if(page!=undefined)
+            data["page"]=page;
         let link = "";
         for (let key in data) {
             if (data[key] === undefined || data[key] === "" || data[key].length === 0)
@@ -48,7 +59,6 @@
 
 
 </script>
-
 <div class="container py-3" style="padding-top: 20px;">
   <header style="font-size: xx-large;">Events</header>
 
@@ -62,7 +72,11 @@
           <div class="list-group small rounded-0">
             <div class="list-group-item rounded-0 bg-light text-uppercase text-dark">Event Type</div>
             <% Event::eventTypes.each do |type| %>
-              <div class="list-group-item list-group-item-action categoryChoice" id="<%= type[0] %>" data-toggle="list"><%= type[0] %>
+              <div class="list-group-item list-group-item-action categoryChoice
+              <%if @category and @category==type[0] %>
+                   active
+              <% end %>
+              " id="<%= type[0] %>" data-toggle="list"><%= type[0] %>
                 <span class="badge badge-pill badge-light float-right"><%= @eventsNoCategory.where(eventType: type[1]).count %></span>
               </div>
             <% end %>
@@ -95,9 +109,9 @@
             <div class="list-group-item">
 
               <div class="input-daterange input-group" id="datepicker">
-                <input type="date" class="input-sm form-control" id="beginDate" name="start" placeholder="date"/>
-                <span class="input-group-addon">to</span>
-                <input type="date" class="input-sm form-control" id="endDate" name="end" placeholder="date"/>
+                <input type="date" class="input-sm form-control date" id="beginDate" name="start" style="padding: 0; text-align: center;"/>
+                <span class="input-group-addon" style="padding-right: 2px; padding-left: 2px;">  to  </span>
+                <input type="date" class="input-sm form-control date" id="endDate" name="end" style="padding: 0; text-align: center;"/>
               </div>
             </div>
           </div>
@@ -138,14 +152,14 @@
                 by: <%= @sort %>
                 <span class="caret"></span></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('1')" tabindex="-1" href="#">Name (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('2')" tabindex="-1" href="#">Name (descending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'1')" tabindex="-1" href="#">Name (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'2')" tabindex="-1" href="#">Name (descending)</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('3')" tabindex="-1" href="#">Price (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('4')" tabindex="-1" href="#">Price (descending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'3')" tabindex="-1" href="#">Price (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'4')" tabindex="-1" href="#">Price (descending)</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('5')" tabindex="-1" href="#">Date (ascending)</a></li>
-                <li role="presentation"><a role="menuitem" onclick="applyFilters('6')" tabindex="-1" href="#">Date (descending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'5')" tabindex="-1" href="#">Date (ascending)</a></li>
+                <li role="presentation"><a role="menuitem" onclick="applyFilters(<%= @page %>,'6')" tabindex="-1" href="#">Date (descending)</a></li>
               </ul>
             </div>
           </div>
@@ -168,7 +182,7 @@
       </script>
 
       <!-- product list-->
-      <% @events.each do |event| %>
+      <% @events[((@page-1)*3)..((@page-1)*3+2)].each do |event| %>
 
         <%= render :partial => 'shared/eventItem', locals:{event:event} %>
 
@@ -178,20 +192,26 @@
       <div class="row">
         <div class="col-lg-6 mx-lg-auto py-2" id="_">
           <ul class="pagination justify-content-center">
-            <li class="page-item disabled blue-text">
+            <li class="page-item blue-text" onclick = "applyFilters(<%= @page - 1 %>)" href="#">
               <a class="page-link border-0" href="#" aria-label="Previous">
                 <span aria-hidden="true">❮</span>
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li class="page-item active button-color">
-              <a class="page-link border-0 button-color" href="#_">1 <span class="sr-only button-color">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link border-0" href="#_">2</a></li>
-            <li class="page-item"><a class="page-link border-0" href="#_">3</a></li>
-            <li class="page-item"><a class="page-link border-0" href="#_">4</a></li>
-            <li class="page-item disabled">
-              <a class="page-link border-0" href="#_" aria-label="Next">
+            <% (1..2).each do |i| %>
+              <% if @events.length>(@page-i-1)*3 and @page-i>=1%>
+                <li class="page-item"><a class="page-link border-0" onclick = "applyFilters(<%= @page - i %>)" href="#"><%= @page - i %></a></li>
+              <% end %>
+              <% end %>
+              <li class="page-item active button-color">
+                <a class="page-link border-0 button-color"> <%= @page %> <span class="sr-only button-color">(current)</span></a>
+              </li>
+              <% (1..2).each do |i| %>
+                <% if @events.length>(@page+i-1)*3 and @page+i>=1%>
+                  <li class="page-item"><a class="page-link border-0" onclick = "applyFilters(<%= @page + i %>)" href="#"><%= @page + i %></a></li>
+                <% end %>
+            <% end %>
+              <a class="page-link border-0" onclick = "applyFilters(<%= @page + 1 %>)" href="#_" aria-label="Next">
                 <span aria-hidden="true">❯</span>
                 <span class="sr-only">Next</span>
               </a>

@@ -1,6 +1,6 @@
 User.create!([
-               { email: "test@example.org", password: "123456", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil },
-               { email: "test2@example.org", password: "123456", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, isBusiness:true }
+               { email: "test@example.org", password: "123456", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, isBusiness: false, firstName: "John", lastName: "Doe"},
+               { email: "test2@example.org", password: "123456", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, isBusiness: true, firstName: "Jane", lastName: "Doe" }
              ])
 Event.create!([
                 { user_id: 2, name: "Test Event 1", description: "This is a description.", eventDate: "2020-12-25 18:00:00", location: "Guildford", latitude: 51.2356068, longitude: -0.5732063, eventType: 1 },

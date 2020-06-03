@@ -1,7 +1,6 @@
-<% content_for :head_tags do %>
+
   <%= action_cable_meta_tag %>
   <%=javascript_include_tag 'cable.js'%>
-<% end %>
 
 <script>
     function get_reading() {
@@ -46,13 +45,23 @@
       </div>
 
       <div class ="col-4">
-        <h2><i class="material-icons">location_on</i><%=@event.location%></h2>
+        <h3><i class="material-icons">location_on</i><%=@event.location%></h3>
         <p><%=@event.description%></p>
+        <input type="hidden" id="eventID" name="eventID" value="<%= @event.id %>">
+        <p>
+          <h4>Seller info</h4>
+          <div style="font-size: 15px">
+          <hr>
+          <%= @event.user.firstName + ' ' + @event.user.lastName %>
+          <br>
+          <%=  mail_to @event.user.email %>
+          </div>
+        </p>
+        <hr>
         <p style="font-size: smaller;">Number of people currently looking at this event:<br>
           <i class="material-icons">account_circle</i>
           <span id="viewingNow"></span>
         </p>
-        <input type="hidden" id="eventID" name="eventID" value="<%= @event.id %>">
       </div>
 
 
@@ -77,23 +86,26 @@
         </div>
 
         <div class="tab-pane fade show" role="tabpanel" id="ticket-info">
-          <h3 style="padding-top: 10px;">Ticket Prices</h3>
-          <h4>Standard: <%=@event.name%></h4>
-          <button class="btn btn-block btn-primary button-color">Buy ticket</button>
+          <h3 style="padding-top: 10px;">Tickets:</h3>
+          <% Ticket.where(event:@event).each do |ticket| %>
 
-          <p>Tickets remaining: </p>
+            <%= render partial: 'shared/ticketItem', :locals => {:ticket => ticket} %>
+
+
+        <% end %>
+
         </div>
 
         <div class="tab-pane fade show" role="tabpanel" id="nearby">
 
-          <% @eventsNearby.each do |event| %>
+          <% @eventsNearby[0..3].each do |event| %>
 
             <%= render :partial => 'shared/eventItem', locals:{event:event} %>
 
         <% end %>
           <!-- In case no nearby events exist -->
           <% if @eventsNearby.length == 0%>
-            <div class="event-box yellow row mb-5" style="padding-top: 20px;">
+            <div class="event-box yellow row" style="padding-top: 20px; width: 100%; display: inline-block; text-align: center;">
                   <h5 style="font-family: 'Domine', serif; font-size: xx-large;">No nearby events found!</h5>
             </div>
           <% end %>
@@ -104,3 +116,9 @@
 
   </div>
 </div>
+
+<script>
+
+    $('.nav-tabs a[href="#description"]').tab('show')
+
+</script>

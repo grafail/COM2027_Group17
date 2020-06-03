@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+
   def cart
     @cartItems = CartController.all_cart_items(session)
     @total = CartController.total_price_cart(session)
@@ -9,23 +10,33 @@ class CartController < ApplicationController
   end
 
   def self.check_cart(session)
+    if session.blank?
+      session = {}
+    end
     session[:cart] = {} unless session[:cart]
+    return session
   end
   helper_method :check_cart
 
   def change_qty
     check_cart
     id = params[:id]
-    qty = params[:qty]
-    tmp = session[:cart][id].to_i + qty.to_i
-    if tmp > 0
-      session[:cart][id] = tmp
+    @ticket = Ticket.find_by_id(id)
+    @event = @ticket.event
+    user = User.find_by_id(session[:user_id])
+    if @event.blank? or (user and user.isBusiness? and @event.user!=user.id)
+      redirect_to root_path, notice: 'Business user can only buy their own tickets'
+      return
+    end
+    qty = params[:qty].to_i
+    if qty <= TicketsController.ticketsRemaining(@ticket)
+      session[:cart][id] = qty
       msg = 'Ticket was added!'
     else
-      msg = 'Ticket was not added!'
+      msg = 'Ticket could not be added!'
     end
 
-    if tmp == 0
+    if qty == 0
       redirect_to cart_remove_path(id: id)
       return
     end
@@ -68,14 +79,28 @@ class CartController < ApplicationController
   end
 
   def self.all_cart_items(session)
-    check_cart(session)
-    session[:cart]
+    session = check_cart(session)
+    all_tickets=[]
+    if session[:'warden.user.user.key'].present?
+      user = User.find_by_id(session[:'warden.user.user.key'][0][0])
+    else
+      user = nil
+      end
+    session[:cart].each do |item|
+      ticket = Ticket.find_by(id:item[0].to_i)
+      if !ticket.blank? and TicketsController.ticketsRemaining(ticket.id)>=item[1] and !(!user.blank? and user.isBusiness? and ticket.event.user.id!=user.id)
+        all_tickets<<item
+      else
+        session[:cart].delete(item[0])
+      end
+    end
+    return all_tickets
   end
   helper_method :all_cart_items
 
   def self.length_of_cart(session)
-    check_cart(session)
-    session[:cart].length
+    session = check_cart(session)
+    all_cart_items(session).length
   end
   helper_method :length_of_cart
 
@@ -83,7 +108,7 @@ class CartController < ApplicationController
     return 0 unless session[:cart]
 
     total = 0
-    session[:cart].each do |item|
+    all_cart_items(session).each do |item|
       id = item[0]
       qty = item[1].to_i
       ticket = Ticket.find_by(id: id)

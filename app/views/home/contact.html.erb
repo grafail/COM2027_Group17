@@ -1,10 +1,10 @@
-<%= form_tag request_contact_path, method: 'post' do end%>
+<%= form_tag request_contact_path, method: 'post' do%>
 
-<div class="contact">
-</div>
+
 
   <div class="container"style="text-align: center">
-
+    <div class="contact">
+    </div>
     <h1 >
       <%= t('.title') %>
     </h1>
@@ -84,7 +84,7 @@
       </div>
 
       <div class="col-md-12 mx-auto">
-        <input type="submit" class="btn btn-outline-secondary btn-send" value="Send">
+        <input type="submit" class="btn btn-outline-secondary btn-send button-color" value="Send">
       </div>
     </div>
 
@@ -92,4 +92,4 @@
   </div>
 
 
-
+  <%end%>

@@ -26,7 +26,7 @@
               <% @event = Event.find_by("id"=>@currentTicket.event) %>
               <div class="item row">
 
-                <img src="/assets/eventus.png" width="100" height="100" itemprop="image" alt=""/>
+                <%= image_tag("eventus.png", :align => "left", :size => "100x100") %>
                 <div class="info">
                   <div class="title" itemprop="name">Event: <%= link_to @event.name, @event %></div>
                   <div class="subtitle"> Ticket: <%= link_to @currentTicket.name, @currentTicket %> (x<%= purchase.qty %>)</div>
@@ -36,11 +36,14 @@
                 </div>
               </div>
             <% end %>
+            <% if @myTickets.length == 0 %>
+              <h2 style="text-align: center;" >No tickets found!</h2>
+          <% end %>
           </div>
         </div>
         <hr>
         <div class="col-xs-9">
-          <%= button_to 'Buy More Tickets', new_ticket_path, :method=>:get, :class => "btn btn-success" %>
+          <%= button_to 'Buy More Tickets', events_path, :method=>:get, :class => "btn button-color" %>
         </div>
       </div>
     </div>

@@ -11,13 +11,12 @@
   <%end %>
 
   <div id="corner" >
-    <!--no backgound colour if cart is empty. If not empty then it displays number of items in cart and changes to red-->
-    <% if !session[:cart] then session[:cart] = {} end %>
-    <% cartSize = session[:cart].length %>
+
+    <% cartSize = CartController.length_of_cart(session) %>
     <% if cartSize == 0 %>
       <li><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50"), '/cart/'%></li>
     <% else %>
-      <li style="color: white; background-color:red;line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: white; background-color:red' %></li>
+      <li style="color: white; line-height: 62px;font-size: 15px;font-weight: 600;"><%= link_to image_tag('cart.png', :align => "center", :id => "cart", :size => "50x50") + CartController.total_price_cart(session).to_s+'£', '/cart/', :style => 'color: black;' %></li>
     <% end %>
     <% if user_signed_in? %>
 
@@ -28,7 +27,6 @@
           <div class="dropdown-content" style="font-size: 12px; font-family: verdana, arial, helvetica, sans-serif;">
             <%= link_to '/users/edit' do %><i class= "fa fa-user-circle"></i> Profile<% end %>
             <%= link_to '/tickets' do %><i class= "fa fa-ticket"></i> My Tickets<% end %>
-            <%= link_to '/tickets' do %><i class= "fa fa-child"></i>User Mode<% end %>
             <div class="dropdown-divider"></div>
             <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
           </div>

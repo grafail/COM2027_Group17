@@ -4,13 +4,13 @@
     <li><%= link_to '/home' do %>Home <i class= "fa fa-home"></i><% end %></li>
     <li> <%= link_to "About", '/about' %> </li>
     <li><%= link_to '/events' do %>Events <i class= "fa fa-envelope-o"></i><% end %></li>
-    <li><%= link_to '/tickets' do %>BuyTickets <i class= "fa fa-ticket"></i><% end %></li>
+    <li><%= link_to '/tickets' do %>Buy Tickets <i class= "fa fa-ticket"></i><% end %></li>
     <li> <%= link_to "Contact us", '/contact' %> </li>
-    <li><%= link_to '/twitter' do %>Twitter <i class= "fa fa-twitter"></i><% end %></li>
-    <li><%= link_to '/search' do %>Search <i class= "fa fa-search"></i><% end %></li>
+    <li><%= link_to '/users/edit' do %>Profile <i class= "fa fa-user-circle"></i><% end %></li>
+    <li><%= link_to  events_path do %>Search <i class= "fa fa-search"></i><% end %></li>
     <li> <%= link_to "T & Cs", '/termsandconditions' %> </li>
     <li> <%= link_to "Privacy", '/privacy' %> </li>
-    <li> <%= link_to "Ticket Sellers", '/ticketseller' %> </li>
+    <li> <%= link_to "Ticket Sellers", '#', :'data-toggle' => "modal", :'data-target' => ".modalLogin" %> </li>
 
 
 

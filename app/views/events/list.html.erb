@@ -1,0 +1,46 @@
+<h1 style="text-align: center; padding-top: 10px;">All Ticket Purchases for <%= @event.name %>:</h1>
+
+<table id="myTicketTable">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name:</th>
+    <th>Event Details:</th>
+    <th>Ticket:</th>
+    <th>Quantity:</th>
+    <th>Price:</th>
+  </tr>
+  </thead>
+
+  <tbody style="font-size: 14px">
+  <% @allPurchases.each do |purchase| %>
+    <% user = purchase.order.user %>
+    <% event = purchase.ticket.event %>
+    <tr>
+      <td class="tableBorder">
+        <table>
+          <td>
+            <div class="linkButton"><%= link_to 'Refund', purchase, method: :delete, data: {confirm: 'Are you sure?'} %></div>
+          </td>
+          </tr>
+        </table>
+      </td>
+      <td class="tableBorder">
+        <%= user.firstName[0] + ' ' + user.lastName %>
+      </td>
+      <td class="tableBorder">
+        <%= link_to event.name, event %>
+      </td>
+      <td class="tableBorder">
+        <%= link_to purchase.ticket.name, purchase.ticket %>
+      </td>
+      <td class="tableBorder">
+        <%= purchase.qty %>
+      </td>
+      <td class="tableBorder">
+        <%= purchase.qty * purchase.ticket.price %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

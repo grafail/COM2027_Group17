@@ -1,24 +1,60 @@
-<p id="notice"><%= notice %></p>
+<h1>Ticket Details:</h1>
 
-<p>
-  <strong>Event:</strong>
-  <%= Event.find_by("id"=>@ticket.event.id).name %>
-</p>
+<table id="myEventTable">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Ticket Name:</th>
+    <th>Ticket Description:</th>
+    <th>Price:</th>
+    <th>Quantity:</th>
+    <th>Event:</th>
+    <th></th>
+  </tr>
+  </thead>
 
-<p>
-  <strong>Price:</strong>
-  <%= @ticket.price %>
-</p>
+  <tbody style="font-size: 14px">
+    <tr>
+      <td class = "tableBorder">
+        <table>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Edit', edit_ticket_path(@ticket) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Remove', ticket_delete_path(@ticket) %></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td class = "tableBorder">
+        <%= link_to @ticket.name , @ticket %>
+      </td>
+      <td class = "tableBorder">
+        <%= @ticket.description %>
+      </td>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket.name %>
-</p>
+      <!-- Doing each row for ticket price of an event-->
+      <td class = "tableBorder">
+        <%=@ticket.price%>
+      </td>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <% tmp = TicketsController.ticketsRemaining(@ticket) %>
+        <%=tmp%>/<%=@ticket.quantity%> <br>
+        (<%= number_with_precision((100-100*(tmp.to_f/@ticket.quantity)), :precision => 1) %>% Sold out!)
+      </td>
+      <!-- Doing each row for ticket names of an event-->
+      <td class = "tableBorder">
+        <%= link_to @ticket.event.name , @ticket.event %>
+      </td>
 
-<p>
-  <strong>Description:</strong>
-  <%= @ticket.description %>
-</p>
+      <td class = "tableBorder">
+        <%= link_to "View purchases" , ticket_list_path(@ticket) %>
+      </td>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+    </tr>
+  </tbody>
+</table>

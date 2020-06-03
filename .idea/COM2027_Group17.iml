@@ -41,7 +41,6 @@
     <orderEntry type="library" scope="PROVIDED" name="binding_of_caller (v0.8.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.4.6, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap (v4.4.1, RVM: ruby-2.5.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bootstrap-slider-rails (v9.8.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.1, RVM: ruby-2.5.5) [gem]" level="application" />
@@ -59,9 +58,12 @@
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.7.1, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.9.0, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="et-orbi (v1.2.4, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="eu_central_bank (v1.5.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.12.2, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.7.0.5, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fugit (v1.3.5, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.6.2, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gmaps4rails (v2.1.2, RVM: ruby-2.5.5) [gem]" level="application" />
@@ -84,14 +86,19 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.4.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.14.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="modernizr-rails (v2.7.1, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="monetize (v1.9.4, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="money (v6.13.7, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="money-rails (v1.13.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.3.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.2, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.9, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="owlcarousel-rails (v2.2.3.5@d1bdb7, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="popper_js (v1.16.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v4.0.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.4, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="raabro (v1.3.1, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.2, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v1.1.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v5.2.4.1, RVM: ruby-2.5.5) [gem]" level="application" />
@@ -102,11 +109,13 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.1, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.3, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis (v4.1.4, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v1.7.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_property_values (v1.0.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.0.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.2.0, RVM: ruby-2.5.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rufus-scheduler (v3.6.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, RVM: ruby-2.5.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.1.0, RVM: ruby-2.5.5) [gem]" level="application" />

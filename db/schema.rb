@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_165102) do
+ActiveRecord::Schema.define(version: 2020_05_24_121544) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.datetime "eventDate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "viewCount", default: 0
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -63,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_165102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "isBusiness", default: false, null: false
+    t.string "firstName", default: "", null: false
+    t.string "lastName", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

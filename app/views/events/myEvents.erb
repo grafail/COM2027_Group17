@@ -1,4 +1,5 @@
-<h1>Your Event Listings</h1>
+
+<h1 style="text-align: center; padding-top: 10px;">Your Event Listings</h1>
 
 <table id="myEventTable">
   <thead>
@@ -6,15 +7,15 @@
     <th></th>
     <th>Event Name:</th>
     <th>Event Details:</th>
-    <th>Tickets:</th>
+    <th></th>
     <th>Name of Ticket:</th>
     <th>Price:</th>
     <th>Quantity:</th>
-    <th colspan="3"></th>
+    <th></th>
   </tr>
   </thead>
 
-  <tbody>
+  <tbody style="font-size: 14px">
   <% @myEvents.each do |event| %>
     <tr>
       <td class = "tableBorder">
@@ -27,6 +28,11 @@
           <tr>
             <td>
               <div class = "linkButton"><%= link_to 'New Ticket', new_ticket_path(event_id: event) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class = "linkButton"><%= link_to 'Remove', event, method: :delete, data: { confirm: 'Are you sure?' } %></div>
             </td>
           </tr>
         </table>
@@ -59,7 +65,7 @@
         </table>
       </td>
 
-      <td class = "tableBorder"><!--Tickets--></td>
+      <td class = "tableBorder"> Tickets: <!--Tickets--></td>
       <%@tickets = Ticket.where(event:event.id) %>
       <!-- Doing each row for ticket names of an event-->
       <td class = "tableBorder">
@@ -91,13 +97,17 @@
           <% @tickets.each do |eventTicket| %>
             <tr>
               <td>
-                <%=eventTicket.quantity%>
+                <%=TicketsController.ticketsRemaining(eventTicket.id)%>/<%=eventTicket.quantity%>
               </td>
             </tr>
           <% end %>
         </table>
       </td>
+      <td class = "tableBorder">
+        <%= link_to "View all purchases" , event_list_path(event) %>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
+<br>

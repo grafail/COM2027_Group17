@@ -12,6 +12,7 @@
  *
  */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css");
 @import "style";
 @import "magnific-popup";
 @import "jquery-ui";
@@ -21,7 +22,6 @@
 @import 'slick';
 @import "bootstrap";
 @import "toastr";
-@import "font-awesome";
 @import "material_icons";
 
 @import "style";
@@ -171,7 +171,7 @@ div{
 .about-section {
   background-image: url("about-us-title-image.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
   padding-top: 110px;
   padding-bottom:128px;
@@ -244,7 +244,7 @@ label {
 .contact {
   background: url("contact.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
   padding-top: 110px;
   padding-bottom:110px;
@@ -349,7 +349,7 @@ label {
   background-color: white;
 }
 
-#myEventTable{
+#myEventTable #myTicketTable{
   border: 3px solid grey;
   margin: 60px auto 30px auto;
   background-color: #fff6a4;

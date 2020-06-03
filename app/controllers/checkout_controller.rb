@@ -40,8 +40,9 @@ class CheckoutController < ApplicationController
       response = gateway.purchase(amount, credit_card)
 
       if response.success?
-        puts "Successfully charged $#{format('%.2f', amount / 100)} to the credit card #{credit_card.display_number}"
+        puts "Successfully charged £#{format('%.2f', amount / 100)} to the credit card #{credit_card.display_number}"
         create_order_from_cart(@cartItems, @total)
+        session[:cart] = {}
         m = 'Order was completed successfully! (' + (amount / 100).to_s + '£)'
       else
         raise StandardError, response.message
