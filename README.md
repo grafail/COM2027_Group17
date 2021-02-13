@@ -1,24 +1,11 @@
 # Project for COM2027
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the repository for an application created for a Web Development module group project coded by members of Group 17.
 
-Things you may want to cover:
+Eventus is a web application which allows users to buy and sell tickets for events.
 
-* Ruby version
+Using Ruby v2.5.5 and PostgreSQL.
 
-* System dependencies
+Please rake db:create and db:migrate before running.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To enable the Google Maps integration to work, an API key needs to be entered in line 12 of /app/views/application.html.erb/
